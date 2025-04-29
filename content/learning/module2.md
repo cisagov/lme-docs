@@ -1,3 +1,3 @@
 ---
-title: module2
+title: Module 2
 ---

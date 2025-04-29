@@ -1,5 +1,5 @@
 ---
-title: LEARNING
+title: Learning
 
 cascade:
   type: "docs"

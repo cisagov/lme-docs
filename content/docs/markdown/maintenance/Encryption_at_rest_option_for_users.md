@@ -1,7 +1,7 @@
 ---
-title: Encryption at rest option for users.md
+title: Encryption At Rest
 ---
-# Encryption at rest option for users.md
+# Encryption At Rest
 
 To ensure encryption at rest for all data managed by Elastic Cloud Enterprise, the hosts running Elastic Cloud Enterprise must be configured with disk-level encryption, such as dm-crypt. Elastic Cloud Enterprise does not implement encryption at rest out of the box.
 

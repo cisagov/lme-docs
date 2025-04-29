@@ -5,7 +5,8 @@ cascade:
   type: "community"
 ---
 
-#put a link here to the group calendar for upcoming events
+# List of Upcoming events: 
 
-{{< iframe src=https://calendar.google.com/calendar/embed?src=loggingmadeeasy%40gmail.com&ctz=America%2FDenver >}}
 
+1. Event 1
+2. Event 2

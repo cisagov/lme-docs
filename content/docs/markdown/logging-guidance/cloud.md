@@ -1,5 +1,5 @@
 ---
-title: cloud.md
+title: Cloud
 ---
 # Logging Made Easy in the cloud 
 

@@ -1,5 +1,5 @@
 ---
-title: install-sysmon.md
+title: Install Sysmon
 ---
 # Installing Sysmon on Windows Machines
 

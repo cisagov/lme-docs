@@ -1,5 +1,5 @@
 ---
-title: elastalert-rules.md
+title: Elastalert Rules
 ---
 # Elast Alert Rule writing:
 

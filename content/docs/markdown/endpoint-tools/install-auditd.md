@@ -1,5 +1,5 @@
 ---
-title: install-auditd.md
+title: Install Auditd
 ---
 # Installing and Configuring Auditd on Linux Systems
 

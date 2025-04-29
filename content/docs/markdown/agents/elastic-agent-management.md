@@ -1,5 +1,5 @@
 ---
-title: elastic-agent-management.md
+title: Elastic Agent Management
 ---
 # Elastic Agent Management - Enrollment Guide
 

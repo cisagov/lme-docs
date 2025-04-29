@@ -1,5 +1,5 @@
 ---
-title: passwords.md
+title: Passwords
 ---
 # Password Encryption:
 Ansible-vault is used to enable password encryption, securely storing all LME user and service user passwords at rest

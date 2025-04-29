@@ -1,5 +1,5 @@
 ---
-title: dashboard-descriptions.md
+title: Dashboard Descriptions
 ---
 # Dashboard Descriptions
 

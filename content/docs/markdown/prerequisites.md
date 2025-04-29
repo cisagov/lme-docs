@@ -1,5 +1,5 @@
 ---
-title: prerequisites.md
+title: Prerequisites
 ---
 # Prerequisites
  New changes here

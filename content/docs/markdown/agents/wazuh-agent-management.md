@@ -1,5 +1,5 @@
 ---
-title: wazuh-agent-management.md
+title: Wazuh Agent Management
 ---
 # LME Wazuh Agent Enrollment Guide
 

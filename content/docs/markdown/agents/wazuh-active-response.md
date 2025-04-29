@@ -1,5 +1,5 @@
 ---
-title: wazuh-active-response.md
+title: Wazuh Active Response
 ---
 # Example Setup for Wazuh Active Response
 

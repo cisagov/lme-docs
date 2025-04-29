@@ -135,7 +135,7 @@ enable = true
 # Docsy - Site Parameters
 ###############################################################################
 [params]
-  github_repo = "https://cisagov.github.io/lme-docs/"
+  github_repo = "https://github.com/cisagov/lme-docs"
   github_project_repo = "https://github.com/cisagov/lme"
 
   #copyright = "LME"

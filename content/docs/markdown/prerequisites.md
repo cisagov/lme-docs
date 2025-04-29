@@ -2,7 +2,7 @@
 title: Prerequisites
 ---
 # Prerequisites
- New changes here
+New changes here
 
 ## What kind of IT skills do I need to install LME?
 

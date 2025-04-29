@@ -64,8 +64,8 @@ For further support with LME 2.0 users can explore the following options:
 ## 14. Where Can I Find Additional Resources?
 
 Please visit [CISA’s LME website](https://www.cisa.gov/resources-tools/services/logging-made-easy) for additional resources.
-                   
-# Other Questions:                       
+
+# Other Questions:
  
 ## Basic troubleshooting
 You can find basic troubleshooting steps in the [Troubleshooting Guide](troubleshooting.md).
@@ -83,4 +83,3 @@ To report an issue with LME please use the GitHub 'issues' tab at the top of the
 
 ## Questions about individual installations
 Please visit [GitHub Discussions](https://github.com/cisagov/lme/discussions) to see if your issue has been addressed before.
-

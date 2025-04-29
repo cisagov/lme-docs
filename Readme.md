@@ -1,6 +1,6 @@
-# docs Test
+# LME documentation repository
 
-Example of what docs would look like on public website built on github pages
+Tracks all logging made easy documentation for LME's public github hosted documentation website.
 
 ## how it works: 
 

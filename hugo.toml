@@ -1,4 +1,4 @@
-baseURL = "https://mreeve-snl.github.io/docs-test/"
+baseURL = "https://cisagov.github.io/lme-docs/"
 languageCode = 'en-us'
 
 title = "Docs Test"
@@ -127,7 +127,7 @@ enable = true
 ###############################################################################
 [languages]
   [languages.en]
-    title = "docs-test"
+    title = "lme-docs"
     languageName ="English"
     weight = 1
 
@@ -135,7 +135,7 @@ enable = true
 # Docsy - Site Parameters
 ###############################################################################
 [params]
-  github_repo = "https://github.com/mreeve-snl/docs-test"
+  github_repo = "https://cisagov.github.io/lme-docs/"
   github_project_repo = "https://github.com/cisagov/lme"
 
   #copyright = "LME"
@@ -156,7 +156,7 @@ enable = true
 
   # A link to latest version of the docs. Used in the "version-banner" partial to
   # point people to the main doc site.
-  url_latest_version = "https://mreeve-snl.github.io/docs-test/"
+  url_latest_version = "https://cisagov.github.io/lme-docs/"
 
   # A variable used in various docs to determine URLs for config files etc.
   # To find occurrences, search the repo for 'params "githubbranch"'.
@@ -185,12 +185,12 @@ enable = true
   [[params.versions]]
     version = "main"
     githubbranch = "main"
-    url = "https://github.com/mreeve-snl/docs-test/tree/main"
+    url = "https://github.com/cisagov/lme-docs/tree/main"
 	#TODO: add this in
   [[params.versions]]
     version = "v1.0"
     githubbranch = "v1.0"
-    url = "https://github.com/mreeve-snl/docs-test/tree/main"
+    url = "https://github.com/cisagov/lme-docs/tree/main"
 
   # User interface configuration
   [params.ui]

@@ -1,0 +1,60 @@
+{{ $filename := .Get 0 }}
+{{ $csvContent := readFile (printf "/static/%s" $filename) }}
+{{ $rows := split $csvContent "\n" }}
+{{ $tableID := printf "table-%s" (md5 $filename) }}
+
+<table id="{{ $tableID }}">
+  <thead>
+    <tr>
+      {{ $firstRow := index $rows 0 }}
+      {{ $columns := split $firstRow "," }}
+      {{ range $columns }}
+        {{ $cell := replaceRE "^\\s+|\\s+$" "" . }}
+        <th>{{ $cell }}<br><input type="text" class="filter-input"></th>
+      {{ end }}
+    </tr>
+  </thead>
+  <tbody>
+    {{ range $index, $row := $rows }}
+      {{ if ne $index 0 }}
+        {{ $row := replaceRE "^\\s+|\\s+$" "" $row }}
+        {{ if ne $row "" }}
+          <tr>
+            {{ $columns := split $row "," }}
+            {{ range $columns }}
+              {{ $cell := replaceRE "^\\s+|\\s+$" "" . }}
+              <td>{{ $cell }}</td>
+            {{ end }}
+          </tr>
+        {{ end }}
+      {{ end }}
+    {{ end }}
+  </tbody>
+</table>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const table = document.getElementById('{{ $tableID }}');
+  const headers = table.querySelectorAll('thead th');
+  const inputs = Array.from(headers).map(th => th.querySelector('.filter-input'));
+
+  function filterTable() {
+    const filters = inputs.map(input => input.value.toLowerCase().trim());
+    const rows = table.querySelectorAll('tbody tr');
+
+    rows.forEach(row => {
+      const cells = row.querySelectorAll('td');
+      const shouldShow = filters.every((filter, index) => {
+        if (filter === '') return true;
+        const cellText = cells[index].textContent.toLowerCase();
+        return cellText.includes(filter);
+      });
+      row.style.display = shouldShow ? '' : 'none';
+    });
+  }
+
+  inputs.forEach(input => {
+    input.addEventListener('input', filterTable);
+  });
+});
+</script>

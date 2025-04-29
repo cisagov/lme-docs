@@ -1,15 +1,22 @@
 ---
-title: WIKI TEST
+title: LME Docs
 ---
-{{< blocks/cover title="Welcome to WIKI: A Docsy Example Project!" image_anchor="top" height="full" >}}
-<a class="btn btn-lg btn-primary me-3 mb-4" href="/docs/">
-  Learn More <i class="fas fa-arrow-alt-circle-right ms-2"></i>
+{{< blocks/cover title="Logging Made Easy" image_anchor="top" height="full" >}}
+
+<p class="lead mt-5">
+CISA’s Logging Made Easy (LME) is a no cost, open source platform that centralizes log collection, enhances threat detection, and enables real-time alerting, helping small to medium-sized organizations secure their infrastructure.
+</p>
+
+<a class="btn btn-lg btn-info me-3 mb-4" href="/docs/markdown/install/">
+  Install<i class="fas fa-arrow-alt-circle-right ms-2"></i>
 </a>
-<p class="lead mt-5">Porridge temperature assessment &mdash; in the cloud!</p>
+
+<a class="btn btn-lg btn-primary me-3 mb-4" href="/docs/">
+  Explore the Docs<i class="fas fa-arrow-alt-circle-right ms-2"></i>
+</a>
+
 {{< blocks/link-down color="info" >}}
 {{< /blocks/cover >}}
-
-
 
 {{% blocks/section color="dark" type="row" %}}
 

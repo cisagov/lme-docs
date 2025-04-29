@@ -59,6 +59,11 @@ ignoreFiles = []
 ###############################################################################
 [menu]
   [[menu.main]]
+    name = "Install"
+    weight = -104
+    pre = "<i class='fas fa-download pr-2'></i>"
+    url = "/docs/markdown/install/"
+  [[menu.main]]
     name = "Docs"
     weight = -103
     pre = "<i class='fas fa-book pr-2'></i>"
@@ -68,11 +73,11 @@ ignoreFiles = []
     weight = -102
     pre = "<i class='fas fa-calendar pr-2'></i>"
     url = "/events/"
-  [[menu.main]]
-    name = "LEARNING TREE"
-    weight = -101
-    pre = "<i class='fas fa-brain pr-2'></i>"
-    url = "/learning/"
+  # [[menu.main]]
+  #   name = "Learning"
+  #   weight = -101
+  #   pre = "<i class='fas fa-brain pr-2'></i>"
+  #   url = "/learning/"
   [[menu.main]]
     name = "Blog"
     weight = -100

@@ -1,10 +1,10 @@
 ---
-title: General notes on custom configuration for LME
+title: Configuring LME
 ---
-# General notes on custom configuration for LME
+# Configuring LME
 The configuration files are located in /config/. These steps will guide you through setting up LME.
 
-## certificates and user passwords:
+## Certificates and User Passwords
   - instances.yml defines the certificates to be created.
   - Shell scripts will initialize accounts and generate certificates. They run from the quadlet definitions lme-setup-accts and lme-setup-certs.
    

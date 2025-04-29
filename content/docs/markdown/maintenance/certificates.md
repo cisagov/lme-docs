@@ -1,5 +1,5 @@
 ---
-title: certificates.md
+title: Certificates
 ---
 # Certificates
  

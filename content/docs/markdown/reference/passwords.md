@@ -1,7 +1,7 @@
 ---
-title: passwords.md
+title: Password Encryption
 ---
-# Password Encryption:
+# Password Encryption
 Ansible-vault is used to enable password encryption, securely storing all LME user and service user passwords at rest
 We do submit a hash of the password to Have I Been Pwned to check to see if it is compromised: [READ MORE HERE](https://haveibeenpwned.com/FAQs), but since they're all randomly generated this should be rare.
 

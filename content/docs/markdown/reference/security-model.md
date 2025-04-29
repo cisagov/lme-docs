@@ -1,5 +1,5 @@
 ---
-title: security-model.md
+title: Logging Made Easy (LME) Security Model
 ---
 
 # Logging Made Easy (LME) Security Model

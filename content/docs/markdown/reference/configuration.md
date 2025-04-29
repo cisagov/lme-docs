@@ -1,5 +1,5 @@
 ---
-title: configuration.md
+title: General notes on custom configuration for LME
 ---
 # General notes on custom configuration for LME
 The configuration files are located in /config/. These steps will guide you through setting up LME.

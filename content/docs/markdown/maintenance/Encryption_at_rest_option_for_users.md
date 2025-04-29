@@ -1,5 +1,5 @@
 ---
-title: Encryption_at_rest_option_for_users.md
+title: Encryption at rest option for users.md
 ---
 # Encryption at rest option for users.md
 

@@ -1,5 +1,5 @@
 ---
-title: troubleshooting.md
+title: Troubleshooting LME Install
 ---
 # Troubleshooting LME Install
 ## Installation Troubleshooting

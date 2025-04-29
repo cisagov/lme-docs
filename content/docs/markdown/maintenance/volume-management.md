@@ -1,7 +1,8 @@
 ---
-title: volume-management.md
+title: Podman Volume Management
 ---
-# Podman Volumes: The Basics
+# Podman Volume Management
+## The Basics
 
 A Podman volume is a mechanism for storing container data directly on the host machine. When you create a volume and attach it to a container, Podman sets up a dedicated directory on your host system. Any data the container writes to this mounted volume is actually written to this host directory. This means that even if you stop, remove, or replace the container, the data remains intact on your host machine. You can then mount this same volume to a new container, allowing it to access all the previously stored data. This also allows you to have one volume on a host machine that you can mount to multiple containers. For instance our certs volume which is used across all containers.
 
@@ -15,7 +16,7 @@ On the left of the colon would be a path or file on the host machine that is per
 
 **NOTE: If you do not have a volume assigned to a certain path or file, it will not be persisted. This means restarting a container will blow away any changes you've made on the running container. We've made sure all required files by default are already volumes.**
 
-# Podman Volume Management for LME
+## Podman Volume Management for LME
 
 Managing disk usage is crucial for maintaining the health and performance of your LME installation. Here's how you can monitor and manage the disk space used by Podman volumes.
 

@@ -1,5 +1,5 @@
 ---
-title: index-management.md
+title: Elasticsearch Index Lifecycle Overview
 ---
 # Elasticsearch Index Lifecycle Overview
 

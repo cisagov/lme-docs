@@ -1,10 +1,11 @@
 ---
-title: install-auditd.md
+title: Installing and Configuring Auditd on Linux Systems
 ---
 # Installing and Configuring Auditd on Linux Systems
 
 This guide will walk you through the process of installing auditd on Linux systems and configuring it with the rules provided by Neo23x0.
 
+this is new content
 ## Prerequisites
 
 - Root or sudo access to the Linux system

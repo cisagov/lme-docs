@@ -1,3 +1,3 @@
 ---
-title: endpoint-tools
+title: Endpoint Tools
 ---

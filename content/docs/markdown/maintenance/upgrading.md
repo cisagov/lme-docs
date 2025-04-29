@@ -1,5 +1,5 @@
 ---
-title: upgrading.md
+title: Upgrading 
 ---
 # Upgrading 
 This page serves as a landing page for future upgrading when we release new versions. 

@@ -1,5 +1,5 @@
 ---
-title: faq.md
+title: FAQ
 ---
 # FAQ
 

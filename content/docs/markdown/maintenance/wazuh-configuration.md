@@ -1,5 +1,5 @@
 ---
-title: wazuh-configuration.md
+title: Wazuh Configuration Management
 ---
 # Wazuh Configuration Management
 

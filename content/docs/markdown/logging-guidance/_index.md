@@ -1,3 +1,3 @@
 ---
-title: logging-guidance
+title: Logging Guidance
 ---

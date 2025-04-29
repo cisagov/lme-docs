@@ -1,7 +1,7 @@
 ---
-title: elastalert-rules.md
+title: ElastAlert Rule Writing
 ---
-# Elast Alert Rule writing:
+# ElastAlert Rule Writing
 
 This page discusses how to add and implement alert notifications for detections and alerts that trigger in elastic and wazuh.
 The basic premise is that all data (logs and detections) will reach specific indices in elasticsearch, but you may want a way to get a notification in your communications systems on this activity. 
@@ -295,6 +295,6 @@ smtp_auth_file: /opt/elastalert/misc/smtp_auth.yml
 ```
 
 # Other options:
-Again see elast alert 2 documentation to tailor more specific alerts to your needs:
+Again see ElastAlert 2 documentation to tailor more specific alerts to your needs:
 
 https://elastalert2.readthedocs.io/en/latest/index.html

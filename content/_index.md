@@ -26,7 +26,7 @@ We do a [Pull Request](https://github.com/cisagov/lme/pulls) contributions workf
 {{% /blocks/feature %}}
 
 
-{{% blocks/feature icon="fab fa-twitter" title="Follow us on Twitter!" url="https://twitter.com/CISAgov" %}}
+{{% blocks/feature icon="fab fa-x-twitter" title="Follow us on X!" url="https://x.com/CISAgov" %}}
 For announcement of latest features etc.
 {{% /blocks/feature %}}
 

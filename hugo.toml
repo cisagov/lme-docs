@@ -1,7 +1,7 @@
 baseURL = "https://cisagov.github.io/lme-docs/"
 languageCode = 'en-us'
 
-title = "Docs Test"
+title = "LME Docs"
 publishDir = "public"
 
 canonifyURLs = true
@@ -20,7 +20,6 @@ ignoreFiles = []
 # NOTE: this is based on docsy's config.yaml from v0.6.0, and must be updated if the docsy theme ever is.
 #       https://github.com/google/docsy/blob/v0.6.0/config.yaml#L24-L38
 [module]
-
 	proxy = "direct"
 
 	[[module.imports]]
@@ -78,11 +77,11 @@ ignoreFiles = []
   #   weight = -101
   #   pre = "<i class='fas fa-brain pr-2'></i>"
   #   url = "/learning/"
-  [[menu.main]]
-    name = "Blog"
-    weight = -100
-    pre = "<i class='fas fa-rss pr-2'></i>"
-    url = "/blog/"
+  # [[menu.main]]
+  #   name = "Blog"
+  #   weight = -100
+  #   pre = "<i class='fas fa-rss pr-2'></i>"
+  #   url = "/blog/"
   [[menu.main]]
     name = "GitHub"
     weight = -99
@@ -182,7 +181,6 @@ enable = true
 
   # Social media accounts
   [params.social]
-
     # Twitter account (used to set `twitter:site` in the SEO partial)
     twitter = "cisagov?"
 
@@ -230,16 +228,18 @@ enable = true
       name = "X"
       icon = "fa-brands fa-x-twitter"
       desc = "Follow us on X to get the latest news!"
+      url = "https://x.com/CISAgov"
     [[params.links.user]]
       name = "YouTube"
       icon = "fab fa-youtube"
       desc = "Subscribe to our YouTube channel for the latest videos!"
-    [[params.links.user]]
-      name = "LinkedIn"
-      icon = "fab fa-linkedin"
-      desc = "Connect with us on LinkedIn for updates and networking!"
-    [[params.links.user]]
-      name = "Slack"
-      icon = "fab fa-slack"
-      desc = "Join the  Slack Workspace!"
-
+      url = "https://www.youtube.com/@CISAgov"
+    # [[params.links.user]]
+    #   name = "LinkedIn"
+    #   icon = "fab fa-linkedin"
+    #   desc = "Connect with us on LinkedIn for updates and networking!"
+    # [[params.links.user]]
+    #   name = "Slack"
+    #   icon = "fab fa-slack"
+    #   desc = "Join the  Slack Workspace!"
+    #

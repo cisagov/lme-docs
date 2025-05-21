@@ -1,60 +1,99 @@
+{{/* Get the CSV filename from the shortcode parameter */}}
 {{ $filename := .Get 0 }}
+{{/* Read the CSV file content from the data directory */}}
 {{ $csvContent := readFile (printf "/static/%s" $filename) }}
-{{ $rows := split $csvContent "\n" }}
+{{/* Generate a unique table ID based on the filename */}}
 {{ $tableID := printf "table-%s" (md5 $filename) }}
 
-<table id="{{ $tableID }}">
-  <thead>
-    <tr>
-      {{ $firstRow := index $rows 0 }}
-      {{ $columns := split $firstRow "," }}
-      {{ range $columns }}
-        {{ $cell := replaceRE "^\\s+|\\s+$" "" . }}
-        <th>{{ $cell }}<br><input type="text" class="filter-input"></th>
-      {{ end }}
-    </tr>
-  </thead>
-  <tbody>
-    {{ range $index, $row := $rows }}
-      {{ if ne $index 0 }}
-        {{ $row := replaceRE "^\\s+|\\s+$" "" $row }}
-        {{ if ne $row "" }}
-          <tr>
-            {{ $columns := split $row "," }}
-            {{ range $columns }}
-              {{ $cell := replaceRE "^\\s+|\\s+$" "" . }}
-              <td>{{ $cell }}</td>
-            {{ end }}
-          </tr>
-        {{ end }}
-      {{ end }}
-    {{ end }}
-  </tbody>
-</table>
+<div id="{{ $tableID }}-container">
+    {{$filename}}
+    {{/* Embed the raw CSV content in a script tag for JavaScript to access */}}
+    {{/* Placeholder for the table, which JavaScript will populate */}}
+      <table id="{{ $tableID }}"></table>
+</div>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  const table = document.getElementById('{{ $tableID }}');
-  const headers = table.querySelectorAll('thead th');
-  const inputs = Array.from(headers).map(th => th.querySelector('.filter-input'));
+      function filterTable() {
+            const filters = inputs.map(input => input.value.toLowerCase().trim());
+            const rows = table.querySelectorAll('tbody tr');
 
-  function filterTable() {
-    const filters = inputs.map(input => input.value.toLowerCase().trim());
-    const rows = table.querySelectorAll('tbody tr');
+            rows.forEach(row => {
+                    const cells = row.querySelectorAll('td');
+                    const shouldShow = filters.every((filter, index) => {
+                              if (filter === '') return true;
+                              const cellText = cells[index].textContent.toLowerCase();
+                              return cellText.includes(filter);
+                            });
+                    row.style.display = shouldShow ? '' : 'none';
+                  });
+          }
 
-    rows.forEach(row => {
-      const cells = row.querySelectorAll('td');
-      const shouldShow = filters.every((filter, index) => {
-        if (filter === '') return true;
-        const cellText = cells[index].textContent.toLowerCase();
-        return cellText.includes(filter);
+
+      //Retrieve and parse the CSV data 
+      console.log("{{ $csvContent }}");
+      const csvData = "{{ $csvContent }}";
+      console.log(csvData);
+      const rows = parseCSV(csvData);
+      console.log(rows);
+
+      const table = document.getElementById('{{ $tableID }}');
+      const thead = document.createElement('thead');
+      const tbody = document.createElement('tbody');
+
+      {{/* Generate table header with filter inputs */}}
+      const headerRow = document.createElement('tr');
+      rows[0].forEach(header => {
+            const th = document.createElement('th');
+            th.textContent = header.replace(/^"|"$/g, ''); // Remove surrounding quotes
+            th.innerHTML += '<br><input type="text" class="filter-input">';
+            headerRow.appendChild(th);
+          });
+      thead.appendChild(headerRow);
+      table.appendChild(thead);
+
+      {{/* Generate table body */}}
+      rows.slice(1).forEach(row => {
+            const tr = document.createElement('tr');
+            row.forEach(cell => {
+                    const td = document.createElement('td');
+                    td.textContent = cell.replace(/^"|"$/g, ''); // Remove surrounding quotes
+                    tr.appendChild(td);
+                  });
+            tbody.appendChild(tr);
+          });
+      table.appendChild(tbody);
+
+      {{/* Add filtering functionality */}}
+      const headers = table.querySelectorAll('thead th');
+      const inputs = Array.from(headers).map(th => th.querySelector('.filter-input'));
+
+      inputs.forEach(input => {
+            input.addEventListener('input', filterTable);
       });
-      row.style.display = shouldShow ? '' : 'none';
-    });
-  }
-
-  inputs.forEach(input => {
-    input.addEventListener('input', filterTable);
   });
-});
+
+  function parseCSV(csv) {
+      console.log(csv)
+      const lines = csv.trim().split('\n');
+      const result = [];
+      lines.forEach(line => {
+            const fields = [];
+            let field = '';
+            let inQuote = false;
+            for (let char of line) {
+                    if (char === '"') {
+                              inQuote = !inQuote;
+                            } else if (char === ',' && !inQuote) {
+                                      fields.push(field.trim());
+                                      field = '';
+                                    } else {
+                                              field += char;
+                                            }
+                  }
+            fields.push(field.trim());
+            result.push(fields);
+          });
+      return result;
+  }
 </script>

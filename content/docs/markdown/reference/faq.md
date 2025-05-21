@@ -1,7 +1,7 @@
 ---
 title: FAQ
 ---
-<!-- {{< table "table.csv" >}} -->
+{{< table "table.csv" >}}
 
 # FAQ
 

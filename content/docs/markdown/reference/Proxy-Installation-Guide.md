@@ -3,7 +3,7 @@ title: Proxy Installation
 ---
 # Proxy Installation Guide
 
-To enhance visibility into network activity and ensure comprehensive log collection, installing a proxy server is a practical first step. A proxy acts as an intermediary between users and the internet, allowing organizations to monitor, filter, and log outbound traffic in a centralized way. This guide walks you through the basic steps for installing and configuring a proxy server, helping you lay the groundwork for more effective logging and improved security posture.
+The following steps will guide you through installing LME in environments where outbound internet access is routed through a proxy server. It outlines how to configure system-wide proxy settings, ensure package managers and LME components (e.g., Wazuh and the Elastic Stack) function correctly behind the proxy, and addresses common issues users may encounter. 
 
 1. **Ensure Proxy Environment Variables are Set**
    - Define your proxy settings in the system environment so all outgoing traffic can route through it.
@@ -42,7 +42,7 @@ To enhance visibility into network activity and ensure comprehensive log collect
    sudo update-ca-certificates
    ```
 
-3. **Edit the podman Files to Ignore http Proxy**
+3. **Edit the Podman Files to Ignore http Proxy**
    - Some components in LME, such as containers managed by Podman, may not need to use the proxy - especially if they communicate locally. You can prevent proxy use within specific containers by adjusting the runtime flags.
    - In LME/quadlets, run the following command:
 
@@ -55,6 +55,3 @@ To enhance visibility into network activity and ensure comprehensive log collect
 
     - This command clears the proxy settings within the container, avoiding potential network issues with internal-only communications.
 
-**Conclusion**
-
-Proper proxy configuration ensures LME can fetch dependencies, send telemetry, and access internet resources securely and reliably - all while remaining compliant with your network's security policies. With your environment variables in place, certificates verified, and container flags configured, your deployment is now more robust and ready for production logging scenarios.

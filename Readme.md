@@ -18,3 +18,11 @@ since we'll want to test things locally before uploading to main, you can:
  3. if you don't have go, you'll need it to pull in the website depends: https://go.dev/dl/ (windows download the .msi file under: https://go.dev/dl/#featured)
  4. clone the docs repo locally: `git clone https://github.com/mreeve-snl/docs-test.git`
  5. run `hugo serve` in the repo directory to build it and see it in the browser locally at `localhost:1313` 
+
+
+If you have docker and docker compose installed, you can run everything by running this in the root directory
+
+```bash
+docker compose up server
+# Web Server is available at http://localhost:1313/lme-docs/
+```

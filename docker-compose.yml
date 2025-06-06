@@ -1,0 +1,12 @@
+name: lme-docs
+
+services:
+  server:
+    image: hugomods/hugo:exts
+    command: server -D
+    volumes:
+      - ./:/src
+      - ~/hugo_cache:/tmp/hugo_cache
+    ports:
+      - 1313:1313
+

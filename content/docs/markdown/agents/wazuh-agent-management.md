@@ -1,3 +1,6 @@
+---
+title: LME Wazuh Agent Enrollment Guide
+---
 # LME Wazuh Agent Enrollment Guide
 
 Reference the [Wazuh agent install documentation](https://documentation.wazuh.com/4.7/installation-guide/wazuh-agent/index.html) for official Wazuh installation information.

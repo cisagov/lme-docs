@@ -1,3 +1,6 @@
+---
+title: Elastic Agent Management - Enrollment Guide
+---
 # Elastic Agent Management - Enrollment Guide
 
 This guide will walk you through the process of enrolling an Elastic agent.

@@ -4,13 +4,13 @@ Tracks all logging made easy documentation for LME's public github hosted docume
 
 ## how it works: 
 
-Using [github-pages](https://pages.github.com/), the actinos pipeline for this repository, uses a static-site generator called [hugo](https://gohugo.io/) to create a html/css content from the markdown files in `/content/`. Default Hugo creates plan html websites with little design, so to get a more robust site, we're using the [docsy](https://www.docsy.dev/docs/) theme. This theme includes templates for documentation, search, and best practices as seen in its docs page linked in the previous sentence. 
+Using [github-pages](https://pages.github.com/), the actions pipeline for this repository, uses a static-site generator called [hugo](https://gohugo.io/) to create a html/css content from the markdown files in `/content/`. Default Hugo creates plan html websites with little design, so to get a more robust site, we're using the [docsy](https://www.docsy.dev/docs/) theme. This theme includes templates for documentation, search, and best practices as seen in its docs page linked in the previous sentence. 
 
 This is all configured under [jobs](https://github.com/mreeve-snl/docs-test/blob/main/.github/workflows/hugo.yml#L29) in the github workflow for this repository. 
 
 ## Building locally: 
 
-Esentially, this builds from the workflow after any push to main using the gohugo.io hugo binary
+Essentially, this builds from the workflow after any push to main using the gohugo.io hugo binary
 
 since we'll want to test things locally before uploading to main, you can:
  1. download hugo locally: (windows: https://gohugo.io/installation/windows/#prebuilt-binaries)

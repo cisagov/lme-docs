@@ -1,3 +1,7 @@
+---
+title: Sigma Rules to Kibana Alerts 
+---
+
 # Sigma to Kibana Conversion Script
 
 ## What it does
@@ -34,3 +38,4 @@ chmod +x convert_sigma_to_kibana.sh
 - All rules are **disabled by default** for security
 - Review and enable rules individually based on your environment
 - Script downloads fresh rules each time it runs
+- 

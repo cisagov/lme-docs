@@ -13,7 +13,7 @@ PASSWORD_FILE="/etc/lme/pass.sh"
 ```
 
 ### Grabbing Passwords: 
-To view the appropriate service user password run the following commands:
+To view, and set in your environment, the appropriate service user password run the following commands:
 ```bash
 #script:
 $CLONE_DIRECTORY/scripts/extract_secrets.sh -p #to print
@@ -26,12 +26,15 @@ source $CLONE_DIRECTORY/scripts/extract_secrets.sh -q #with no output
 ### Manually Setting Up Passwords and Accessing Passwords **Unsupported**:
 **These steps are not fully supported by CISA and are left if others would like to support this in their environment**
 
+Generally, you will want to run `./scripts/password_management.sh -s` if you want to change a user's password. 
+You can see which users are available by running `./scripts/password_management.sh -l`. 
+
 Run the password_management.sh script:
 ```bash
 lme-user@ubuntu:~/LME-TEST$ sudo -i ${PWD}/scripts/password_management.sh -h
 -i: Initialize all password environment variables and settings
 -s: set_user: Set user password
--p: Manage Podman secret
+-p secret_name: Manage Podman secret
 -l: List Podman secrets
 -h: print this list
 ```

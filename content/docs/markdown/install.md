@@ -4,29 +4,39 @@ title: Install
 # Install
 
 ## Table of Contents:
-1. [What is LME?](#1-what-is-lme)
-2. [Prerequisites](#2-prerequisites)
-3. [Downloading and Installing LME](#3-downloading-and-installing-lme)
-    1. [Downloading LME](#1-downloading-lme)
-    2. [Configuration](#2-configuration)
-    3. [Installation](#3-installation)
-    4. [Post-Installation Steps](#4-post-installation-steps)
-    5. [Deploying Agents](#5-deploying-agents)
-    6. [Installing Sysmon](#6-installing-sysmon-windows-clients-only)
-4. [Next Steps](#4-next-steps)
+1. [Quick Start](#1-quick-start)
+2. [What is LME?](#2-what-is-lme)
+3. [Prerequisites](#3-prerequisites)
+4. [Downloading and Installing LME](#4-downloading-and-installing-lme)
+    1. [Downloading LME](#41-downloading-lme)
+    2. [Installation](#42-installation)
+    3. [Post-Installation Steps](#43-post-installation-steps)
+    4. [Deploying Agents](#44-deploying-agents)
+    5. [Installing Sysmon](#45-installing-sysmon-windows-clients-only)
+5. [Next Steps](#5-next-steps)
     1. [Retrieving Passwords](#retrieving-passwords)
     2. [Starting and Stopping LME](#starting-and-stopping-lme)
     3. [Uninstall LME](#uninstall-lme)
-5. [Documentation](#5-documentation)
-6. [Developer Notes](#6-developer-notes)
+6. [Documentation](#6-documentation)
+7. [Developer Notes](#7-developer-notes)
 
 
-## 1. What is LME? 
+## 1. Quick Start
+Run these commands and follow the prompts in `install.sh` about the ip and config file.
+```bash
+sudo apt update && sudo apt upgrade -y && sudo apt-get install -y jq curl
+curl -s https://api.github.com/repos/cisagov/LME/releases/latest | jq -r '.assets[0].browser_download_url' | xargs -I {} sh -c 'curl -L -O {} && unzip -d ~/LME $(basename {})'
+cd ~/LME
+./install.sh
+```
+Then jump to [Post-Installation Steps](#43-post-installation-steps)
+
+## 2. What is LME? 
 For more precise understanding of LME's architecture please see our [architecture documentation](/docs/markdown/reference/architecture.md).
 
 ### Description:
-LME runs on Ubuntu 22.04 and 24.04. To execute services, LME leverages Podman containers for security, performance, and scalability. 
-We’ve integrated Wazuh,  Elastic, and ElastAlert open source tools to provide log management, endpoint security monitoring, alerting, and data visualization capabilities. 
+LME runs on Ubuntu 22.04 and 24.04, and Debian 12.10 (experimental). To execute services, LME leverages Podman containers for security, performance, and scalability. 
+We've integrated Wazuh,  Elastic, and ElastAlert open source tools to provide log management, endpoint security monitoring, alerting, and data visualization capabilities. 
 This modular, flexible architecture supports efficient log storage, search, and threat detection, and enables you to scale as your logging needs evolve.
 
 ### How does LME work?:
@@ -40,10 +50,10 @@ Important pieces to understand from an LME user perspective:
   - **Elastic Agents**: Enhance log collection and management, allowing for greater control and customization in how data is collected and analyzed. Agents also feature a vast collection of integrations for many log types/applications. For more information, see [Elastic's agent documentation](https://github.com/elastic/elastic-agent).  
    
 2. **Viewing**: Logs are viewable in dashboards via kibana  
-  - [Kibana](https://www.elastic.co/kibana) is the visualization and analytics interface in LME, providing users with tools to visualize and monitor log data stored in Elasticsearch. It enables the creation of custom dashboards and visualizations, allowing users to easily track security events, detect anomalies, and analyze trends. Kibana's intuitive interface supports real-time insights into the security posture of an organization, making it an essential tool for data-driven decision-making in LME’s centralized logging and security monitoring framework.
+  - [Kibana](https://www.elastic.co/kibana) is the visualization and analytics interface in LME, providing users with tools to visualize and monitor log data stored in Elasticsearch. It enables the creation of custom dashboards and visualizations, allowing users to easily track security events, detect anomalies, and analyze trends. Kibana's intuitive interface supports real-time insights into the security posture of an organization, making it an essential tool for data-driven decision-making in LME's centralized logging and security monitoring framework.
    
 3. **Alerting**: Setting up notifications for log monitoring with Elastalert 
-  -  [ElastAlert](https://elastalert2.readthedocs.io/en/latest/index.html) is an open-source alerting framework, to automate alerting based on data stored in Elasticsearch. It monitors Elasticsearch for specific patterns, thresholds, or anomalies, and generates alerts when predefined conditions are met. This provides proactive detection of potential security incidents, enabling faster response and investigation. ElastAlert’s flexible rule system allows for custom alerts tailored to your organization’s security monitoring needs, making it a critical component of the LME alerting framework. 
+  -  [ElastAlert](https://elastalert2.readthedocs.io/en/latest/index.html) is an open-source alerting framework, to automate alerting based on data stored in Elasticsearch. It monitors Elasticsearch for specific patterns, thresholds, or anomalies, and generates alerts when predefined conditions are met. This provides proactive detection of potential security incidents, enabling faster response and investigation. ElastAlert's flexible rule system allows for custom alerts tailored to your organization's security monitoring needs, making it a critical component of the LME alerting framework. 
  
 ### What firewall rules do I need to setup?:
 Please see our documentation around cloud and firewall setup for more information on how you can [expose these ports](/docs/markdown/logging-guidance/cloud.md).
@@ -57,14 +67,14 @@ Ports that need to be open on LME's server AND reachable by all clients from whi
 **Note**: For Kibana, 5601 is the default port. We've also set kibana to listen on 443 as well.
 
 
-## 2. Prerequisites
+## 3. Prerequisites
 If you're unsure whether you meet the prerequisites for installing LME, please refer to our [prerequisites documentation](/docs/markdown/prerequisites.md).
 
 The main prerequisite is setting up hardware for your Ubuntu server, which should have at least:
 
 - Two (2) processors
 - 16GB RAM
-- 128GB of dedicated storage for LME’s Elasticsearch database.
+- 128GB of dedicated storage for LME's Elasticsearch database.
 
 If you need to run LME with less than 16GB of RAM or minimal hardware, please follow our troubleshooting guide to configure Podman quadlets for reduced memory usage. We recommend setting Elasticsearch to an 8GB limit and Kibana to a 4GB limit. You can find the guide [here](/docs/markdown/reference/troubleshooting.md#memory-in-containers-need-more-ramless-ram-usage).
 
@@ -91,7 +101,7 @@ We estimate that you should allow half an hour to complete the entire installati
 | Install Sysmon 			| 1:04.34 	| 25:17.99 	|
 | Windows Integration 		 	| 0:39.93 	| 25:57.27 	|
 
-## 3. Downloading and Installing LME
+## 4. Downloading and Installing LME
 This guide provides step-by-step instructions for downloading, configuring, and installing LME on an Ubuntu server. 
 
 For visual learners, an LME installation video is also available [here](https://www.youtube.com/watch?v=LKD8sw6VuPw).
@@ -102,68 +112,40 @@ We have done initial testing on 24.04, and suggest using that if you run into is
 **Upgrading**:
 If you are upgrading from an older version of LME to LME 2.0, please see our [upgrade documentation](/docs/markdown/maintenance/upgrading.md).
 
-### 1. Downloading LME
+### 4.1 Downloading LME
 Follow these steps to download and set up LME:
 
-#### 1.1 Update System Packages
+#### 4.1.1 Update System Packages
 Update your package list and install the necessary tools:
 ```bash
-sudo apt update && sudo apt upgrade -y
+sudo apt update && sudo apt upgrade -y && sudo apt-get install -y jq curl
 ```
 
-#### 1.2 Install Prerequisites
-Install the required tools including Ansible:
-```bash
-sudo apt install curl jq unzip ansible -y
-```
-
-#### 1.3 Download and Extract LME
+#### 4.1.2 Download and Extract LME
 Download the latest release of LME and extract it to `~/LME`:
 ```bash
 curl -s https://api.github.com/repos/cisagov/LME/releases/latest | jq -r '.assets[0].browser_download_url' | xargs -I {} sh -c 'curl -L -O {} && unzip -d ~/LME $(basename {})'
 ```
 
-### 2. Configuration
-
-Configure LME by following these steps:
-
-#### 2.1 Retrieve Server IP Address
-Obtain your server's IP address, which will be used by clients to forward logs:
-```bash
-hostname -I | awk '{print $1}'
-```
-
-#### 2.2 Set Up Environment Variables
-Navigate to the LME directory:
-```bash
-cd ~/LME
-```
-Copy the example environment file:
-```bash
-cp ./config/example.env ./config/lme-environment.env
-```
-Edit the `lme-environment.env` file to update the `IPVAR` variable with your server's IP address:
-```shell
-IPVAR=127.0.0.1 # Replace with your server's IP address
-```
-
-For example, open and edit the file via nano:
-```bash
-nano ./config/lme-environment.env
-```
-
-
-### 3. Installation
+### 4.2 Installation
 Install LME by following these steps:
 
-#### 3.1 Execute the Installation Playbook
-Run the Ansible playbook from within your LME directory to install LME:
+#### 4.2.1 Install LME 
+Change directory to the LME directory in your home directory
 ```bash
-ansible-playbook ./ansible/install_lme_local.yml
+cd ~/LME
+./install.sh
 ```
+This will ask you for an IP address that the other machines will connect to. It will attempt to 
+identify the IP addresses of the machine and allow you to choose one. If it doesn't find the 
+one you are looking for, you can follow the prompts to put in a custom one.
+
+This installer will install ansible if you don't already have it installed and then it will proceed
+to run the ansible playbooks nessisary for your OS version.
+
 <span style="color:orange">**Note**: The services may take a few minutes to start. Please be patient.</span>
 
-#### 3.2 Verify Container Status
+#### 4.2.2 Verify Container Status
 Check that the containers are running and healthy:
 ```bash
 sudo -i podman ps --format "{{.Names}} {{.Status}}"
@@ -171,23 +153,24 @@ sudo -i podman ps --format "{{.Names}} {{.Status}}"
 
 Expected output:
 ```shell
-lme-elasticsearch Up 19 hours (healthy)
-lme-wazuh-manager Up 19 hours
-lme-kibana Up 19 hours (healthy)
-lme-elastalert2 Up 17 hours
+lme-elasticsearch Up 20 minutes (healthy)
+lme-elastalert2 Up 20 minutes
+lme-wazuh-manager Up 20 minutes (healthy)
+lme-kibana Up 19 minutes (healthy)
+lme-fleet-server Up 14 minutes
 ```
 
-**Note**: Fleet server will only run after the post-installation script
+**Note**: Fleet server is the last one to start and may take extra time 
 
 **Note:** If the output differs, refer to the [troubleshooting guide](/docs/markdown/reference/troubleshooting.md#installation-troubleshooting).
 
 Proceed to Post-Installation steps.
 
-### 4. Post-Installation Steps
+### 4.3 Post-Installation Steps
 
 If you encounter any issues, refer to the post-installation [troubleshooting guide](/docs/markdown/reference/troubleshooting.md#post-installation-troubleshooting).
 
-#### 4.1 Execute the Post-Installation Playbook
+#### 4.3.1 Execute the Post-Installation Playbook
 Run the post-installation playbook:
 ```bash
 ansible-playbook ./ansible/post_install_local.yml
@@ -208,7 +191,7 @@ ok: [localhost] => {
 ```
 <span style="color:orange">**Note:** The password for the `readonly_user` will change each time this script is run. Run this script only when necessary, ideally just once.</span>
 
-#### 4.2 Verify Container Status
+#### 4.3.2 Verify Container Status
 Check that the containers are running and healthy:
 ```bash
 sudo -i podman ps --format "{{.Names}} {{.Status}}"
@@ -224,14 +207,14 @@ lme-fleet-server Up 26 minutes
 ```
 
 
-### 5. Deploying Agents 
+### 4.4 Deploying Agents 
 To populate the dashboards with data, you need to install agents. Detailed guides for deploying Wazuh and Elastic agents are available in the following documents:
 
  - [Deploy Wazuh Agent](/docs/markdown/agents/wazuh-agent-management.md)
  - [Deploying Elastic-Agent](/docs/markdown/agents/elastic-agent-management.md)
 
 
-### 6. Installing Sysmon (Windows Clients Only)
+### 4.5 Installing Sysmon (Windows Clients Only)
 For Windows clients, installing Sysmon is essential to obtain comprehensive logs and ensure proper data visualization in the dashboards. Follow these steps to install Sysmon on each Windows client machine:
 
 1. Download and unzip the LME folder on the Windows client.
@@ -245,9 +228,9 @@ You may need to temporarily set the PowerShell script execution policy to "Unres
 Set-ExecutionPolicy Unrestricted
 ```
 
-## 4. Next Steps
+## 5. Next Steps
 
-Refer to the common questions below and consult our [documentation](#5-documentation) for additional information.
+Refer to the common questions below and consult our [documentation](#6-documentation) for additional information.
 
 ### Retrieving Passwords: 
 Navigate to the LME directory:
@@ -346,7 +329,7 @@ We're doing our best to have regular updates that add new and/or requested featu
 3. [Backups](/docs/markdown/maintenance/backups.md): Customizing backups of logs for your organizations own compliance needs.
 4. [Custom log types](/docs/markdown/agents/elastic-agent-management.md#lme-elastic-agent-integration-example): using elastic agents built in [integrations](https://www.elastic.co/guide/en/integrations/current/index.html) ingest a log type specific to your organization.
  
-## 5. Documentation
+## 6. Documentation
 
 ### Logging Guidance
  - [LME in the Cloud](/docs/markdown/logging-guidance/cloud.md)
@@ -391,7 +374,7 @@ Consider adding them to Windows/Linux.
 #### Linux:
  - [Auditd](/docs/markdown/endpoint-tools/install-auditd.md)
 
-## 6. Developer Notes
+## 7. Developer Notes
 Git clone and git checkout your development branch on the server:
 
 ```bash

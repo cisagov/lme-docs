@@ -4,27 +4,38 @@ title: Install
 # Install
 
 ## Table of Contents:
-1. [What is LME?](#1-what-is-lme)
-2. [Prerequisites](#2-prerequisites)
-3. [Downloading and Installing LME](#3-downloading-and-installing-lme)
-    1. [Downloading LME](#31-downloading-lme)
-    2. [Installation](#32-installation)
-    3. [Post-Installation Steps](#33-post-installation-steps)
-    4. [Deploying Agents](#34-deploying-agents)
-    5. [Installing Sysmon](#35-installing-sysmon-windows-clients-only)
-4. [Next Steps](#4-next-steps)
+1. [Quick Start](#1-quick-start)
+2. [What is LME?](#2-what-is-lme)
+3. [Prerequisites](#3-prerequisites)
+4. [Downloading and Installing LME](#4-downloading-and-installing-lme)
+    1. [Downloading LME](#41-downloading-lme)
+    2. [Installation](#42-installation)
+    3. [Post-Installation Steps](#43-post-installation-steps)
+    4. [Deploying Agents](#44-deploying-agents)
+    5. [Installing Sysmon](#45-installing-sysmon-windows-clients-only)
+5. [Next Steps](#5-next-steps)
     1. [Retrieving Passwords](#retrieving-passwords)
     2. [Starting and Stopping LME](#starting-and-stopping-lme)
     3. [Uninstall LME](#uninstall-lme)
-5. [Documentation](#5-documentation)
-6. [Developer Notes](#6-developer-notes)
+6. [Documentation](#6-documentation)
+7. [Developer Notes](#7-developer-notes)
 
 
-## 1. What is LME? 
+## 1. Quick Start
+Run these commands and follow the prompts in `install.sh` about the ip and config file.
+```bash
+sudo apt update && sudo apt upgrade -y && sudo apt-get install -y jq curl
+curl -s https://api.github.com/repos/cisagov/LME/releases/latest | jq -r '.assets[0].browser_download_url' | xargs -I {} sh -c 'curl -L -O {} && unzip -d ~/LME $(basename {})'
+cd ~/LME
+./install.sh
+```
+Then jump to [Post-Installation Steps](#43-post-installation-steps)
+
+## 2. What is LME? 
 For more precise understanding of LME's architecture please see our [architecture documentation](/docs/markdown/reference/architecture.md).
 
 ### Description:
-LME runs on Ubuntu 22.04 and 24.04, and Debian 12.10 (Experimental, new). To execute services, LME leverages Podman containers for security, performance, and scalability. 
+LME runs on Ubuntu 22.04 and 24.04, and Debian 12.10 (experimental). To execute services, LME leverages Podman containers for security, performance, and scalability. 
 We've integrated Wazuh,  Elastic, and ElastAlert open source tools to provide log management, endpoint security monitoring, alerting, and data visualization capabilities. 
 This modular, flexible architecture supports efficient log storage, search, and threat detection, and enables you to scale as your logging needs evolve.
 
@@ -56,7 +67,7 @@ Ports that need to be open on LME's server AND reachable by all clients from whi
 **Note**: For Kibana, 5601 is the default port. We've also set kibana to listen on 443 as well.
 
 
-## 2. Prerequisites
+## 3. Prerequisites
 If you're unsure whether you meet the prerequisites for installing LME, please refer to our [prerequisites documentation](/docs/markdown/prerequisites.md).
 
 The main prerequisite is setting up hardware for your Ubuntu server, which should have at least:
@@ -90,7 +101,7 @@ We estimate that you should allow half an hour to complete the entire installati
 | Install Sysmon 			| 1:04.34 	| 25:17.99 	|
 | Windows Integration 		 	| 0:39.93 	| 25:57.27 	|
 
-## 3. Downloading and Installing LME
+## 4. Downloading and Installing LME
 This guide provides step-by-step instructions for downloading, configuring, and installing LME on an Ubuntu server. 
 
 For visual learners, an LME installation video is also available [here](https://www.youtube.com/watch?v=LKD8sw6VuPw).
@@ -101,25 +112,25 @@ We have done initial testing on 24.04, and suggest using that if you run into is
 **Upgrading**:
 If you are upgrading from an older version of LME to LME 2.0, please see our [upgrade documentation](/docs/markdown/maintenance/upgrading.md).
 
-### 3.1 Downloading LME
+### 4.1 Downloading LME
 Follow these steps to download and set up LME:
 
-#### 3.1.1 Update System Packages
+#### 4.1.1 Update System Packages
 Update your package list and install the necessary tools:
 ```bash
-sudo apt update && sudo apt upgrade -y
+sudo apt update && sudo apt upgrade -y && sudo apt-get install -y jq curl
 ```
 
-#### 3.1.2 Download and Extract LME
+#### 4.1.2 Download and Extract LME
 Download the latest release of LME and extract it to `~/LME`:
 ```bash
 curl -s https://api.github.com/repos/cisagov/LME/releases/latest | jq -r '.assets[0].browser_download_url' | xargs -I {} sh -c 'curl -L -O {} && unzip -d ~/LME $(basename {})'
 ```
 
-### 3.2 Installation
+### 4.2 Installation
 Install LME by following these steps:
 
-#### 3.2.1 Install LME 
+#### 4.2.1 Install LME 
 Change directory to the LME directory in your home directory
 ```bash
 cd ~/LME
@@ -134,7 +145,7 @@ to run the ansible playbooks nessisary for your OS version.
 
 <span style="color:orange">**Note**: The services may take a few minutes to start. Please be patient.</span>
 
-#### 3.2.2 Verify Container Status
+#### 4.2.2 Verify Container Status
 Check that the containers are running and healthy:
 ```bash
 sudo -i podman ps --format "{{.Names}} {{.Status}}"
@@ -155,11 +166,11 @@ lme-fleet-server Up 14 minutes
 
 Proceed to Post-Installation steps.
 
-### 3.3 Post-Installation Steps
+### 4.3 Post-Installation Steps
 
 If you encounter any issues, refer to the post-installation [troubleshooting guide](/docs/markdown/reference/troubleshooting.md#post-installation-troubleshooting).
 
-#### 3.3.1 Execute the Post-Installation Playbook
+#### 4.3.1 Execute the Post-Installation Playbook
 Run the post-installation playbook:
 ```bash
 ansible-playbook ./ansible/post_install_local.yml
@@ -180,7 +191,7 @@ ok: [localhost] => {
 ```
 <span style="color:orange">**Note:** The password for the `readonly_user` will change each time this script is run. Run this script only when necessary, ideally just once.</span>
 
-#### 3.3.2 Verify Container Status
+#### 4.3.2 Verify Container Status
 Check that the containers are running and healthy:
 ```bash
 sudo -i podman ps --format "{{.Names}} {{.Status}}"
@@ -196,14 +207,14 @@ lme-fleet-server Up 26 minutes
 ```
 
 
-### 3.4 Deploying Agents 
+### 4.4 Deploying Agents 
 To populate the dashboards with data, you need to install agents. Detailed guides for deploying Wazuh and Elastic agents are available in the following documents:
 
  - [Deploy Wazuh Agent](/docs/markdown/agents/wazuh-agent-management.md)
  - [Deploying Elastic-Agent](/docs/markdown/agents/elastic-agent-management.md)
 
 
-### 3.5 Installing Sysmon (Windows Clients Only)
+### 4.5 Installing Sysmon (Windows Clients Only)
 For Windows clients, installing Sysmon is essential to obtain comprehensive logs and ensure proper data visualization in the dashboards. Follow these steps to install Sysmon on each Windows client machine:
 
 1. Download and unzip the LME folder on the Windows client.
@@ -217,9 +228,9 @@ You may need to temporarily set the PowerShell script execution policy to "Unres
 Set-ExecutionPolicy Unrestricted
 ```
 
-## 4. Next Steps
+## 5. Next Steps
 
-Refer to the common questions below and consult our [documentation](#5-documentation) for additional information.
+Refer to the common questions below and consult our [documentation](#6-documentation) for additional information.
 
 ### Retrieving Passwords: 
 Navigate to the LME directory:
@@ -318,7 +329,7 @@ We're doing our best to have regular updates that add new and/or requested featu
 3. [Backups](/docs/markdown/maintenance/backups.md): Customizing backups of logs for your organizations own compliance needs.
 4. [Custom log types](/docs/markdown/agents/elastic-agent-management.md#lme-elastic-agent-integration-example): using elastic agents built in [integrations](https://www.elastic.co/guide/en/integrations/current/index.html) ingest a log type specific to your organization.
  
-## 5. Documentation
+## 6. Documentation
 
 ### Logging Guidance
  - [LME in the Cloud](/docs/markdown/logging-guidance/cloud.md)
@@ -363,7 +374,7 @@ Consider adding them to Windows/Linux.
 #### Linux:
  - [Auditd](/docs/markdown/endpoint-tools/install-auditd.md)
 
-## 6. Developer Notes
+## 7. Developer Notes
 Git clone and git checkout your development branch on the server:
 
 ```bash

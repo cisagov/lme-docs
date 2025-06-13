@@ -170,28 +170,7 @@ Proceed to Post-Installation steps.
 
 If you encounter any issues, refer to the post-installation [troubleshooting guide](/docs/markdown/reference/troubleshooting.md#post-installation-troubleshooting).
 
-#### 4.3.1 Execute the Post-Installation Playbook
-Run the post-installation playbook:
-```bash
-ansible-playbook ./ansible/post_install_local.yml
-```
-
-<span style="color:red">**Important**: The post-install script sets up the password for a `readonly_user` account, intended for analysts who need to query Elasticsearch without administrative access. The script will output the password at the end. Ensure you save this password securely.</span>
-
-Example output:
-```bash
-TASK [DISPLAY NEW READONLY USER PASSWORD] ***************************************************************************************************************************************
-ok: [localhost] => {
-    "msg": "LOGIN WITH readonly_user via:\n USER: readonlyuser\nPassword: oz9vLny0fB3HA8S2hH!FLZ06TvpaCq"
-    }
-    
-    PLAY RECAP **********************************************************************************************************************************************************************
-    localhost                  : ok=27   changed=6    unreachable=0    failed=0    skipped=3    rescued=0    ignored=0
-    
-```
-<span style="color:orange">**Note:** The password for the `readonly_user` will change each time this script is run. Run this script only when necessary, ideally just once.</span>
-
-#### 4.3.2 Verify Container Status
+#### 4.3.1 Verify Container Status
 Check that the containers are running and healthy:
 ```bash
 sudo -i podman ps --format "{{.Names}} {{.Status}}"

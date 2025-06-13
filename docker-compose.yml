@@ -2,7 +2,7 @@ name: lme-docs
 
 services:
   server:
-    image: hugomods/hugo:exts
+    image: ghcr.io/gohugoio/hugo:v0.147.8
     command: server -D
     volumes:
       - ./:/src

@@ -43,13 +43,13 @@ Enable some rules in Kibana Security. In this example we are enabling Windows al
 
 ## Enabling Notifications: 4 Simple Steps
 
-1. **Edit the main configuration file**
-```
+1. **Edit the main configuration file**  
+```bash
 nano /opt/lme/config/elastalert2/rules/kibana_alerts.yml
 ```
 
-2. **Uncomment your preferred notification method in the import section**
-```
+2. **Uncomment your preferred notification method in the import section**  
+```yaml
 import:
 # - "slack_alert_config.yaml"
 # - "email_alert_config.yaml"
@@ -57,10 +57,10 @@ import:
 # - "twilio_alert_config.yaml"
 ```  
 
-3. **Edit the corresponding configuration file(s) for your chosen notification methods (I.E slack_alert_config as described below).**
+3. **Edit the corresponding configuration file(s) for your chosen notification methods (I.E slack_alert_config as described below).**  
 
-4. **Restart the service:**
-```
+4. **Restart the service:**  
+```bash
 sudo systemctl restart lme-elastalert.service
 ```
 
@@ -69,7 +69,7 @@ sudo systemctl restart lme-elastalert.service
 ### Available Notification Channels
 
 1. **Slack**
-   - Configuration file: ```/opt/lme/config/elastalert2/rules/slack_alert_config```
+   - Configuration file: `/opt/lme/config/elastalert2/rules/slack_alert_config`
    - Uncomment `- slack_alert_config` line in the `import:` section of the kibana_alerts.yml file.
    - Update the `slack_webhook_url` with your Slack webhook URL
 

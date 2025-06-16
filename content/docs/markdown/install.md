@@ -22,14 +22,17 @@ title: Install
 
 
 ## 1. Quick Start
-Run these commands and follow the prompts in `install.sh` about the ip and config file.
+1. Run these commands and follow the prompts in `install.sh` about the ip and config file.
 ```bash
 sudo apt update && sudo apt upgrade -y && sudo apt-get install -y jq curl
 curl -s https://api.github.com/repos/cisagov/LME/releases/latest | jq -r '.assets[0].browser_download_url' | xargs -I {} sh -c 'curl -L -O {} && unzip -d ~/LME $(basename {})'
 cd ~/LME
 ./install.sh
 ```
-Then jump to [Post-Installation Steps](#43-post-installation-steps)
+
+2. The LME installation scripts set the passwords for all LME container service accounts, see here for how to print the [passwords](#retrieving-passwords) for login credentials.
+
+3. Jump to [Post-Installation Steps](#43-post-installation-steps) and follow the next instructions.
 
 ## 2. What is LME? 
 For more precise understanding of LME's architecture please see our [architecture documentation](/docs/markdown/reference/architecture.md).
@@ -169,21 +172,6 @@ Proceed to Post-Installation steps.
 ### 4.3 Post-Installation Steps
 
 If you encounter any issues, refer to the post-installation [troubleshooting guide](/docs/markdown/reference/troubleshooting.md#post-installation-troubleshooting).
-
-#### 4.3.1 Verify Container Status
-Check that the containers are running and healthy:
-```bash
-sudo -i podman ps --format "{{.Names}} {{.Status}}"
-```  
-
-Expected output:
-```shell
-lme-elasticsearch Up 29 minutes (healthy)
-lme-elastalert2 Up 29 minutes
-lme-wazuh-manager Up 29 minutes (healthy)
-lme-kibana Up 29 minutes (healthy)
-lme-fleet-server Up 26 minutes
-```
 
 
 ### 4.4 Deploying Agents 

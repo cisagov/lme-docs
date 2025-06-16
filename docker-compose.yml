@@ -3,7 +3,8 @@ name: lme-docs
 services:
   server:
     image: ghcr.io/gohugoio/hugo:v0.147.8
-    command: serve --disableFastRender 
+    #bind is inside the container, so this still will only have localhost:1313 listen on the host
+    command: serve  --port 1313 --bind 0.0.0.0 --disableFastRender 
     volumes:
       - ./:/project
       - ~/hugo_cache:/cache

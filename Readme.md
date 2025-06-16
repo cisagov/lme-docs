@@ -26,3 +26,8 @@ If you have docker and docker compose installed, you can run everything by runni
 docker compose up server
 # Web Server is available at http://localhost:1313/lme-docs/
 ```
+
+If you need to run it behind a proxy you can use a command like this to make sure all the certificates get overriden:
+```bash
+podman run  -v ./ca-certificates.crt:/etc/ssl/certs/ca-certificates.crt -v ./:/project -v ~/hugo_cache:/cache -p1313:1313 ghcr.io/gohugoio/hugo:v0.147.8 serve --port 1313 --bind 0.0.0.0 --disableFastRender
+```

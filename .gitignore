@@ -3,3 +3,4 @@ public/*
 resources/
 .DS_Store
 *.vim
+*.crt

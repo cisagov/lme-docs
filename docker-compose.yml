@@ -3,10 +3,10 @@ name: lme-docs
 services:
   server:
     image: ghcr.io/gohugoio/hugo:v0.147.8
-    command: server -D
+    command: serve --disableFastRender 
     volumes:
-      - ./:/src
-      - ~/hugo_cache:/tmp/hugo_cache
+      - ./:/project
+      - ~/hugo_cache:/cache
     ports:
       - 1313:1313
 

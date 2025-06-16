@@ -44,25 +44,26 @@ Enable some rules in Kibana Security. In this example we are enabling Windows al
 ## Enabling Notifications: 4 Simple Steps
 
 1. **Edit the main configuration file**
-   ```
-   nano /opt/lme/config/elastalert2/rules/kibana_alerts.yml
-   ```
+```
+nano /opt/lme/config/elastalert2/rules/kibana_alerts.yml
+```
 
 2. **Uncomment your preferred notification method in the import section**
-   ```
-   import:
-   # - "slack_alert_config.yaml"
-   # - "email_alert_config.yaml"
-   # - "teams_alert_config.yaml"
-   # - "twilio_alert_config.yaml"
-   ```
+```
+import:
+# - "slack_alert_config.yaml"
+# - "email_alert_config.yaml"
+# - "teams_alert_config.yaml"
+# - "twilio_alert_config.yaml"
+```  
+
 3. **Edit the corresponding configuration file(s) for your chosen notification methods (I.E slack_alert_config as described below).**
 
 4. **Restart the service:**
+```
+sudo systemctl restart lme-elastalert.service
+```
 
-   ```
-   sudo systemctl restart lme-elastalert.service
-   ```
 5. **Review official ElastAlert2 documentation for other configurations.**
 
 ### Available Notification Channels

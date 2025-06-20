@@ -51,7 +51,7 @@ This guide will walk you through the process of enrolling an Elastic Agent.
    - Run the **command** on the desired host.
       - It is recommended to run each line individually so you can see the status of each command. The entire process will download an agent, unzip it, and install it.
 
-From Fleet, you should see the agent enrolled now.
+   - From Fleet, you should see the agent enrolled now.
 
 # LME Elastic Agent Integration
 

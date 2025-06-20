@@ -30,7 +30,7 @@ Wazuh can automatically block IP addresses attempting SSH brute-force attacks us
 
 3. **Set Up Active Response**
 
-   - Locate the section labled "active-response options here" in the .conf file.
+   - Locate the **active-response options here section** in the .conf file.
    - Copy and paste the full ***configuration block*** below that commented line. You can continue to add more active response configs below this entry.
      
    ```xml

@@ -2,126 +2,168 @@
 title: Elastalert2 for Kibana Security Notifications
 ---
 
-# ElastAlert2 Integration to Notify on Kibana Security Alerts: Quick Setup Guide
+# ElastAlert2 Integration to Notify on Kibana Security Alerts Quick Setup Guide
 
-This guide discusses how to integrate lme's elastalert notifications for every kibana alert that occurs. Once you've set this up, you can tune all alerting using kibana's built in alerts system and leave elastalert alone. 
+This guide walks you through integrating Logging Made Easy's (LME's) ElastAlert2 with Kibana to send notifications for every alert that occurs. Once set up, you can fine-tune alerts directly within Kibana's built-in alerting system--no need to modify ElastAlert2 further. 
 
-If you would like to understand how this works, please read our documentation around [elastalert-rules](/docs/markdown/maintenance/elastalert-rules)
+To understand how this works, reference the [ElastAlert Rules](/docs/markdown/maintenance/elastalert-rules) document.
 
 ## What You'll Get
 
-Your LME deployment comes with built-in monitoring for Kibana Detection Alerts. This integration continuously watches the `.alerts-security.alerts-*` index pattern to keep you informed of security events.
+Your LME deployment comes with built-in monitoring for Kibana detection alerts. This integration continuously watches the `.alerts-security.alerts-*` index pattern to keep you informed of security events.
 
 ## Why This Matters
 
-Kibana Security Solution works behind the scenes to detect suspicious or malicious activity in your infrastructure. When it finds something concerning, it creates detailed alerts containing:
+Kibana Security Solution works behind the scenes to detect suspicious or malicious activity in your infrastructure. When it identifies something concerning, it generates detailed alerts that contain:
+
 - Threat detection results
 - Rule violations
 - Security event details
 - Source and target information
 
-With this integration, your team receives immediate notifications about potential threats without constantly checking Kibana, enabling faster incident response and reducing security risks.
+With this integration, your team receives immediate notifications about potential threats--eliminating the need to constantly check Kibana manually. This enables faster incident response and reduces overall security risk.
 
 ## Why ElastAlert2?
 
-While Elastic requires a paid license to send native security alerts to external services (Slack, Teams, Email), ElastAlert2 provides this functionality as a free alternative.
+While Elastic requires a paid license to send native security alerts to external services (i.e., Slack, Teams, Email), ElastAlert2 provides this functionality as a free alternative.
 
 ## Setting Up Your Notification Channels
 
 All configuration files are located in: ```/opt/lme/config/elastalert2/rules/```
 
-## Prerequisite steps:
+## Prerequisite Steps
 
-Enable some rules in Kibana Security. In this example we are enabling Windows alerts:
+Enable some rules in Kibana Security. In this example, we are enabling Windows alerts.
 
-1. **In Kibana go to Menu -> Security -> Rules.**
-2. **Click Detection Rules.**
-3. **Click Tags dropdown and type OS:Windows - then select it.**
-4. **Click Select all 495 rules (Or however many there are).**
-5. **Click Bulk Actions - Enable.**
-6. **Adjust rules as necessary. From here you can turn on other OS rules, turn of rules based on severity, and tune to your liking. These are the rules that trigger ElastAlert2 notifications. Be aware of that.**
+1. In Kibana, navigate to **Menu -> Security -> Rules**.
+   
+2. Click on **Detection Rules**.
+   
+3. Click on the **Tags drop-down menu**, and then type **OS:Windows**.
 
-## Enabling Notifications: 4 Simple Steps
+4. Clik on **OS:Windows**.
+   
+5. Click on **all matching rules** (e.g., Select all 495 rules or however many appear).
+   
+6. Click on **Bulk Actions - Enable**.
+    
+7. Adjust ***rules*** as necessary. From here you can:
 
-1. **Edit the main configuration file**  
-```bash
-nano /opt/lme/config/elastalert2/rules/kibana_alerts.yml
-```
+   - Enable rules for other operating systems
+     
+   - Disable rules based on severity
 
-2. **Uncomment your preferred notification method in the import section**  
-```yaml
-import:
-# - "slack_alert_config.yaml"
-# - "email_alert_config.yaml"
-# - "teams_alert_config.yaml"
-# - "twilio_alert_config.yaml"
-```  
+   - Tune rules based on your environment
 
-3. **Edit the corresponding configuration file(s) for your chosen notification methods (I.E slack_alert_config as described below).**  
+   These are the rules ElastAlert2 will monitor for triggering notifications.
 
-4. **Restart the service:**  
-```bash
-sudo systemctl restart lme-elastalert.service
-```
+## Enable Notifications - 4 Simple Steps
 
-5. **Review official ElastAlert2 documentation for other configurations.**
+1. Edit the **main configuration file** by running:
+     
+   ```bash
+   nano /opt/lme/config/elastalert2/rules/kibana_alerts.yml
+   ```
+
+2. Uncomment ***your preferred notification method*** in the import section by running:
+   
+   ```yaml
+   import:
+   # - "slack_alert_config.yaml"
+   # - "email_alert_config.yaml"
+   # - "teams_alert_config.yaml"
+   # - "twilio_alert_config.yaml"
+   ```  
+
+3. Edit the ***corresponding configuration file(s)*** for your chosen notification methods (e.g., slack_alert_config as described below).  
+
+4. Restart the ***service*** by running:
+
+   ```bash
+   sudo systemctl restart lme-elastalert.service
+   ```
+
+Review official ElastAlert2 documentation for other configurations.
 
 ### Available Notification Channels
 
-1. **Slack**
+- **Slack**
+
    - Configuration file: `/opt/lme/config/elastalert2/rules/slack_alert_config`
-   - Uncomment `- slack_alert_config` line in the `import:` section of the kibana_alerts.yml file.
+
+   - Uncomment the `- slack_alert_config` line in the `import:` section of the kibana_alerts.yml file.
+
    - Update the `slack_webhook_url` with your Slack webhook URL
 
-2. **Email**
+- **Email**
+
    - Configuration file: ```/opt/lme/config/elastalert2/rules/email_alert_config```
+
    - Uncomment the `- "email_alert_config"` line in the `import:` section of the kibana_alerts.yml file
+
    - Update your SMTP authentication details in this file and credentials in ```/opt/lme/config/elastalert2/misc/smtp_auth.yml```
 
-3. **Microsoft Teams**
+- **Microsoft Teams**
+
    - Configuration file: ```/opt/lme/config/elastalert2/rules/teams_alert_config```
+
    - Uncomment the `- "teams_alert_config"` line in the `import:` section of the kibana_alerts.yml file
+
    - Add your MS Teams webhook URL in this file
 
-4. **SMS via Twilio**
+- **SMS via Twilio**
+
    - Configuration file: ```/opt/lme/config/elastalert2/rules/twilio_alert_config```
+
    - Uncomment the `- "twilio_alert_config"` line in the `import:` section of the kibana_alerts.yml file
+
    - Update your Twilio authentication details
 
 ## Managing Alert Noise
 
-While this integration monitors all Kibana security alerts, you can customize the alerts that trigger notifications to reduce noise and focus on what matters most to your organization:
+While this integration monitors all Kibana security alerts, you can customize the alerts that trigger notifications to reduce noise and focus on what matters most to your organization.
 
-### In ElastAlert2 rule:
+### In ElastAlert2 Rule
 
-Filter by Critical And High only:
+- Filter by Critical And High only by running:
 
-```yaml
-# Only trigger on critical and high severity alerts
-filter:
-- query:
-    query_string:
-      query: "kibana.alert.severity: (critical OR high)"
-```
-See ElastAlert2 Documentation for more query possibilities.
+  ```yaml
+  # Only trigger on critical and high severity alerts
+  filter:
+  - query:
+      query_string:
+        query: "kibana.alert.severity: (critical OR high)"
+  ```
 
-You can also adjust the trigger time in the rule in the elastalert2/config.yaml adjust time from 5 minutes to 30 as an example:
+- You can also adjust the trigger time in the rule in the ElastAlert2/config.yaml (e.g., adjust time from 5 minutes to 30):
 
-```yaml
-run_every:
-  minutes: 30
-```
+  ```yaml
+  run_every:
+    minutes: 30
+  ```
 
-This will still rollup all events that happened in that 30 minute timeframe, but you will only get one notification every 30 minutes.
+- This will still rollup all events that happened in that 30 minute timeframe, but you will only get one notification every 30 minutes.
 
-Again see ElastAlert2 Documentation for more advanced solutions here.
+- Reference the [ElastAlert Rules](/docs/markdown/maintenance/elastalert-rules) documentation for more query possibilities.
 
-### In Kibana:
+### In Kibana
 
-- Disable noisy rules: If specific detection rules generate too many alerts, you can disable them in Kibana (Security → Rules → Detection Rules).
-- Create exceptions: Add exceptions to rules that trigger on legitimate activity in your environment.
-- Tune rule parameters: Adjust thresholds and parameters for individual rules to better match your environment.
+To reduce noise within Kibana before alerts ever reach ElastAlert2:
 
-This decoupled approach lets you maintain comprehensive detection coverage in Kibana while controlling which alerts generate notifications through this singular ElastAlert2 rule.
+  - **Disable Noisy Rules:**
+    
+    - Navigate to: **Kibana → Security → Rules → Detection Rules**.
+   
+    - This will disable rules that consistently generate false positives or irrelevant alerts.
+  
+  - **Create Exceptions:**
+  
+    - Add rule exceptions for known legitimate activity in your environment (e.g., expected logon behavior, internal scanning).
+  
+  - **Tune Rule Parameters:**
+  
+     - Adjust thresholds, field filters, and rule logic in Kibana to better reflect your environment before triggering ElastAlert2.
 
-Also, see documentation on creating custom ElastAlert2 Rules if you want even more advanced control.
+This approach allows you to fine-tune detection coverage inside Kibana while using ElastAlert2 solely as your alert delivery mechanism.
+
+Reference the [ElastAlert Rules](/docs/markdown/maintenance/elastalert-rules) documentation if you want even more advanced control.

@@ -33,14 +33,14 @@ Wazuh can automatically block IP addresses attempting SSH brute-force attacks us
    - Locate the **active-response options here section** in the .conf file.
    - Copy and paste the full ***configuration block*** below that commented line. You can continue to add more active response configs below this entry.
      
-   ```xml
-   <active-response>
-     <command>firewall-drop</command>
-     <location>local</location>
-     <rules_id>5763</rules_id>
-     <timeout>180</timeout>
-   </active-response>
-   ```
+     ```xml
+     <active-response>
+       <command>firewall-drop</command>
+       <location>local</location>
+       <rules_id>5763</rules_id>
+       <timeout>180</timeout>
+     </active-response>
+     ```
    - This configures a local response, triggering on rule 5763 (SSH brute-force detection) with a 180-second block.
 
 4. **Restart Wazuh Manager**

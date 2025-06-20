@@ -99,7 +99,7 @@ The output should look similar to this:
     curl -s https://packages.wazuh.com/key/GPG-KEY-WAZUH | gpg --no-default-keyring --keyring gnupg-ring:/usr/share/keyrings/wazuh.gpg --import && chmod 644 /usr/share/keyrings/wazuh.gpg
     ```
 
-4. **Add Wazuh Repository**
+3. **Add Wazuh Repository**
 
   Add the Wazuh repository by running:
    
@@ -107,7 +107,7 @@ The output should look similar to this:
    echo "deb [signed-by=/usr/share/keyrings/wazuh.gpg] https://packages.wazuh.com/4.x/apt/ stable main" | tee -a /etc/apt/sources.list.d/wazuh.list
    ```
 
-5. **Update Package Information**
+4. **Update Package Information**
 
    Update the package information by running:
    
@@ -115,7 +115,7 @@ The output should look similar to this:
    apt-get update
    ```
 
-6. **Install Wazuh Agent and Configure Wazuh Manager IP Variable**
+5. **Install Wazuh Agent and Configure Wazuh Manager IP Variable**
    
    Install the Wazuh agent and configure Wazuh manager IP variable by running:
    

@@ -1,19 +1,26 @@
 ---
 title: Filtering Logs
 ---
-# Filtering logs:
+# Filtering Logs in LME Cloud
+
+## Overview
  
-Sometimes a log is not particularly useful or an aspect of LME cloud prove overly verbose (e.g.: [Dashboard spamming events](https://github.com/cisagov/LME/issues/22). We try our best to make everything useful but cannot predict every possibility since all environments will be different. So to enable users to make LME more useful (and hopefully commit their own pull requests back with updates :) ),we document here how you can filter out logs in the:
+Some logs in LME Cloud can be overly verbose or not particularly useful depending on your environment (e.g., [Dashboard Spamming Events](https://github.com/cisagov/LME/issues/22)). While we aim to strike a good balance, every setup is different.
 
-1. Dashboard
-2. Host logging utility (e.g. winlogbeat)
-3. Serverside (e.g. logstash)
+This guide shows you how to fine-tune your logging experience by applying filters in three key areas:
 
-Have fun reading and applying these concepts 
+- Dashboard
+   
+- Host-level logging utilities (e.g., winlogbeat)
+   
+- Serverside (e.g., logstash)
 
-## Dashboard:
+We encourage you to adapt these examples to your needs and contribute improvements through pull requests.
 
-The below example shows how users can apply a filter to a search, and saved with a dashboard to filter out unneeded windows event log [4624](https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4624) with a TargetUserName field that has a `$ `. 
+## Dashboard Filtering Example
+
+Here's how to apply a filter in a Kibana dashboard to hide excessive or unnecessary logs--in this case, Windows Event Log [4624](https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4624) from specific usernames: 
+
 ```
 {
   "bool": {
@@ -35,12 +42,20 @@ The below example shows how users can apply a filter to a search, and saved with
 }
 ```
 
-To Add:
-1. Click the `Add filter`:
-2. Click `Edit as DSL` to add a regexp filter:
+To apply this filter:
 
-Users can find many resources here and more relevant examples on stackoverflow:
+1. Click the **`Add filter` button** in your Kibana dashboard.
+   
+2. Click the **`Edit as DSL` button** to paste the filter JSON.
+  
+3. Save the ***changes*** to your dashboard or search.
+
+## Helpful Resources
+
+For more advanced queries or regex help, reference these links:
+
  - https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl.html
+   
  - https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax
+   
  - https://www.elastic.co/guide/en/elasticsearch/reference/current/regexp-syntax.html
-```

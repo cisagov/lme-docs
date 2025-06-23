@@ -1,5 +1,5 @@
 ---
-title: Filtering Logs
+title: Filtering Logs in the LME Cloud
 ---
 # Filtering Logs in LME Cloud
 

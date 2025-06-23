@@ -1,74 +1,97 @@
 ---
 title: Logging Made Easy in the cloud 
 ---
-# Logging Made Easy in the cloud 
+# Logging Made Easy in the Cloud 
 
-This page answers some common FAQ about deploying LME in the cloud. 
+This page addresses some Frequently Asked Questions (FAQs) about deploying Logging Made Easy (LME) in the Cloud, including setup, firewall rules, and Cloud compatibility. 
 
-## Does LME run in the cloud? 
-Yes, LME is a client-server model and accommodates both on-premises and cloud deployments, allowing organizations to host LME on local or cloud service provider (CSP) infrastructure.
+## Does LME Run in the Cloud? 
 
+Yes. LME can run in the Cloud or on-premises environments. It's designed to work in personal or Cloud deployments, allowing organizations to host LME in their Cloud tenant (e.g., Azure) or connect on-premises clients to a cloud-hosted instance.
 
+## Deploying LME in the Cloud for On-Premises Systems
 
-## Deploying LME in the cloud for on prem systems:
-For LME agents to talk to LME in the cloud, you'll need to ensure the clients you want to monitor can communicate through: 1) the cloud firewall and 2) LME' own server firewall.
+You can set up LME in the Cloud and still send data from your on-premises endpoints. Here's how it works:
 
 ![cloud firewall](/docs/imgs/lme-cloud.jpg)
 
-The easiest way is to make sure you can access these LME server ports from the on premise client: 
-  - Wazuh Agent ([Agent Enrollment Requirements Documentation](https://documentation.wazuh.com/current/user-manual/agent/agent-enrollment/requirements.html)): 1514,1515 
-  - Elastic Agent ([Agent Install Documentation](https://www.elastic.co/guide/en/elastic-stack/current/installing-stack-demo-self.html#install-stack-self-elastic-agent)): 8220 (fleet commands), 9200 (input to elasticsearch)
+- You host the LME backend in the Cloud
 
-You'll need to make sure your Cloud firewall is setup to allow the ports above. On Azure, network security groups (NSG) run a firewall on your virtual machine;s network interfaces.  You'll need to update your LME virtual machine's rules to allow inbound connections on the agent ports. Azure has a detailed guide for how to add security rules [here](https://learn.microsoft.com/en-us/azure/virtual-network/manage-network-security-group?tabs=network-security-group-portal#create-a-security-rule). 
+- Your Elastic agents (installed on your endpoints) send logs to it over the internet
 
-##### ***We highly suggest you do not open ANY PORT globally and restrict it based on your clients IP address or your client's subnets.****
+**Important: Ensure your firewall allows outbound traffic so your agents can connect.**
 
-On LME, you'll want to make sure you have the firewall disabled (if you're using the cloud firewall as the main firewall):
-```
-lme-user@ubuntu:~$ sudo ufw status
-Status: inactive
-```
-or that you have the firewall rules enabled:
-```
-lme-user@ubuntu:~$ sudo ufw status
-Status: active
+The easiest way is to make sure you can access these LME server ports from the on-premise client: 
 
-To                         Action      From
---                         ------      ----
-1514                       ALLOW       Anywhere
-1515                       ALLOW       Anywhere
-22                         ALLOW       Anywhere
-8220                       ALLOW       Anywhere
-1514 (v6)                  ALLOW       Anywhere (v6)
-1515 (v6)                  ALLOW       Anywhere (v6)
-22 (v6)                    ALLOW       Anywhere (v6)
-8220 (v6)                  ALLOW       Anywhere (v6)
-```
+- Wazuh Agent ([Agent Enrollment Requirements Documentation](https://documentation.wazuh.com/current/user-manual/agent/agent-enrollment/requirements.html)): 1514,1515
+    
+- Elastic Agent ([Agent Install Documentation](https://www.elastic.co/guide/en/elastic-stack/current/installing-stack-demo-self.html#install-stack-self-elastic-agent)): 8220 (fleet commands); 9200 (input to Elasticsearch)
 
-You can add the above ports to ufw via the following command: 
+You'll need to ensure your Cloud firewall is setup to allow the ports above. On Azure, Network Security Groups (NSG) run a firewall on your virtual machine's network interfaces.  You'll need to update your LME virtual machine's rules to allow inbound connections on the agent ports. Azure has a detailed guide for how to add security rules [here](https://learn.microsoft.com/en-us/azure/virtual-network/manage-network-security-group?tabs=network-security-group-portal#create-a-security-rule). 
+
+### ***We highly suggest you do not open any port globally and restrict it based on your client's IP address or your client's subnets.***
+
+On LME, you'll want to ensure that either:
+
+- The firewall is fully disabled (if you're relying on your Cloud provider's firewall as the primary layer of defense)
+ 
+- The necessary firewall rules are enabled to allow traffic through required ports
+
+To check the firewall status:
+
+  ```
+  lme-user@ubuntu:~$ sudo ufw status
+  Status: inactive
+  ```
+
+If Uncomplicated Firewall (UFW) is active, verify that the following rules are in place:
+
+  ```
+  lme-user@ubuntu:~$ sudo ufw status
+  Status: inactive
+  
+  To                         Action      From
+  --                         ------      ----
+  1514                       ALLOW       Anywhere
+  1515                       ALLOW       Anywhere
+  22                         ALLOW       Anywhere
+  8220                       ALLOW       Anywhere
+  1514 (v6)                  ALLOW       Anywhere (v6)
+  1515 (v6)                  ALLOW       Anywhere (v6)
+  22 (v6)                    ALLOW       Anywhere (v6)
+  8220 (v6)                  ALLOW       Anywhere (v6)
+  ```
+
+You can enable these ports via the following command:
+
 ```
 sudo ufw allow 1514
 sudo ufw allow 1515
 sudo ufw allow 8220
 sudo ufw allow 9200
 ```
-If you want to use the Wazuh API, you'll also need to setup port 55000 to be allowed in:
+
+If you plan to use the Wazuh Application Programming Interface (API), you'll also need to allow port 55000:
+
 ```
 sudo ufw allow 55000
 ```
 
-In addition, you'll need to setup rules to forward traffic to the container network and allow traffic to run on the container network:
+To forward traffic to the container network and allow services to run properly, run:
+
 ```
 ufw route allow in on eth0 out on podman1 to any port 443,1514,1515,5601,8220,9200 proto tcp
 ufw route allow in on podman1
 ```
-Theres a helpful stackoverflow article on [Configuring UFW for podman on port 443](https://stackoverflow.com/questions/70870689/configure-ufw-for-podman-on-port-443)
-Your `podman1` interface name may be different. Check the output of your network interfaces by running the following command to check if your interface is also called podman1: 
+
+There's also a helpful StackOverflow article on [Configuring UFW for Podman on Port 443](https://stackoverflow.com/questions/70870689/configure-ufw-for-podman-on-port-443), if needed. Your `podman1` network interface name may be different. Check the output of your network interfaces by running the following command to check if your interface is also called podman1: 
+
 ```
 sudo -i podman network inspect lme | jq 'map(select(.name == "lme")) | map(.network_interface) | .[]'
 ```
 
-Your rules can be dumped and shown like so: 
+To view your applied rules:
+
 ```
 root@ubuntu:~# ufw show added
 Added user rules (see 'ufw status' for running firewall):
@@ -83,18 +106,23 @@ ufw allow 9200
 root@ubuntu:~#
 ```
 
-### Deploying LME for cloud infrastructure: 
+## Deploying LME for Cloud Infrastructure
 
-Every cloud setup is different. As long as the LME server is on the same network and able to talk to the machines you want to monitor, your deployment should run smoothly.
+Every Cloud setup is different. As long as the LME server is on the same network and able to talk to the machines you want to monitor, your deployment should run smoothly.
 
-## Other firewall rules
-You may also want to access kibana from outside the cloud as well. You'll want to make sure you either allow port `5601` or port `443` inbound from the cloud firewall AND virtual machine firewall. 
+## Other Firewall Rules
+
+You may also want to access Kibana from outside the Cloud as well. You'll want to ensure you either allow port `5601` or port `443` inbound from the Cloud firewall and the virtual machine firewall. 
+
+To allow port 443:
 
 ```
 root@ubuntu:/opt/lme# sudo ufw allow 443
 Rule added
 Rule added (v6)
 ```
+
+Sample firewall status (active):
 
 ```
 root@ubuntu:/opt/lme# sudo ufw status
@@ -114,14 +142,16 @@ To                         Action      From
 443 (v6)                   ALLOW       Anywhere (v6)
 ```
 
-### Don't lock yourself out AND enable the firewall
+### Don't Lock Yourself Out and Enable the Firewall
+
+Before enabling the firewall, ensure you're not blocking your Secure Shell (SSH) access. You must allow port 22 so you can still connect remotely:
  
-You also don't want to lock yourself out of ssh, so make sure to enable port 22!
 ```
 sudo ufw allow 22
 ```
 
-Enable ufw:
+Once all necessary ports are allowed, enable the firewall with:
+
 ```
 sudo ufw enable
 ```

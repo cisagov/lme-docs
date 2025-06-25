@@ -1,104 +1,142 @@
 ---
-title: Elasticsearch Index Lifecycle Overview
+title: Elasticsearch Index Lifecycle Management
 ---
-# Elasticsearch Index Lifecycle Overview
+# Elasticsearch Index Lifecycle Management
 
-Elasticsearch uses Index Lifecycle Management (ILM) to manage data over time. There are four phases:
+This page explains how Elasticsearch uses Index Lifecycle Management (ILM) to manage data over time. ILM helps control index storage costs and performance by automatically transitioning data through different phases based on age and usage.
 
-1. Hot Phase
-   - Newest data
+## Overview
+
+Elasticsearch organizes index data through the following four lifecycle phases:
+
+- Hot Phase
+   - Contains the newest data
    - Most active: frequent updates and searches
-   - Needs fastest access
+   - Requires the fastest access
 
-2. Warm Phase
-   - Older data
+- Warm Phase
+   - Contains older data
    - Less active: fewer updates, still searched
-   - Can be on slightly slower storage
+   - Can be moved to slightly slower storage
 
-3. Cold Phase
-   - Oldest data
-   - Rarely accessed, no updates
+- Cold Phase
+   - Contains the oldest data
+   - Rarely accessed and not updated
    - Can be on slowest storage
 
-4. Delete Phase
-   - Data no longer needed
+- Delete Phase
+   - Data is no longer needed
    - Removed from the system
 
-Data moves through these phases based on what is called the Index Lifecycle Policy.
+Data transitions through these phases based on rules defined in the Index Lifecycle Policy.
 
-# Creating a Lifecycle Policy
+## Creating an Index Lifecycle Policy
 
-## Create Lifecycle Policy for Wazuh Indexes in Elasticsearch
+### Wazuh Indexes Lifecycle Policy in Elasticsearch
 
-1. Login to Kibana and go to Menu -> Dev Tools
+You can define a lifecycle policy in Kibana to apply to Wazuh indices.
 
-2. Create an ILM policy by copying and pasting the following code and then pressing the run button that looks like a 'play' symbol:
+- Log in to **Kibana**.
+  
+- Navigate to **Menu -> Dev Tools**.
+  
+- Copy and run the ***following code*** to create a basic ILM policy:
 
-```bash
-PUT _ilm/policy/wazuh_alerts_cleanup_policy
-{
-  "policy": {
-    "phases": {
-      "hot": {
-        "min_age": "0ms",
-        "actions": {}
-      },
-      "delete": {
-        "min_age": "30d",
-        "actions": {
-          "delete": {}
+  ```bash
+  PUT _ilm/policy/wazuh_alerts_cleanup_policy
+  {
+    "policy": {
+      "phases": {
+        "hot": {
+          "min_age": "0ms",
+          "actions": {}
+        },
+        "delete": {
+          "min_age": "30d",
+          "actions": {
+            "delete": {}
+          }
         }
       }
     }
   }
-}
-```
+  ```
 
-It will look like so:
+  This creates a simple policy with Hot, Warm, and Delete phases. It will look like this in Kibana:
+  
+  ![image](https://github.com/user-attachments/assets/962c3f8e-4a7b-4037-beaf-ea2e597fbe2d)
 
-![image](https://github.com/user-attachments/assets/962c3f8e-4a7b-4037-beaf-ea2e597fbe2d)
+- Apply ***this policy*** to a template: 
 
-3. Perform the same steps for the following snippets of code:
-
-```bash
-PUT _index_template/wazuh_alerts_template
-{
-  "index_patterns": ["wazuh-alerts-4.x-*"],
-  "template": {
-    "settings": {
-      "index.lifecycle.name": "wazuh_alerts_cleanup_policy"
+  ```bash
+  PUT _index_template/wazuh_alerts_template
+  {
+    "index_patterns": ["wazuh-alerts-4.x-*"],
+    "template": {
+      "settings": {
+        "index.lifecycle.name": "wazuh_alerts_cleanup_policy"
+      }
     }
   }
-}
-```
+  ```
 
-```bash
-PUT wazuh-alerts-4.x-*/_settings
-{
-  "index.lifecycle.name": "wazuh_alerts_cleanup_policy"
-}
-```
+- Apply ***the policy*** to existing indices:
+  
+  ```bash
+  PUT wazuh-alerts-4.x-*/_settings
+  {
+    "index.lifecycle.name": "wazuh_alerts_cleanup_policy"
+  }
+  ```
 
-This will create a policy, create a template that applies this policy to all new indices, and then also apply the policy to existing Wazuh indices.
+- This will create a policy, create a template that applies this policy to all new indices, and then also apply the policy to existing Wazuh indices.
 
-**NOTE: This is an example that will delete wazuh indices after 30 days. Adjust as needed.**
+**Note: This is an example that will delete Wazuh indices after 30 days. Adjust as needed.**
 
-## Elastic Endpoint Lifecyle policy
+### Elastic Endpoint Lifecyle Policy
 
-Your Elastic agent logs are managed by a policy called "logs"
+Elastic agents manage lifecycle with a default policy, typically named `logs` or `metrics`.
 
-1. Navigate to Index Lifecycle policies, toggle the switch for "Include managed system policies" and then search for "logs"
+To review or modify it:
 
-2. Click to edit this policy. You will see warnings that editing a managed policy can break Kibana. Assuming you set your phases properly, you can ignore this warning. 
+- Navigate to **Stack Management -> Index Lifecycle Policies**.
+  
+- In the upper-right corner, enable **Include managed system policies**.
 
-3. By default, the setup "rolls over" when an index is 30 days old or exceeds 50 GB. Rollover renames the index and creates a new one to manage shard size without deleting the previous index I.E. logs-00001 rolls over to logs-00002. 00001 remains, its just not 'active'
+- Search for **`logs`**.
 
-4. Set your Hot, Warm, Cold phase as you see fit. 
+- Click to open and edit ***the policy***.
 
-5. After you turn on "Cold Phase" you must hit the trash can switch to turn on the delete phase. 
+**Note: You may see a warning that editing a managed policy can break Kibana. This is normal; as long as your phase definitions are valid, you can proceed.** 
 
-6. After you apply these changes to your policy please allow it some time to take effect on all indices.
+### Policy Behavior and Rollover
 
-**Note**: You can also just completely skip these steps and manually delete indices from the UI as you see fit / when needed.
+- By default, the system rolls over when an index is either:
 
-**Note**: By default your rollover policy is set for 30 days. Do not set your 'delete' phase to be shorter than your rollover phase. You need your active indices to rollover into inactive indices before you delete them.**
+  - 30 days old
+  
+  - Exceeds 50 GB
+  
+- A rollover means a new index is created and the previous one is retained but no longer "active" (e.g., logs-00001 rolls over to logs-00002, 00001 remains).
+
+### Customizing the Lifecycle
+
+You can customize Hot, Warm, Cold, and Delete phases as needed. For example:
+
+- Set your **Hot**, **Warm**, and **Cold phases** to suit your access needs
+
+- Enable **Cold phase** for long-term, rarely acccessed data
+
+- Click on the **trash can** to turn on the Delete phase
+
+- Enable **Delete phase** only after confirming data is no longer needed
+
+- After you apply changes, allow **some time** for them to take effect across your indices
+
+### Final Tips
+
+- You may skip lifecycle automation and delete indices manually via the Kibana UI as you see fit or when needed.
+
+- By default your rollover policy is set for 30 days.
+
+<span style="color:orange">**Warning: Do not set your Delete phase to be shorter than your rollover phase. You need your active indices to rollover into inactive indices before you delete them.**</span>

@@ -480,7 +480,7 @@ To make best use of the agents, complement them with utilities that generate for
 
 ## 7. Developer Notes
 
-### 7.1 Git Clone and Git Checkout Notes
+### 7.1 Git Clone and Git Checkout
 
 - Git clone and git checkout your development branch on the server:
 
@@ -492,7 +492,7 @@ To make best use of the agents, complement them with utilities that generate for
 
 - Once you've gotten your changes/updates added, please submit a pull request following our [Guidelines](/CONTRIBUTING.md)
 
-### 7.2 Non-Default Installation Notes
+### 7.2 Non-Default Installation
 
 - If you installed LME in a custom directory, pass the `CLONE_DIRECTORY` variable to the playbook by running:
 
@@ -523,7 +523,7 @@ Below we've documented in more detail what exactly occurs during the installatio
 - **Setup Containers for root**: The containers listed in `$clone_directory/config/containers.txt` will be pulled and tagged.
 - **Start lme.service**: Kicks off the start of LME service containers.
 
-### 7.4 Notes on Folders, Permissions, and Service
+### 7.4 Folders, Permissions, and Service
 
 - `/opt/lme` will be owned by root. All LME services will run and execute as unprivileged users. The active LME configuration is stored in `/opt/lme/config`. 
 

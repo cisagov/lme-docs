@@ -1,18 +1,17 @@
 ---
-title: ElastAlert Rule Writing
+title: ElastAlert2 Rule Writing
 ---
-# ElastAlert Rule Writing
+# ElastAlert2 Rule Writing
 
-This page discusses how to add and implement alert notifications for detections and alerts that trigger in elastic and wazuh.
-The basic premise is that all data (logs and detections) will reach specific indices in elasticsearch, but you may want a way to get a notification in your communications systems on this activity. 
+This page explains how to write and implement alert rules using ElastAlert2, enabling real-time notifications for detections and alerts triggered by Elasticsearch and Wazuh.
 
-Elastalert enables this by providing hooks into email, slack, ms_teams, etc... (see a list of all alert types [HERE](https://elastalert2.readthedocs.io/en/latest/alerts.html#alert-types))
+By default, all logs and detections are indexed in Elasticsearch. However, in many cases, you may also want to push notifications to your team through tools like Slack, Microsoft Teams, email, and more. ElastAlert2 supports this through a wide range of alerting integrations. View the full list of supported alert types [HERE](https://elastalert2.readthedocs.io/en/latest/alerts.html#alert-types).
 
-## Alert Rule overview:
-See a complete rule below. We discuss the components of it below. 
+## Alert Rule Overview
 
-This is the complete rule for detecting when Windows Event Logs are cleared, one of LME's default rules.
-We will continue to add more with later editions of LME, and we welcome detection/alerts from the community as well. 
+Below is an example rule that triggers when Windows Event Logs are cleared, a default detection included in Logging Made Easy (LME).
+
+We'll break down each component of the rule to help you understand how it works. You can use this format as a starting point for your own custom rules. We also welcome community contributions to expand the available rule set in future releases.
 
 ```yaml
 name: Windows Event Logs Cleared
@@ -67,112 +66,122 @@ realert:
 timestamp_field: "@timestamp"
 ```
 
-Now, let's break down each section of the rule:
-
 ### Rule Name and Type
 
-```yaml
-name: Windows Event Logs Cleared
-type: any
-```
+- **name**: Specifies the anme of the rule; in this case, detects when Windows Event Logs are cleared.
+- **type**: Set to any, which means the rule will trigger for any matching event, regardless of how often it occurs.
 
-- **Name**: Identifies the rule as detecting Windows Event Logs being cleared.
-- **Type**: Set to "any", meaning the rule will trigger for any matching event, regardless of frequency.
+  ```yaml
+  name: Windows Event Logs Cleared
+  type: any
+  ```
 
 ### Index Pattern
 
-```yaml
-index: logs-*
-```
+- **index**: Definess which Elasticsearch index to search.
+  - The pattern `logs-*` typically includes all log data indexed by Elastic
+  - You can adjust this pattern to target specific indices, such as wazuh-*, depending on your setup
 
-This specifies which Elasticsearch indices to search. The pattern `logs-*` typically includes all log data indexed by Elastic. Could also be wazuh-*
+  ```yaml
+  index: logs-*
+  ```
 
 ### Filter Conditions
 
-```yaml
-filter:
-  - query:
-      bool:
-        must:
-          - terms:
-              event.action: ["audit-log-cleared", "Log clear"]
-          - term:
-              winlog.api: "wineventlog"
-        must_not:
-          - term:
-              winlog.provider_name: "AD FS Auditing"
-```
+- This section defines the conditions required to trigger the alert:
+  
+  - The `event.action` must be either "audit-log-cleared" or "Log clear"
+  - The `winlog.api` must be "wineventlog"
+  - The `winlog.provider_name` must not be "AD FS Auditing" (to exclude legitimate log clearing events from Active Directory Federation Services [AD FS])
 
-This section defines the criteria for triggering the alert:
-- The `event.action` must be either "audit-log-cleared" or "Log clear"
-- The `winlog.api` must be "wineventlog"
-- The `winlog.provider_name` must not be "AD FS Auditing" (to exclude legitimate log clearing events from AD FS)
+- Some useful guidance for writing filters can be found in [Elastic's Query DSL documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl.html).
 
-Some helpful hints for building this filter can be found in elastic's query DSL [docs](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl.html).
-In addition, we suggest working with a gpt model and the documentation for how to construct the query above. 
-We've found the AI models to produce good boilerplate that can be edited to suit your needs.
+- We also recommend exploring Generative Pre-trained Transformer (GPT) model tools or the official documentation when constructing these queries. We've found that AI tools often generate good baseline templates that can be easily modified.
+
+  ```yaml
+  filter:
+    - query:
+        bool:
+          must:
+            - terms:
+                event.action: ["audit-log-cleared", "Log clear"]
+            - term:
+                winlog.api: "wineventlog"
+          must_not:
+            - term:
+                winlog.provider_name: "AD FS Auditing"
+  ```
 
 ### Alert Configuration
 
-This configuration may be email, slack, or anything else. See official elastalert documentation: https://elastalert2.readthedocs.io/en/latest/alerts.html
+- This section defines how alerts are delivered (e.g., email, slack).
+- In this example, alerst are sent to Slack.
+- For full details on alerting options, reference the official [ElastAlert2 documentation](https://elastalert2.readthedocs.io/en/latest/alerts.html).
 
-```yaml
-alert:
-  - "slack"
+  ```yaml
+  alert:
+    - "slack"
 
-slack_webhook_url: "https://hooks.slack.com/services/EXAMPLE" # This is an example webhook to slack
-```
+  slack_webhook_url: "https://hooks.slack.com/services/EXAMPLE" # This is an example webhook to slack
+  ```
 
 ### Alert Message Format
 
-```yaml
-alert_text: |
-  Windows Event Logs Cleared Detected!
-  Host: {0}
-  Event Action: {1}
-  Winlog Provider Name: {2}
-  Timestamp: {3}
-alert_text_args:
-  - host.name
-  - event.action
-  - winlog.provider_name
-  - "@timestamp"
+- This section defines the content and format of the alert message:
 
-alert_text_type: alert_text_only
-```
+  - A warning message
+  - The name of the host where the event occurred
+  - The specific event action
+  - The Windows log provider name
+  - The timestamp of the event
 
-This defines the content and format of the alert message:
-- A warning message
-- The name of the host where the event occurred
-- The specific event action
-- The Windows log provider name
-- The timestamp of the event
+- The `alert_text_type` is set to `alert_text_only`, which means only the custom text you define will appear in the alert--no extra metadata is included.
 
-The `alert_text_type` is set to `alert_text_only`, meaning the alert will only include the specified text without additional metadata.
+- The placeholders in `alert_test_args` correspond to fields in the event JSON; for example:
+  - {0} will be replaced with the host name
+  - {1} will be replaced with the event action
+  - {2} will be replaced with the provider name
+  - {3} will be replaced with the timtestamp
+  
+- These fields can be reviewed in Kibana if you want to identify or pull additional fields into your alert text.
 
-The alert_test_args are used in the alert text. The arg's are fields in the json event. I.E. hostname will be 0. So, when the alert shows up in email or slack it will start with Host: {The Host Name Pulled from the JSON}. Review the json in Kibana to pull any fields you wanted added to your alert messages.
+  ```yaml
+  alert_text: |
+    Windows Event Logs Cleared Detected!
+    Host: {0}
+    Event Action: {1}
+    Winlog Provider Name: {2}
+    Timestamp: {3}
+  alert_text_args:
+    - host.name
+    - event.action
+    - winlog.provider_name
+    - "@timestamp"
+
+  alert_text_type: alert_text_only
+  ```
 
 ### Alert Frequency
 
-```yaml
-realert:
-  minutes: 5
-```
+- This setting prevents alert fatigue by suppressing duplicate alerts for 5 minutes after one is sent. After 5 minutes, ElastAlert2 will trigger again but only for new events.
 
-This setting suppresses duplicate alerts for 5 minutes after an alert is sent, preventing alert fatigue. After 5 minutes it will trigger again, and only detect NEW events.
-
+  ```yaml
+  realert:
+    minutes: 5
+  ```
 ### Timestamp Field
 
-```yaml
-timestamp_field: "@timestamp"
-```
+- This specifies that the rule should use the "@timestamp" field to determine the time of events.
 
-This specifies that the rule should use the "@timestamp" field to determine the time of events.
+  ```yaml
+  timestamp_field: "@timestamp"
+  ```
+## Rule Storage
 
+Before ElastAlert2 can use your rule, you must save it to the correct directory. ElastAlert2 expects rule files to be stored in a specific file structure.
 
-## Rule storage:
-First we need to put the rule at the appropriate directory where elastalert expects all the rules.
-Elastalert is setup to use the following directories: 
+ElastAlert2 uses the following directories:
+ 
 ```bash
 root@ubuntu:~# tree /opt/lme/config/elastalert2/
 /opt/lme/config/elastalert2/
@@ -180,80 +189,90 @@ root@ubuntu:~# tree /opt/lme/config/elastalert2/
 ├── misc
 │   └── smtp_auth.yml
 └── rules
-    ├── example-email-rule.yml
-        └── windows_event_logs_cleared.yaml
+├── example-email-rule.yml
+   └── windows_event_logs_cleared.yaml
 ```
 
-- `/opt/lme/config/elastalert2/misc/`: is where you can store various files your alert type might require. For example, smtp alerts require a smtp_auth.yml file like we've included as an example.
-- `/opt/lme/config/elastalert2/rules/`: is where you store your elastalert rules.
-- `/opt/lme/config/elastalert2/config.yaml`: is the configuration for elastalert. More options are available in their [documentation](https://elastalert2.readthedocs.io/en/latest/configuration.html).
+- `/opt/lme/config/elastalert2/misc/`: For miscellaneous files required by specific alert types (e.g., smtp alerts require a smtp_auth.yml file like we've included as an example).
+  
+- `/opt/lme/config/elastalert2/rules/`: Where you place your ElastAlert2 rule .yaml files.
+  
+- `/opt/lme/config/elastalert2/config.yaml`: The main configuration file for ElastAlert2. Reference the [ElastAlert2 documentation](https://elastalert2.readthedocs.io/en/latest/alerts.html) for additional options.
 
-Any changes to the above files, will require a container restart for them to apply to the elastalert service. 
+Any changes to the above files, will require a container restart for them to apply to the ElastAlert2 service. 
 
-\**WAIT*\* to restart elastalert until you've verified your rule in the next section.
+**Important: Restart the ElastAlert2 container only after verifying your rule in the next section.**
 
-## Test and Deploy the rule:
+## Test and Deploy the Rule
 
-Once you've written your rule you can test it using the below command: 
-```bash
-podman run -it --rm --net lme --env-file=/opt/lme/lme-environment.env -e ES_HOST=lme-elasticsearch -e ES_PORT=9200 -e ES_USERNAME=elastic --secret elastic,type=env,target=ES_PASSWORD\
--v /opt/lme/config/elastalert2/config.yaml:/opt/elastalert/config.yaml -v /opt/lme/config/elastalert2/rules:/opt/elastalert/rules -v /opt/lme/config/elastalert2/misc:/opt/elastalert/misc\
---entrypoint elastalert-test-rule localhost/elastalert2:LME_LATEST /opt/elastalert/rules/example-email-rule.yml
-```
+- After writing the rule, use the following command to test it: 
 
-We've wrapped the above command into a bash script: 
-```bash
-cd ~/LME/
-./scripts/elastalert-test.sh example-email-rule.yml
-```
-The input value is the filename of your rules saved to the rules directory at:  `/opt/lme/config/elastalert2/rules/`
+  ```bash
+  podman run -it --rm --net lme --env-file=/opt/lme/lme-environment.env -e ES_HOST=lme-elasticsearch -e ES_PORT=9200 -e ES_USERNAME=elastic --secret elastic,type=env,target=ES_PASSWORD\
+  -v /opt/lme/config/elastalert2/config.yaml:/opt/elastalert/config.yaml -v /opt/lme/config/elastalert2/rules:/opt/elastalert/rules -v /opt/lme/config/elastalert2/misc:/opt/elastalert/misc\
+  --entrypoint elastalert-test-rule localhost/elastalert2:LME_LATEST /opt/elastalert/rules/example-email-rule.yml
+  ```
 
-#####*****IMPORTANT*****
-You should make sure the rule evaluates and runs successfully before adding it into elastalert, as elastalert will crash if the rule cannot be successfully parsed.
+- We've wrapped the above command into a bash script:
+  
+  ```bash
+  cd ~/LME/
+  ./scripts/elastalert-test.sh example-email-rule.yml
+  ```
+- The input value is the filename of your rules saved to the rules directory at `/opt/lme/config/elastalert2/rules/`.
 
-## Elastalert error and  status logs:
-You can find the logs for elastalert at:
+- The command runs the `elastalert-test-rule tool using the specified config and rule files to validate your alert before deploying it live.
 
-1. in the logs volume
+**IMPORTANT: Ensure the rule evaluates and runs successfully before adding it into ElastAlert2, as ElastAlert2 will crash if the rule cannot be successfully parsed.**
+
+## ElastAlert2 Error and Status Logs
+
+You can find ElastAlert2 logs in the `lme_elastalert2_logs` volume:
+
 ```bash
 sudo -i 
 podman volume mount lme_elastalert2_logs
 cd /var/lib/containers/storage/volumes/lme_elastalert2_logs/_data
 ```
-
-2. you can also see errors and status from elastalert's running at: 
+You can also check ElastAlert2 errors and runtime status by running:
+   
 ```bash
 sudo -i podman logs lme-elastalert
 ```
 
-3. There are indexes inside elasticsearch where elastalert will write its data `elastalert_*`. 
-To view these logs in discover create a new dataview:
-1. click the blue drop down to manage dataviews
-2. select `create a data view`:
+Additionally, logs written by Elasticsearch can be viewed in Kibana under the `elastalert_*` index pattern.
+   
+To view these logs in Discover:
 
+  -  Click on the **Discover tab**.
+  -  Click on the **blue drop-down menu** to manage data view.
+  -  Select **Create a data view**.
+    
 ![dataview1](/docs/imgs/dashboard/dataview-create.png)
-
-3. Edit the data view with the anme you'd like to call it, we suggest `elastalert`.
-4. add the index pattern you want to match on: `elastalert*`
-5. click `save` at the bottom.
+  
+  -  Set the ***name*** (we recommend `elastalert`).
+  -  Set the ***index pattern to match***: `elastalert*`
+  -  Click on the **Save button**.
 
 ![dataview2](/docs/imgs/dashboard/elastalert-dataview.png)
 
-
 ## Using Email and SMTP
-We've also provided an example smtp rule you can tune to your needs. 
 
-Because elastalert doesn't support more modern authentication methods, you'll need to setup a username/password combination for your email user that will send the email. 
+ElastAlert2 supports email alerts via Simple Mail Transfer Protocol (SMTP). We've included an example SMTP rule to help you configure this feature.
 
-Gmail has a feature called an `app password` to setup a regular password for a user. Outlook and other email providers have a similar option.
-We suggest that you use an unprivileged account you make ONLY to send notifications to your regular email.
+**Note: ElastAlert2 does not support Open Authorization (OAuth) or modern authentication. You must use a standard username/password email configuration for sending alerts.** 
 
-You can follow google's instructions [here](https://support.google.com/accounts/answer/185833?hl=en), once done you should have a screen like this: 
+Gmail users can use an app password to generate a password for this purpose. Outlook and other email providers have similar options.
+We recommend using a dedicated email account for alerting purposes only.
+
+You can follow google's instructions [here](https://support.google.com/accounts/answer/185833?hl=en) and should see a screen similar to this: 
+
 ![email](/docs/imgs/dashboard/app_password.png)
 
-Other providers should be similar.
+Once you've created your credentials, place your email rule and SMTP credentials file in the appropriate directories.
 
-Finally you can setup the rule and smtp_auth.yml files like below, and put them at the directories shown in this tree command:
+Example directory structure:
+
 ```bash
 root@ubuntu:/opt/lme/config/elastalert2# tree
 .
@@ -263,14 +282,20 @@ root@ubuntu:/opt/lme/config/elastalert2# tree
     ├── example-email-rule.yml
 ```
 
-### SMTP_AUTH.yml: 
+### SMTP_AUTH.yml
+
+This file contains your email credentials. Ensure to store this securely and avoid committing it to version control:
+
 ```yaml
 ---
 user: "loggingmadeeasy@gmail.com"
 password: "giyq caym zqiw chje"
 ```
 
-### SMTP_AUTH.yml: 
+### SMTP_AUTH.yml (Rule Configuration)
+
+This rule example sends an email alert when a specific IP phrase is matched in Wazuh logs:
+
 ```yaml
 name: EMAIL
 type: frequency
@@ -294,7 +319,8 @@ from_addr: "elastalert@elastalert.com"
 smtp_auth_file: /opt/elastalert/misc/smtp_auth.yml
 ```
 
-# Other options:
-Again see ElastAlert 2 documentation to tailor more specific alerts to your needs:
+# Other Options
 
-https://elastalert2.readthedocs.io/en/latest/index.html
+Reference [ElastAlert2 documentation](https://elastalert2.readthedocs.io/en/latest/alerts.html) for more examples and guidance on tailoring alerts to fit your organization's needs.
+
+

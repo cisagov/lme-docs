@@ -88,7 +88,7 @@ This guide provides instructions for setting up syslog forwarding to the LME ser
    
    - ***.* @@lme-server-ip:5140**
    
-   **Note**: This is the IP address of your LME server. Ensure you can reach it from your device.
+**Note: This is the IP address of your LME server. Ensure you can reach it from your device.**
 
 3. Restart **rsyslog**:
    

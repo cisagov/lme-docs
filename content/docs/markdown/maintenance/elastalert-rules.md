@@ -68,7 +68,7 @@ timestamp_field: "@timestamp"
 
 ### Rule Name and Type
 
-- **name**: Specifies the anme of the rule; in this case, detects when Windows Event Logs are cleared.
+- **name**: Specifies the name of the rule; in this case, detects when Windows Event Logs are cleared.
 - **type**: Set to any, which means the rule will trigger for any matching event, regardless of how often it occurs.
 
   ```yaml

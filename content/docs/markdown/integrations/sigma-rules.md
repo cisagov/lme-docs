@@ -48,7 +48,7 @@ This script will then walk you through the rest of the process interactively.
    
 3. Upload the ***files from the `output/` directory***.
 
-## Important notes
+## Important Notes
 
 - All rules are **disabled by default** for security.
   

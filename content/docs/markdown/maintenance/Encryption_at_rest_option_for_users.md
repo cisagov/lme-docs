@@ -3,14 +3,22 @@ title: Encryption At Rest
 ---
 # Encryption At Rest
 
-To ensure encryption at rest for all data managed by Elastic Cloud Enterprise, the hosts running Elastic Cloud Enterprise must be configured with disk-level encryption, such as dm-crypt. Elastic Cloud Enterprise does not implement encryption at rest out of the box.
+To protect data by Elastic Cloud Enterprise, encryption at rest must be configured with disk-level encryption (e.g., `dm-crypt`). Elastic Cloud Enterprise does not support encryption at rest out of the box. Instead, disk-level encryption (e.g., `dm-crypt`) must be manually configured on underlying hosts. 
 
-Since Elastic doesn't support data encryption at rest, it provides a paid option outside of disk-level encryption available to users. This option is called X-pack.
+## X-Pack Option for Encryption
 
-The X-pack security feature provides a secure and compliant way to protect data in Elasticsearch.
+Since native encryption at rest is not included, Elastic offers a paid solution through its X-Pack extension. X-Pack enables encryption beyond the disk layer and includes several other advanced security features. 
 
-X-pack has a 30-day trial and once trial is over, users might need to acquire a platinum license to keep using some of the X-pack features including data encryption. For more information, see:
+Key benefits of X-Pack encryption:
 
-[Elastic Security Considerations - Encryption](https://www.elastic.co/guide/en/cloud-enterprise/current/ece-securing-considerations.html#:~:text=To%20ensure%20encryption%20at%20rest,encrypted%20at%20rest%20as%20well)
+- Encrypts data natively within Elasticsearch
+- Provides secure, compliant protection for sensitive data
+- Integrates with the broader X-Pack security feature set
 
-[Deep Dive into X-Pack Elasticsearch: Advanced Features and Implementation](https://opster.com/guides/elasticsearch/security/x-pack/#:~:text=X%2DPack%20is%20an%20Elastic,features%20you%20want%20to%20use)
+**Note: X-pack includes a 30-day free trial. After the trial ends, a Platinum license may be required to retain full functionality.** 
+
+## Resources
+
+- [Elastic Security Considerations - Encryption](https://www.elastic.co/guide/en/cloud-enterprise/current/ece-securing-considerations.html#:~:text=To%20ensure%20encryption%20at%20rest,encrypted%20at%20rest%20as%20well)
+
+- [Deep Dive Into X-Pack Elasticsearch: Advanced Features and Implementation](https://opster.com/guides/elasticsearch/security/x-pack/#:~:text=X%2DPack%20is%20an%20Elastic,features%20you%20want%20to%20use)

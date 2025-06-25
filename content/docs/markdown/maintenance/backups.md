@@ -21,7 +21,7 @@ This allows you to take regular backups without a major impact on the system's p
 
 LME sets up a Podman volume called `lme_backups`, so backups can be stored outside of the container.
 
-**Note**: If managing backup storage becomes a concern, the LME Team plans to release future documentation for advanced options.
+**Note: If managing backup storage becomes a concern, the LME Team plans to release future documentation for advanced options.**
 
 Follow these steps to create a repository in Kibana:
 
@@ -70,7 +70,7 @@ To automate backups, follow these steps to create a recurring snapshot policy in
   - Ensure your new repository is selected, and then configure a schedule in line with
 your backup policy.
 
-**Note:** Elasticsearch uses incremental snapshots, meaning only changes since the last snapshot are saved. This keeps storage usage low and minimizes performance impact.
+**Note: Elasticsearch uses incremental snapshots, meaning only changes since the last snapshot are saved. This keeps storage usage low and minimizes performance impact.**
 
 ![Policy Two](/docs/imgs/backup_pics/policy_2.png)
 
@@ -126,7 +126,7 @@ Once your snapshot policy is active, snapshots will be automatically saved to th
     podman volume unmount lme_backups
     ```
 
-**Note:** Manage your snapshots according to your organization's backup retention policies and storage practices. Regulary verify that snapshots are being created and stored successfully.
+**Note: Manage your snapshots according to your organization's backup retention policies and storage practices. Regulary verify that snapshots are being created and stored successfully.**
 
 ## Restoring a Backup
 

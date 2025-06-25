@@ -29,7 +29,8 @@ This guide will walk you through the process of enrolling an Elastic Agent.
      - Mac
      - Windows (ensure you run this in a PowerShell prompt with administrator privileges)
    - You will be presented with an installation command for the selected platform.
-   - Note: If you haven't added the LME certificates to your trusted store, you'll need to modify the command. 
+
+**Note: If you haven't added the LME certificates to your trusted store, you'll need to modify the command.**
 
 6. **Modify the Command if Necessary** (e.g., if certificates have not been added to the trusted store)
    - Type `--insecure` at the end of the ./elastic-agent install` command.
@@ -79,7 +80,8 @@ This guide will walk you through the process of adding a Windows integration to 
 
 5. **Customize Log Collection**
    - Review the options set to on or off; these options provide more choices for collecting Windows logs.
-   - Important note: If you have Sysmon installed on your endpoints, ensure **Sysmon Operational** is selected to collect Sysmon logs.
+
+<span style="color:orange">**Important: If you have Sysmon installed on your endpoints, ensure **Sysmon Operational** is selected to collect Sysmon logs.**</span>
 
 6. **Configure Metrics Collection**
    - You can choose to collect various metrics from your Windows endpoints.

@@ -9,7 +9,7 @@ This guide walks you through the process of enrolling a Wazuh agent in the Loggi
 
 ## Important Note
 
-Ensure that the Wazuh agent version you're installing is not newer than your Wazuh manager version, as this can lead to compatibility issues.
+ <span style="color:orange">**Ensure that the Wazuh agent version you're installing is not newer than your Wazuh manager version, as this can lead to compatibility issues.**</span>
 
 ## Variables
 

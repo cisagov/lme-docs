@@ -16,7 +16,7 @@ Wazuh can automatically block IP addresses attempting SSH brute-force attacks us
 
 2. **Configure Command in wazuh_manager.conf**
 
-   Note: This command (firewall-drop) already exists. However, you can create custom scripts located in the active response/bin path and add new command entries in the .conf located at wazuh_manager.conf located at: /opt/lme/config/wazuh_cluster/wazuh_manager.conf
+**Note: This command (firewall-drop) already exists. However, you can create custom scripts located in the active response/bin path and add new command entries in the .conf located at wazuh_manager.conf located at: /opt/lme/config/wazuh_cluster/wazuh_manager.conf**
 
 
 

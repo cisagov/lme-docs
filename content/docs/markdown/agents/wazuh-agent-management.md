@@ -9,14 +9,15 @@ This guide walks you through the process of enrolling a Wazuh agent in the Loggi
 
 ## Important Note
 
- <span style="color:orange">**Ensure that the Wazuh agent version you're installing is not newer than your Wazuh manager version, as this can lead to compatibility issues.**</span>
+ <span style="color:orange">**Ensure that the Wazuh agent version you're installing is not newer than your Wazuh manager version, as this can lead to compatibility issues.** </span>
 
 ## Variables
 
 Throughout this guide, the following variables will be used. Replace them with your specific values:
 
-- `{WAZUH_AGENT_VERSION}` - the version of the Wazuh agent you're installing (e.g., 4.9.0-1).
-- `{WAZUH_MANAGER_IP}` - the IP address of your Wazuh manager (e.g., 10.0.0.2).
+- `{WAZUH_AGENT_VERSION}` - the version of the Wazuh agent you're installing (e.g., 4.9.0-1)
+  
+- `{WAZUH_MANAGER_IP}` - the IP address of your Wazuh manager (e.g., 10.0.0.2)
  
 To determine the version of Wazuh currently running on your system, run:
 
@@ -49,34 +50,38 @@ The output should look similar to this:
 ## Steps to Enroll a Wazuh Agent (***Windows***)
 
 - **Download the Wazuh Agent**
-   - Download the **Wazuh agent Microsoft Installer** (MSI) from the following URL:
+  
+  - Download the **Wazuh agent Microsoft Installer** (MSI) from the following URL:
      
-     ```bash
-     https://packages.wazuh.com/4.x/windows/wazuh-agent-{WAZUH_AGENT_VERSION}-1.msi
-     ```
+    ```bash
+    https://packages.wazuh.com/4.x/windows/wazuh-agent-{WAZUH_AGENT_VERSION}-1.msi
+    ```
      
-   - Replace `{WAZUH_AGENT_VERSION}` with the ***appropriate version number***.
+  - Replace `{WAZUH_AGENT_VERSION}` with the ***appropriate version number***.
      
-   - Alternatively, use this **PowerShell command**:
+  - Alternatively, use this **PowerShell command**:
      
-     ```powershell
-        # Replace the values with the values you have above
-        # where {WAZUH_AGENT_VERSION}=4.7.5
-        # where {WAZUH_MANAGER_IP}=10.1.0.5
-        Invoke-WebRequest -Uri https://packages.wazuh.com/4.x/windows/wazuh-agent-4.7.5-1.msi -OutFile wazuh-agent-4.7.5-1.msi;`
-        Start-Process msiexec.exe -ArgumentList '/i wazuh-agent-4.7.5-1.msi /q WAZUH_MANAGER="10.1.0.5"' -Wait -NoNewWindow
-        ```
+    ```powershell
+    # Replace the values with the values you have above
+    # where {WAZUH_AGENT_VERSION}=4.7.5
+    # where {WAZUH_MANAGER_IP}=10.1.0.5
+    Invoke-WebRequest -Uri https://packages.wazuh.com/4.x/windows/wazuh-agent-4.7.5-1.msi -OutFile wazuh-agent-4.7.5-1.msi;`
+    Start-Process msiexec.exe -ArgumentList '/i wazuh-agent-4.7.5-1.msi /q WAZUH_MANAGER="10.1.0.5"' -Wait -NoNewWindow
+    ```
 
 - **Install the Wazuh Agent**
    
    - Open a **command prompt** with administrator privileges.
+     
    - Navigate to the ***directory containing the downloaded MSI file***.
+     
    - Install the agent by running:
      
      ```powershell
      wazuh-agent-{WAZUH_AGENT_VERSION}.msi /q WAZUH_MANAGER="{WAZUH_MANAGER_IP}"
      ```
    - Replace `{WAZUH_AGENT_VERSION}` with the ***version you downloaded***.
+     
    - Replace `{WAZUH_MANAGER_IP}` with the ***IP address of your Wazuh manager***.
 
 - **Verify Installation**
@@ -91,7 +96,8 @@ The output should look similar to this:
 ## Steps to Enroll a Wazuh Agent (***Debian-Based Systems***)
 
 - **Open a command prompt**
-    - Open a **command prompt** with administrator privileges.
+
+  Open a **command prompt** with administrator privileges.
 
 - **Add Wazuh GPG Key**
 
@@ -150,6 +156,7 @@ systemctl start wazuh-agent
 ```
 
 - If the agent fails to connect, verify your ***firewall settings*** to ensure the necessary ports are open. Reference the [Wazuh Ports Documentation](https://documentation.wazuh.com/current/getting-started/architecture.html) for more information.
+  
 - Verify that the ***Wazuh manager IP address*** is correct and reachable from the agent. This is the IP address of your LME server running the containers.
 
 By following these steps, you should be able to successfully enroll Wazuh agents into your LME system. Remember to keep your agents updated, but always ensure compatibility with your Wazuh manager version.

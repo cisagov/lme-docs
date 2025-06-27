@@ -12,7 +12,7 @@ This guide will walk you through the process of installing auditd on Linux syste
 
 ## Steps to Install and Configure Auditd
 
-1. **Install Auditd**
+- **Install Auditd**
 
    The installation process may vary depending on your Linux distribution. 
 
@@ -35,7 +35,7 @@ This guide will walk you through the process of installing auditd on Linux syste
      sudo dnf install audit
      ```
 
-2. **Download Sample Audit Rules**
+- **Download Sample Audit Rules**
   
    You can use Neo23x0's audit rules as a base or create your own. 
 
@@ -47,7 +47,7 @@ This guide will walk you through the process of installing auditd on Linux syste
      sudo curl -o /etc/audit/rules.d/audit.rules https://raw.githubusercontent.com/Neo23x0/auditd/master/audit.rules
      ```  
 
-3. **Configure Auditd**
+- **Configure Auditd**
 
    - Open the **main auditd configuration file** by running:
 
@@ -61,7 +61,7 @@ This guide will walk you through the process of installing auditd on Linux syste
      
      - In nano, press **Ctrl+X**, press **Y**, and then press **Enter**.
 
-4. **Load the New Rules**
+- **Load the New Rules**
 
    - Load the ***new audit rules*** by running:
    
@@ -75,7 +75,7 @@ This guide will walk you through the process of installing auditd on Linux syste
      sudo service auditd restart
      ```
 
-5. **Verify Installation and Rules**
+- **Verify Installation and Rules**
 
    - Check if **auditd is running** by running:
    
@@ -89,7 +89,7 @@ This guide will walk you through the process of installing auditd on Linux syste
      sudo auditctl -l
      ```
 
-6. **Test Audit Logging**
+- **Test Audit Logging**
 
    - Trigger a ***log*** by running a monitored command (e.g., accessing sensitive files, running specific commands).
 
@@ -103,19 +103,19 @@ This guide will walk you through the process of installing auditd on Linux syste
 
 - To update the audit rules in the future:
 
-1. Download the latest `audit.rules` file from the Neo23x0 GitHub repository or another trusted source.
+  - Download the latest `audit.rules` file from the Neo23x0 GitHub repository or another trusted source.
    
-2. Replace the ***existing file*** by running:
+  - Replace the ***existing file*** by running:
    
-   ```bash
-   sudo curl -o /etc/audit/rules.d/audit.rules https://raw.githubusercontent.com/Neo23x0/auditd/master/audit.rules
-   ```
-3. Reload the ***rules*** and restart **auditd** by running:
+    ```bash
+    sudo curl -o /etc/audit/rules.d/audit.rules https://raw.githubusercontent.com/Neo23x0/auditd/master/audit.rules
+    ```
+- To reload the ***rules*** and restart **auditd**, run:
    
-   ```bash
-   sudo auditctl -R /etc/audit/rules.d/audit.rules
-   sudo service auditd restart
-   ```
+  ```bash
+  sudo auditctl -R /etc/audit/rules.d/audit.rules
+  sudo service auditd restart
+  ```
 
    - Adjust rules as needed to meet compliance requirements.
 
@@ -123,7 +123,7 @@ This guide will walk you through the process of installing auditd on Linux syste
 
 ## Automated Installation Script (Optional)
 
-For faster or repeatable Auditd installation, run the following shell script:
+- For faster or repeatable Auditd installation, run the following shell script:
 
   ```bash
   #!/bin/bash
@@ -182,14 +182,18 @@ For faster or repeatable Auditd installation, run the following shell script:
   echo "auditd installed and rules applied successfully."
   ```
 
-To use this script:
+- To use this script:
 
- 1. Save it to a ***file*** (e.g., `install_auditd.sh`).
+  - Save it to a ***file*** (e.g., `install_auditd.sh`).
      
- 2. Make it executable by running:
+  - To make it executable, run:
 
+    ```bash
     `chmod +x install_auditd.sh`
+    ```
      
- 3. Run it with sudo:
-
+  - Run it with sudo:
+    
+    ```bash
     `sudo ./install_auditd.sh`
+    ```

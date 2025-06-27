@@ -36,7 +36,8 @@ This guide will walk you through the process of enrolling an Elastic Agent.
    - Type `--insecure` at the end of the ./elastic-agent install` command.
    - This is similar to clicking Continue to Website in a browser when you get a certificate warning.
    - Example:
-     ```
+     
+     ```bash
      ./elastic-agent install [-other-flags-youll-see] --insecure
      ```
      

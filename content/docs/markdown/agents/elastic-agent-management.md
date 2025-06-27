@@ -7,23 +7,28 @@ This guide will walk you through the process of enrolling an Elastic Agent.
 
 ## Steps to Enroll an Agent
 
-1. **Access the Fleet Menu**
+- **Access the Fleet Menu**
+  
    - Navigate to the **LME dashboard**: `https://{SERVER_IP}`
      - Password information can be found in the Retrieving Passwords section of the [README](/README.md#retrieving-passwords).
    - Click on the **hamburger menu icon** in the top left corner (three horizontal lines).
    - Scroll down and click on **Fleet**.
 
-2. **Add a New Agent**
+- **Add a New Agent**
+  
    - Click on the **Add agent button**.
 
-3. **Select the Policy**
+- **Select the Policy**
+  
    - Click on the **Create new agent policy drop-down menu**.
    - Select the  ***appropriate policy*** (e.g., select **Endpoint Policy** if you're adding an endpoint device).
 
-4. **Enrollment Settings**
+- **Enrollment Settings**
+  
    - Ensure the **Enroll in Fleet** (recommended) option is selected.
 
-5. **Select the Agent Type**
+- **Select the Agent Type**
+  
    - Click on the ***appropriate endpoint tab*** based on the desired endpoint:
      - Linux Tar
      - Mac
@@ -32,7 +37,8 @@ This guide will walk you through the process of enrolling an Elastic Agent.
 
 **Note: If you haven't added the LME certificates to your trusted store, you'll need to modify the command.**
 
-6. **Modify the Command if Necessary** (e.g., if certificates have not been added to the trusted store)
+- **Modify the Command if Necessary** (e.g., if certificates have not been added to the trusted store)
+  
    - Type `--insecure` at the end of the ./elastic-agent install` command.
    - This is similar to clicking Continue to Website in a browser when you get a certificate warning.
    - Example:
@@ -45,10 +51,12 @@ This guide will walk you through the process of enrolling an Elastic Agent.
 
      ![example-screenshot](/docs/imgs/insecure-powershell.png)
 
-7. **Copy the Command**
+- **Copy the Command**
+  
    - Once the command has been modified (if necessary), click on the ***command's*** **clipboard icon**.
 
-8. **Execute the Command**
+- **Execute the Command**
+  
    - Open a **command prompt** on the desired host.
    - Run the **command** on the desired host.
       - It is recommended to run each line individually so you can see the status of each command. The entire process will download an agent, unzip it, and install it.
@@ -61,34 +69,41 @@ This guide will walk you through the process of adding a Windows integration to 
 
 ## Steps to Add Windows Integration
 
-1. **Access Fleet and Agent Policies**
+- **Access Fleet and Agent Policies**
+  
    - Navigate to the **LME dashboard**: `https://{SERVER_IP}`
       - Password information can be found in the Retrieving Passwords section of the [README](/README.md#retrieving-passwords).
    - Click on the **hamburger menu icon** in the top left corner (three horizontal lines).
    - Scroll down and click on **Fleet**.
    - Click on the **Agent policies tab**.
 
-2. **Select the Target Policy**
+- **Select the Target Policy**
+  
    - Click on the ***policy*** to which you want to add the integration (e.g., click on **Endpoint Policy**).
 
-3. **Add Integration**
+- **Add Integration**
+  
    - Click on the **Add integration button**.
 
-4. **Select Windows Integration**
+- **Select Windows Integration**
+  
    - From the list of available integrations, click on the **Windows button**.
    - Click on the **Add Windows button**.
    - Scroll down to review the options available; you'll see various Windows logs and metrics that can be collected.
 
-5. **Customize Log Collection**
+- **Customize Log Collection**
+  
    - Review the options set to on or off; these options provide more choices for collecting Windows logs.
 
 <span style="color:orange">**Important: If you have Sysmon installed on your endpoints, ensure **Sysmon Operational** is selected to collect Sysmon logs.**</span>
 
-6. **Configure Metrics Collection**
+- **Configure Metrics Collection**
+  
    - You can choose to collect various metrics from your Windows endpoints.
    - Review and enable the ***metrics*** you're interested in monitoring.
 
-7. **Save and Deploy**
+- **Save and Deploy**
+  
    - After configuring your desired options, click on the **Save and continue button**.
    - Click on the **Add Elastic Agent to your hosts button**.
 

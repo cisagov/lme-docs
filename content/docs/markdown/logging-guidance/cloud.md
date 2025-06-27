@@ -37,16 +37,16 @@ On LME, you'll want to ensure that either:
  
 - The necessary firewall rules are enabled to allow traffic through required ports
 
-To check the firewall status:
+To check the firewall status, run:
 
-  ```
+  ```bash
   lme-user@ubuntu:~$ sudo ufw status
   Status: inactive
   ```
 
 If Uncomplicated Firewall (UFW) is active, verify that the following rules are in place:
 
-  ```
+  ```bash
   lme-user@ubuntu:~$ sudo ufw status
   Status: inactive
   
@@ -64,7 +64,7 @@ If Uncomplicated Firewall (UFW) is active, verify that the following rules are i
 
 You can enable these ports via the following command:
 
-```
+```bash
 sudo ufw allow 1514
 sudo ufw allow 1515
 sudo ufw allow 8220
@@ -73,26 +73,26 @@ sudo ufw allow 9200
 
 If you plan to use the Wazuh Application Programming Interface (API), you'll also need to allow port 55000:
 
-```
+```bash
 sudo ufw allow 55000
 ```
 
 To forward traffic to the container network and allow services to run properly, run:
 
-```
+```bash
 ufw route allow in on eth0 out on podman1 to any port 443,1514,1515,5601,8220,9200 proto tcp
 ufw route allow in on podman1
 ```
 
 There's also a helpful StackOverflow article on [Configuring UFW for Podman on Port 443](https://stackoverflow.com/questions/70870689/configure-ufw-for-podman-on-port-443), if needed. Your `podman1` network interface name may be different. Check the output of your network interfaces by running the following command to check if your interface is also called podman1: 
 
-```
+```bash
 sudo -i podman network inspect lme | jq 'map(select(.name == "lme")) | map(.network_interface) | .[]'
 ```
 
 To view your applied rules:
 
-```
+```bash
 root@ubuntu:~# ufw show added
 Added user rules (see 'ufw status' for running firewall):
 ufw allow 22
@@ -116,7 +116,7 @@ You may also want to access Kibana from outside the Cloud as well. You'll want t
 
 To allow port 443:
 
-```
+```bash
 root@ubuntu:/opt/lme# sudo ufw allow 443
 Rule added
 Rule added (v6)
@@ -124,7 +124,7 @@ Rule added (v6)
 
 Sample firewall status (active):
 
-```
+```bash
 root@ubuntu:/opt/lme# sudo ufw status
 Status: active
 
@@ -146,13 +146,13 @@ To                         Action      From
 
 Before enabling the firewall, ensure you're not blocking your Secure Shell (SSH) access. You must allow port 22 so you can still connect remotely:
  
-```
+```bash
 sudo ufw allow 22
 ```
 
 Once all necessary ports are allowed, enable the firewall with:
 
-```
+```bash
 sudo ufw enable
 ```
 

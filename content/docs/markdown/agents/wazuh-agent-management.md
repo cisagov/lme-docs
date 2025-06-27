@@ -51,7 +51,7 @@ The output should look similar to this:
 
 - **Download the Wazuh Agent**
   
-  - Download the **Wazuh agent Microsoft Installer** (MSI) from the following URL:
+  - To download the **Wazuh agent Microsoft Installer** (MSI) from the following URL, run:
      
     ```bash
     https://packages.wazuh.com/4.x/windows/wazuh-agent-{WAZUH_AGENT_VERSION}-1.msi
@@ -75,7 +75,7 @@ The output should look similar to this:
      
    - Navigate to the ***directory containing the downloaded MSI file***.
      
-   - Install the agent by running:
+   - To install the agent, run:
      
      ```powershell
      wazuh-agent-{WAZUH_AGENT_VERSION}.msi /q WAZUH_MANAGER="{WAZUH_MANAGER_IP}"
@@ -85,6 +85,7 @@ The output should look similar to this:
    - Replace `{WAZUH_MANAGER_IP}` with the ***IP address of your Wazuh manager***.
 
 - **Verify Installation**
+  
    - After installation, the Wazuh agent service should start automatically.
    - You can verify the service status in the Windows Services manager.
    - Ensure the service starts. If it doesn't start automatically, open PowerShell and mannually run:
@@ -97,69 +98,69 @@ The output should look similar to this:
 
 - **Open a command prompt**
 
-  Open a **command prompt** with administrator privileges.
+  - Open a **command prompt** with administrator privileges.
 
 - **Add Wazuh GPG Key**
 
-    Add the Wazuh GPG key by running:
+    - To add the Wazuh GPG key, run:
 
-    ```bash
-    curl -s https://packages.wazuh.com/key/GPG-KEY-WAZUH | gpg --no-default-keyring --keyring gnupg-ring:/usr/share/keyrings/wazuh.gpg --import && chmod 644 /usr/share/keyrings/wazuh.gpg
-    ```
+      ```bash
+      curl -s https://packages.wazuh.com/key/GPG-KEY-WAZUH | gpg --no-default-keyring --keyring gnupg-ring:/usr/share/keyrings/wazuh.gpg --import && chmod 644 /usr/share/keyrings/wazuh.gpg
+      ```
 
 - **Add Wazuh Repository**
 
-  Add the Wazuh repository by running:
+  - To dd the Wazuh repository, run:
    
-   ```bash
-   echo "deb [signed-by=/usr/share/keyrings/wazuh.gpg] https://packages.wazuh.com/4.x/apt/ stable main" | tee -a /etc/apt/sources.list.d/wazuh.list
-   ```
+     ```bash
+     echo "deb [signed-by=/usr/share/keyrings/wazuh.gpg] https://packages.wazuh.com/4.x/apt/ stable main" | tee -a /etc/apt/sources.list.d/wazuh.list
+     ```
 
 - **Update Package Information**
 
-   Update the package information by running:
+   - To update the package information, run:
    
-   ```bash
-   apt-get update
-   ```
+     ```bash
+     apt-get update
+     ```
 
 - **Install Wazuh Agent and Configure Wazuh Manager IP Variable**
    
-   Install the Wazuh agent and configure Wazuh manager IP variable by running:
+   - To install the Wazuh agent and configure Wazuh manager IP variable, run:
    
-   ```bash
-   WAZUH_MANAGER="{WAZUH_MANAGER_IP}" apt-get install wazuh-agent={WAZUH_AGENT_VERSION} && sed -i 's/MANAGER_IP/{WAZUH_MANAGER_IP}/i' /var/ossec/etc/ossec.conf
-   ```
+     ```bash
+     WAZUH_MANAGER="{WAZUH_MANAGER_IP}" apt-get install wazuh-agent={WAZUH_AGENT_VERSION} && sed -i 's/MANAGER_IP/{WAZUH_MANAGER_IP}/i' /var/ossec/etc/ossec.conf
+     ```
    
-   For example:
+     For example:
    
-   ```bash
-   WAZUH_MANAGER=10.0.0.15 apt-get install wazuh-agent=4.7.5-1 && sed -i 's/MANAGER_IP/10.0.0.15/i' /var/ossec/etc/ossec.conf
-   ```
+     ```bash
+     WAZUH_MANAGER=10.0.0.15 apt-get install wazuh-agent=4.7.5-1 && sed -i 's/MANAGER_IP/10.0.0.15/i' /var/ossec/etc/ossec.conf
+     ```
 
 ## Verifying Installation
 
-After installation, verify the ***status of the Wazuh agent service*** by running:
+- After installation, verify the ***status of the Wazuh agent service*** by running:
 
-```bash
-systemctl status wazuh-agent
-```
+  ```bash
+  systemctl status wazuh-agent
+  ```
 
 ## Troubleshooting
 
-If the Wazuh agent doesn't start, run: 
+- If the Wazuh agent doesn't start, run: 
 
-```bash
-systemctl daemon-reload
-systemctl enable wazuh-agent
-systemctl start wazuh-agent
-```
+  ```bash
+  systemctl daemon-reload
+  systemctl enable wazuh-agent
+  systemctl start wazuh-agent
+  ```
 
 - If the agent fails to connect, verify your ***firewall settings*** to ensure the necessary ports are open. Reference the [Wazuh Ports Documentation](https://documentation.wazuh.com/current/getting-started/architecture.html) for more information.
   
 - Verify that the ***Wazuh manager IP address*** is correct and reachable from the agent. This is the IP address of your LME server running the containers.
 
-By following these steps, you should be able to successfully enroll Wazuh agents into your LME system. Remember to keep your agents updated, but always ensure compatibility with your Wazuh manager version.
+- By following these steps, you should be able to successfully enroll Wazuh agents into your LME system. Remember to keep your agents updated, but always ensure compatibility with your Wazuh manager version.
 
 # Verifying Wazuh Agent Status
 
@@ -167,24 +168,23 @@ This guide provides the steps to check the status of Wazuh agents in the LME set
 
 ## Listing All Agents and Their Status
 
-To get an overview of all registered agents and their current status, run:
+- To get an overview of all registered agents and their current status, run:
 
-```bash
-sudo -i podman exec lme-wazuh-manager /var/ossec/bin/agent_control -l
-```
+  ```bash
+  sudo -i podman exec lme-wazuh-manager /var/ossec/bin/agent_control -l
+  ```
 
 This command will display a list of all agents, including the ID, name, IP address, and current status (e.g., active, disconnected, never connected).
 
 ## Checking Status of a Specific Agent
 
-To check the detailed status of a specific agent, run:
+- To check the detailed status of a specific agent, run:
 
-```bash
-sudo -i podman exec lme-wazuh-manager /var/ossec/bin/agent_control -i [agent_id]
-```
+  ```bash
+  sudo -i podman exec lme-wazuh-manager /var/ossec/bin/agent_control -i [agent_id]
+  ```
 
-Replace `[agent_id]` with the ID of the agent you want to check. This will provide more detailed information about the agent, including its last keep alive time, version, and operating system.
-
+- Replace `[agent_id]` with the ID of the agent you want to check. This will provide more detailed information about the agent, including its last keep alive time, version, and operating system.
 
 This command gives you a quick overview of how many agents are active, disconnected, or never connected.
 

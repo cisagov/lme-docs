@@ -1,5 +1,5 @@
 ---
-title: Software Bill of Materials (SBOM) Generation
+title: SBOM Generation
 ---
 # Software Bill of Materials (SBOM) Generation
 

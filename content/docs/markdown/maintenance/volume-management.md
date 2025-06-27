@@ -90,7 +90,7 @@ If volumes are consuming too much space, consider the following actions:
    ```bash
    podman volume prune
    ```
-<span style="color:orange">**Warning: This will remove all usused volumes. Always back up important data before performing any cleanup.** </span>
+<span style="color:orange">**Warning: This will remove all unused volumes. Always back up important data before performing any cleanup.** </span>
 
 ### Viewing Elasticsearch Index Sizes
 

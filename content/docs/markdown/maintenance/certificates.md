@@ -119,7 +119,7 @@ root@ubuntu:/var/lib/containers/storage/volumes/lme_certs/_data$ tree
 
 To edit or replace the certifications, copy the new desired certificate and key files into the corresponding subdirectory and restart the LME service to apply changes:
 
-```
+```bash
 cp ~/new_kibana_cert.crt /var/lib/containers/storage/volumes/lme_certs/_data/kibana.crt
 cp ~/new_kibana_key.key /var/lib/containers/storage/volumes/lme_certs/_data/kibana.key
 ```

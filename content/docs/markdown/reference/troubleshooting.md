@@ -156,17 +156,17 @@ ubuntu lme-elasticsearch[43436]: Error: container bf9cb322d092c13126bd0341a1b9c5
 
 Then you'll need to do the following: 
 1. kill the other containers it lists manually
-```
+```bash
 sudo -i podman rm  ff7a6b654913838050360a2cea14fa1fdf5be1d542e5420354ddf03b88a1d2c9
 sudo -i podman rm  bf9cb322d092c13126bd0341a1b9c5e03b475599e6371e82d4d866fb088fc3c4
 ```
 2. remove other containers that are dead: 
-```
+```bash
 sudo -i podman ps -a
 sudo podman rm $CONTAINER_ID
 ```
-4. restart the `lme.service`
-```
+3. restart the `lme.service`
+```bash
 systemctl restart lme.service
 ```
 
@@ -200,19 +200,19 @@ So you'll want to edit the JVM options: [ELASTIC_DOCS_JVM](https://www.elastic.c
 
 By default Elastic only goes up to 31GB of memory usage if you don't set the appropriate variable. If you have a server that has 128 GB and you want to use 64 (the recommendation is half of your total memory) you need to set the ES_JAVA_OPTS variable. To do that you can edit the .container and restart your lme.service like so:
 
-```
+```bash
 sudo nano /opt/lme/quadlet/lme-elasticsearch.container
 ```
 
 add to the file something like this:
 
-```
+```bash
 Environment=ES_JAVA_OPTS=-Xms64g -Xmx64g
 ```
 
 restart LME
 
-```
+```bash
 systemctl --user daemon-reload
 systemctl --user restart lme.service
 ```
@@ -271,19 +271,19 @@ There are several reasons why the cluster's health may be yellow or red, but a c
 
 Check the cluster health by running the following request against Elasticsearch (an easy way to do this is to navigate to `Dev Tools` in Kibana under `Management` on the left-hand menu):
 
-```
+```bash
 GET _cluster/health?filter_path=status,*_shards
 ```
 
 If it shows any unassigned shards, these can be enumerated with the following command:
 
-```
+```bash
 GET _cat/shards?v=true&h=index,shard,prirep,state,node,unassigned.reason&s=state
 ```
 
 If the `UNASSIGNED` shard is shown as `r` rather than `p` this means it's a replica. In this case tyou can fix the error in the single-node default installation of LME by forcing all indices to have a replica count of 0 using the following request:
 
-```
+```bash
 PUT _settings
 {
   "index.number_of_replicas": 1
@@ -316,7 +316,7 @@ With the correct mapping in place it is not possible to store a string value in 
 
 An example of this is shown below, which may need to be modified for the particular field that is causing problems:
 
-```
+```bash
 POST winlogbeat-11.06.2021/_update_by_query
 {
   "script": {
@@ -347,12 +347,12 @@ If you are on Windows 2016 or higher and are getting error code 2150859027, or m
 ### Start/Stop LME:
 
 To Stop LME: 
-```
+```bash
 sudo systemctl stop lme.service
 ```
 
 To Start LME:
-```
+```bash
 sudo systemctl restart lme.service
 ```
 
@@ -364,7 +364,7 @@ After installing, if you wish to change the password to the Elastic username you
 
 **Note**: You will need to run this command with an account that can access /opt/lme. If you can't sudo, the user account will need access to the certs located in the command. 
 
-```
+```bash
 sudo curl -X POST "https://127.0.0.1:9200/_security/user/elastic/_password" -H "Content-Type: application/json" -d'
 {
   "password" : "newpassword"
@@ -375,6 +375,6 @@ sudo curl -X POST "https://127.0.0.1:9200/_security/user/elastic/_password" -H "
 
 If you have see the error "Elastic Agent is installed but broken" when trying to install the Elastic Agent add the following flag to your install command:
 
-```
+```bash
 --force
 ```

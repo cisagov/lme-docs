@@ -2,23 +2,22 @@
 title: Prerequisites
 ---
 # Prerequisites
-New changes here
 
-## What kind of IT skills do I need to install LME?
+## IT Skills Needed to Install Logging Made Easy (LME)
 
-Users with a background in systems or network administration can download LME. If you have ever…
+LME is designed for users with experience in systems or network administration can download LME. You're likely qualified to install LME if you have ever:
 
-* Installed a Windows server and connected it to an Active Directory domain
-* Changed firewall rules
-* Installed a Linux operating system and logged in over SSH
+- Installed a Windows server and connected it to an Active Directory domain
+  
+- Configured firewall rules
+  
+- Installed a Linux Operating System (OS) and accessed it via Secure Shell (SSH)
 
-… then you are likely to have the skills to install LME!
-
-We estimate that you should allow half an hour to complete the entire installation process.  We have automated steps where possible and made the instructions as detailed as possible. 
-
-The following time table of real recorded times will provide you a reference of how long the installation may take to complete.
+We estimate that users with this background will need approximately 30 minutes of focused time to complete the entire installation process.  We have automated steps where possible and made the instructions as detailed as possible. 
 
 ### Estimated Installation Times
+
+The following time table is based on real-world installation sessions. These milestones reflect approximate durations to help you plan accordingly.
 
 | Milestones 				| Time 		| Timeline 	|
 | ------------- 			| ------------- | ------------- |
@@ -37,70 +36,101 @@ The following time table of real recorded times will provide you a reference of 
 | Install Sysmon 			| 1:04.34 	| 25:17.99 	|
 | Windows Integration 		 	| 0:39.93 	| 25:57.27 	|
 
-## High level overview diagram of the LME system architecture
+## High-Level Overview Diagram of the LME System Architecture
 
 ![diagram](/docs/imgs/lme-architecture-v2.png) 
 
-Please see the [ReadMe](/README.md#Diagram) for a detailed description of of LME's architecture and its components.
+Please reference the [ReadMe](/README.md#Diagram) for a detailed description of of LME's architecture and its components.
 
-## How much does LME cost?
+## LME Costs
 
-Creative Commons 0 ("CC0") license. Government contractors, working for CISA, provide portions with rights to use, modify, and redistribute under this statement and the current license structure. All other portions, including new submissions, fall under the Apache License, Version 2.0
-This project (scripts, documentation, and so on) is licensed under the [Apache License 2.0 and Creative Commons 0](../../LICENSE).
+LME is released under a Creative Commons 0 ("CC0") license. This means the design is open-source and available at no cost to the user.
 
-The design uses open software which comes at no cost to the user. CISA will ensure that no paid software licenses are needed above standard infrastructure costs (With the exception of Windows Operating System Licensing).
+Cybersecurity and Infrastructure Security Agency (CISA)-funded government contractors provide some components with rights to use, modify, and redistribute under this license and the current license structure. Other components, including new submissions, fall under the Apache License, Version 2.0. This project (e.g., scripts, documentation) is licensed under the [Apache License 2.0 and Creative Commons 0](../../LICENSE).
 
-Users must pay for hosting, bandwidth and time; for an estimate of server specs that might be needed, see this [blogpost from elasticsearch](https://www.elastic.co/blog/benchmarking-and-sizing-your-elasticsearch-cluster-for-logs-and-metrics) then use your estimated server specs to determine a price for an on premise or cloud deployment.
+The design uses open software which comes at no cost to the user. CISA will ensure that no paid software licenses are needed above standard infrastructure costs - except where Windows OS licensing may apply. Users must pay for hosting, bandwidth, and time. For an estimate of server specifications that may be needed, reference this [blog post from Elasticsearch](https://www.elastic.co/blog/benchmarking-and-sizing-your-elasticsearch-cluster-for-logs-and-metrics). You may then use your estimated server specs to determine a price for an on-premise or Cloud deployment.
 
 
-## Scaling the solution
-To keep LME simple, our guide only covers single server setups.  Considering the differences across environments and scaling needs, we cannot provide an estimate of server resources beyond single server setups.
-It’s possible to scale the solution to multiple event collectors and ELK nodes, but that will require more experience with the technologies involved. However, we plan to publish documentation for scaling LME in the future.
+## Scaling the Solution
+This guide is designed for single server setups to keep things simple. However, real-world environments may need multiple servers or nodes to handle larger scale or distributed logging environments.
 
-Please see the above blogpost from elastic for discussion on how to scale an elastic stack cluster. 
+- We do not currently provide estimates for multi-node setups or ELK scaling
+- For sizing estimates and deployment planning, reference the blog post from Elastic.
 
-## Required infrastructure
+**Note: Advanced scaling requires deeper technical knowledge and experience with containerized and distributed systems. We plan to add scaling documentation in the future.** 
+
+## Required Infrastructure for LME Installation
 
 To begin installing LME, you will need access to the following servers or you will need to create them:
 
-- A client machine (or multiple client machines) you would like to monitor.
-- An Ubuntu linux 22.04 server.
+- A client machine (or multiple) - these are the systems you'd like to monitor
+  
+- An Ubuntu Linux 22.04 server - this is where the LME stack (e.g., Elastisearch, Kibana) will be installed via Podman containers
 
 We will install our database (Elasticsearch) and dashboard software on this machine. This is all taken care of through Podman containers.
 
-### Minimum Hardware Requirements:
-   -  CPU: 2 processor cores, 4+ recommended
-   -  MEMORY: 16GB RAM,  (32GB+ recommended by [Elastic](https://www.elastic.co/guide/en/cloud-enterprise/current/ece-hardware-prereq.html)),
-   - STORAGE: dedicated 128GB storage for ELK (not including storage for OS and other files)
-This is estimated to only support ~17 clients worth of log streaming data per day. Elasticsearch will automatically purge old logs to make space for new ones. We **highly** suggest more storage than 128GB for any enterprise network greater than this.
-    
-If you need to run LME with less than 16GB of RAM or minimal hardware, please follow our troubleshooting guide to configure Podman quadlets for reduced memory usage. We recommend setting Elasticsearch to an 8GB limit and Kibana to a 4GB limit. You can find the guide [here](/docs/markdown/reference/troubleshooting.md#memory-in-containers-need-more-ramless-ram-usage).
+### Minimum Hardware Requirements
+
+To ensure reliable performance during installation and operation, your system must meet the following minimum hardware requirements for running LME:
+
+   - **CPU**
+     
+      - Minimum - 2 processor cores
+        
+      - Recommended - 4+ cores
+     
+   - **Memory (RAM)**
+     
+     - Minimum - 16GB
+       
+     - Recommended - 32GB+  [Elastic](https://www.elastic.co/guide/en/cloud-enterprise/current/ece-hardware-prereq.html)
+     
+   - **Storage**
+     
+     - Minimum - dedicated 128GB storage for ELK (not including storage for OS and other files)
+       
+     - Required for LME data and OS; more is needed if supporting ~17 clients
+     
+       **Note: If your system has less than 16GB of RAM, reference the [troubleshooting guide](/docs/markdown/reference/troubleshooting.md#memory-in-containers-need-more-ramless-ram-usage) for more information on how to configure Podman memory quotas.**
+ 
+   - **Suggestions**
+   
+     - Elastisearch at 8GB limit
+       
+     - Kibana at 4GB limit
 		 
-#### Confirm your system meets the minimum hardware requirements:
-**CPU**: To check the number of CPUs, run the following command:
-```bash
-$ lscpu | egrep 'CPU\(s\)'
-```
-**Memory**: To check your available memory, run this command, look under the "free" column:
-```bash
-$ free -h 
-total        used        free      shared  buff/cache   available
-Mem:            31Gi       6.4Gi        22Gi       4.0Mi       2.8Gi        24Gi
-Swap:             0B          0B          0B
-```
+#### Confirm Your System Meets the Minimum Hardware Requirements
 
-**Storage**: To check available hardware storage, typically the /dev/root will be your main filesystem. The number of gigabytes available is in the Avail column
-```bash
-$ df -h
-Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       124G   13G  112G  11% /
-```
+Before proceeding with the installation, use the commands below to verify that your system meets the minimum hardware requirements:
 
-## Where to install the servers
+- To check the number of CPUs, run the following command:
+  
+  ```bash
+  $ lscpu | egrep 'CPU\(s\)'
+  ```
+- To check your available memory, run the following command and look under the "free" column:
+  
+  ```bash
+  $ free -h 
+  total        used        free      shared  buff/cache   available
+  Mem:            31Gi       6.4Gi        22Gi       4.0Mi       2.8Gi        24Gi
+  Swap:             0B          0B          0B
+  ```
 
-Servers can be either on premise, in a public cloud, or in a private cloud. It is your choice, but you'll need to consider how to network between the clients and servers.
+- To check available hardware storage, run the following command (typically the /dev/root will be your main filesystem; the number of gigabytes available is in the Avail column):
+  
+  ```bash
+  $ df -h
+  Filesystem      Size  Used Avail Use% Mounted on
+  /dev/root       124G   13G  112G  11% /
+  ```
 
-## What firewall rules are needed?
-Please see our cloud documentation for a discussion on firewalls [LME in the Cloud](/docs/markdown/loggging-guidance/cloud.md). 
+## Installation of Servers
 
-You must ensure that the client machine you want to monitor can reach the main LME ports as described in the ReadMe [Required Ports section](/README.md#required-ports).
+Once your system meets the minimum hardware requirements, you can choose where to install the servers--whether on-premises, in a public Cloud, or in a private Cloud. It is important to plan how the client machines will connect to the LME server to ensure proper network communication.
+
+## Firewall Rules Needed
+
+Please reference [LME in the Cloud](/docs/markdown/loggging-guidance/cloud.md) for more information on firewalls . 
+
+You must ensure that the client machine(s) you want to monitor can reach the main LME ports as described in the [Required Ports section](/README.md#required-ports) of the ReadMe .

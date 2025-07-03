@@ -1,31 +1,42 @@
 ---
-title: Logging Made Easy (LME) Security Model
+title: Logging Made Easy Security Model
 ---
 
 # Logging Made Easy (LME) Security Model
 
-This document describes LME's security model from the perspective of the LME user. 
-It will help users understand the security model and make informed decisions about how to deploy and manage LME given the constraints and assumptions in LME's design.
+This document outlines the LME security model from the user's perspective. It is intended to help users understand the security structure and make informed decisions about how to deploy and manage LME, considering the constraints and assumptions built into its design. 
 
-## Operating System: 
-LME has been tested on Ubuntu 22.04, but in theory should support any unix operating system that can install the dependencies listed in the ReadMe. We assume your operating system is kept up to date and the linux kernel is up to date and patched.
-Failing to patch your operating system could leave your security infrastructure vulnerable.
-In addition, if a side channel or denial of service (DoS) attack is ever discovered at the operating system level, LME considers these attacks out of scope for something we can reasonably secure against. 
+## Operating System
 
-## Users:
-  1. **Root**: Every Linux operating system has a root user. As the root user, ensure least privilege access to root following lockdown/hardening best practices (e.g. disabling root login, securing administrator access, disabling root over ssh [See More Details](https://wiki.archlinux.org/title/Security#Restricting_root)).  
-  2. **Administrators (i.e. those with sudo access)**: LME runs all its architecture through administrator services, so anyone with administrator access can access all LME data. Ensure only trusted users are given access to the `sudo` group.  Administrators can start/stop LME services and also manage the service user passwords. Administrators control the master password to each server user.
-  3. **Container User**: These users run processes within the LME service container and should only be managed through 'podman exec'.  Their passwords are either initialized or locked, and they execute within their own user namespace. They are mostly abstracted away from the typical LME administrator. Some more information on [User Namespaces](https://www.man7.org/conf/meetup/understanding-user-namespaces--Google-Munich-Kerrisk-2019-10-25.pdf) and [Podman User Namespaces](https://www.redhat.com/sysadmin/rootless-podman-user-namespace-modes)
-  4. **Service User**: These are the user/password combinations that administer, access, and update LME services via their respective APIs. All Service Users passwords are encrypted into individual Ansible Vault files, and encrypted using the master password. The Service User's password will only be decrypted as a Podman secret shared into the container via its environment. The users are: `elastic`, `kibana_system`, and `wazuh-wui`.
+LME has been tested on Ubuntu 22.04 but should, in theory, should support any Unix Operating System (OS) that can install the required dependencies listed in the [README](/README.md#retrieving-passwords). It is assumed that your OS and Linux kernel are up to date and properly patched. Failing to patch your OS could leave your security infrastructure vulnerable.
 
-## Services Containerized:
-All services that make up LME (as documented in our [diagram](https://github.com/cisagov/LME/blob/release-2.0.0/docs/imgs/lme-architecture-v2.jpg)) are configured to execute in Podman containers started via systemd services using Podman's internal quadlet orchestration system.
-The quadlets are installed into the system administrator's directory `/etc/containers/systemd/` and will start up under root's privileges (similar to other systemd root services).  
+If a side-channel attack or Denial-of-Service (DoS) exploit is ever discovered at the OS level, LME considers this out of scope for what it can reasonably defend against. 
 
-This ensures least privilege throughout the LME architecture:  
-  1. The master password file (used to encrypt service user passwords at rest) is owned by root. 
-  2. Eacher Service User password is encrypted with the above password, and only required service user password files are shared to each respective container.
-  3. Even on a full container escape (where an adversary can execute code on the host, outside of the container), the rootuid of each service container, is a non-privileged userid on the host, so they cannot gain access to anything (file, network, password, etc...) they would have access to already in the container. 
+## Users
+
+The LME security model defines four distinct user roles, each with specific permissions and responsibilities to maintain a secure and isolated environment. By clearly separating access between root, administrators, container users, and service users, LME minimizes security risks and enforces the principle of least privilege. Understanding these user types is critical to securely operating and managing the LME environment.
+
+  1. **Root**: Every Unix-based OS has a root user. To maintain security, follow best practices by restricting access and applying hardening methods (e.g., disabling remote root login, securing administrator access, disabling root over Secure Shell [SSH], or removing `sudo` access where possible. For more information, reference [README](/README.md#retrieving-passwords) and [More Details](https://wiki.archlinux.org/title/Security#Restricting_root)).
+     
+  2. **Administrators (i.e., those with `sudo` access)**: LME operates through administrator services. Any user with `sudo` access can administrater LME components. Admin users are given access to the `sudo` group and can manage services and system settings. Administrators are responsible for managing the master password used by LME service users.
+     
+  3. **Container User**: These users run processes inside the LME service containers. They are isolated within Podman and should not be granted access to host-level resources. Thie permissions are minimal, and they execute tasks under their own user namespace. This approach is designed to reduce risk by abstracting container-level processes from host-level administrator privileges. For more information, reference [User Namespaces](https://www.man7.org/conf/meetup/understanding-user-namespaces--Google-Munich-Kerrisk-2019-10-25.pdf) and [Podman User Namespaces](https://www.redhat.com/sysadmin/rootless-podman-user-namespace-modes).
+     
+  4. **Service User**: These users are tied to specific LME components and interact via Application Programming Interfaces (APIs). Their credentials are encrypted using the master password and stored securely in an isolated Podman environment. These users (e.g., `elastic`, `kibana-system`, `wazuh-wui`) are created with the principle of least privilege in mind.
+
+## Services Containerized
+
+All services that make up LME (as documented in our [diagram](https://github.com/cisagov/LME/blob/release-2.0.0/docs/imgs/lme-architecture-v2.jpg)) are deployed as Podman containers, orchestrated internally using Podman's `quadlet_system`.
+
+- Quadlets are installed into the system administrator's directory (`/etc/containers/systemd/`) and launched with root privileges, similar to other root-level services
+
+- The master password used to encrypt service passwords is owned and protected by the root user
+
+- Each service's password is encrypted with the master password and only decrypted within its respective container
+
+- Even if a container is compromised, its isolated nature ensures that adversaries cannot access files or credentials from the host or other containers
+
+This approach ensures tight privilege boundaries and secure management across the LME architecture.
 
 
 

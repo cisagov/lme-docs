@@ -3,7 +3,7 @@ title: Retention Settings
 ---
 # Retention Settings
 
-By default, Logging Made Easy (LME) configures an index lifecycle policy that deletes indeces based on estimated disk usage. Initially, 80% of the disk space is allocated for the indices, assuming that one day of logs uses approximately 1 GB of space.
+By default, Logging Made Easy (LME) configures an index lifecycle policy that deletes indices based on estimated disk usage. Initially, 80% of the disk space is allocated for the indices, assuming that one day of logs uses approximately 1 GB of space.
 
 If you wish to adjust the number of days logs are retained, follow the steps below using the `lme_ilm_policy` under Index Lifecycle Policies.
 

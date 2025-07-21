@@ -1,6 +1,9 @@
 ---
-title: Retention Settings
+title: Deprecated - Retention Settings
 ---
+Note: This page is no longer maintained. For information on LME index lifecycle management and managing retention settings, navigate to [LME Index Management](https://cisagov.github.io/lme-docs/docs/markdown/maintenance/index-management/)
+
+
 # Retention Settings
 
 By default, Logging Made Easy (LME) configures an index lifecycle policy that deletes indices based on estimated disk usage. Initially, 80% of the disk space is allocated for the indices, assuming that one day of logs uses approximately 1 GB of space.

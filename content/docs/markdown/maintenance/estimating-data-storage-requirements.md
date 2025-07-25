@@ -1,6 +1,6 @@
 # Estimating Data Storage Requirements
 
-When using LME to collect and store logs, the amount of storage required will depend on several factors, including the number of agents generating logs, the frequency of log generation, and the retention policy applied. Below are rough storage estimates based on our internal testing.
+Storage needs for Logging Made Easy (LME) vary based on deployment specifics such as the number of agents, the volume and frequency of log generation, and the retention policy applied. The estimates below provide a general guideline based on internal testing and typical usage patterns.
 
 | Number of Agents | 1 Month (31 Days) | 2 Months (62 Days) | 3 Months (93 Days) |
 |------------------|--------------------|---------------------|---------------------|
@@ -22,13 +22,21 @@ When using LME to collect and store logs, the amount of storage required will de
 
 ## Important Caveat
 
-The data presented here is based on testing conducted with a limited number of agents that were not actively being used by users. As a result, the log generation rate observed in this testing may be lower than what you might experience in real-world scenarios where machines are actively used. Machines with higher activity levels or more complex workloads may generate significantly more log data, leading to faster storage growth. In addition, Index Lifecycle Management (ILM) was not enabled. This means that the storage estimates provided here reflect raw log growth without any automated management of index lifecycle phases.
+The storage estimates provided above are based on internal testing with a limited number of agents that were not actively used by end users. As a result, the volume of log generation observed may be significantly lower than what would occur in real-world environments, where machines are actively in use. Systems with higher activity levels or more complex workloads may produce substantially more log data, leading to faster storage consumption.
 
-- **Enable [Index Lifecycle Management](https://cisagov.github.io/lme-docs/docs/markdown/maintenance/index-management/) (ILM):** If managing storage costs and performance is critical, consider enabling ILM in Elasticsearch. This will help automate the lifecycle of your data and reduce storage requirements over time.
-- **Retention Policy:** The retention policy plays a critical role in managing storage. Use ILM to define retention policies that automatically delete older logs you no longer need.
-- **Long-Term Planning/Monitoring:** Use the observed growth rates to forecast your storage needs over time and monitor your storage usage regularly to ensure your policies align with your needs.
+Additionally, Index Lifecycle Management (ILM) was not enabled during testing. The figures presented here reflect raw log growth without any automated control over index aging or deletion.
+
+To better manage storage costs and performance in production environments, consider the following considerations:
+
+- **Enable [Index Lifecycle Management](https://cisagov.github.io/lme-docs/docs/markdown/maintenance/index-management/) (ILM)** - if managing storage costs and performance is critical, enable ILM in Elasticsearch; this automates the lifecycle of your data--such as transitioning older indices to cheaper storage tiers or deleting them--and helps reduce overall storage usage over time.
+  
+- **Define a Retention Policy** - your retention policy plays a critical role in controlling storage growth; use ILM to automatically delete older logs that are no longer needed, based on your organization's data retention requirements
+  
+- **Plan and Monitor Long-Term Usage** - use the observed log growth rate as a baseline to forecast future storage needs; regularly monitor your storage usage and adjust your ILM and retention policies to ensure they align with operational and compliance requirements
 
 ## Final Note
 
-These estimates are intended to provide a rough guideline based on our testing. Actual storage requirements may vary depending on the level of activity on your machines, the types of logs generated, and your specific use case. We recommend monitoring your storage usage regularly and adjusting your retention policy as needed to optimize performance and scalability.
+These estimates are intended to serve as general guidelines based on internal testing. Actual storage requirements will vary depending on factors such as machine activity levels, the types of logs generated, and your specific use case.
+
+We recommend regularly monitoring your storage usage and adjusting your retention policies as needed to ensure optimal performance and scalability.
 

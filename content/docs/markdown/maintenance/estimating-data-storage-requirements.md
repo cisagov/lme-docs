@@ -1,3 +1,7 @@
+---
+title: Estimating Data Storage Requirements
+---
+
 # Estimating Data Storage Requirements
 
 Storage needs for Logging Made Easy (LME) vary based on deployment specifics such as the number of agents, the volume and frequency of log generation, and the retention policy applied. The estimates below provide a general guideline based on internal testing and typical usage patterns.

@@ -28,7 +28,7 @@ While intended for small- to medium-sized organizations with limited resources, 
 
 LME supports both on-premises and cloud deployments, allowing organizations to host LME on local or Cloud Service Provider (CSP) infrastructure.
 
-## 7. Does LME 2.0 Require a New Install or an Update to Existing Installs?
+## 7. Does LME 2.X Require a New Install or an Update to Existing Installs?
 
 Both new and existing users must complete a full install of LME 2.0. LME has an upgrade process from v1.4 -> 2.0. The upgrade uninstalls 1.4 and installs 2.0, and will reintegrate old dashboards and data into the new 2.0 deployment. Reference **[Upgrading Docs](/scripts/upgrade/README.md)** for more information on upgrading from an older version of LME to LME 2.0.
 
@@ -40,9 +40,11 @@ Detailed installation and download steps can be found in the Installation sectio
 
 While CISA recommends upgrading to LME 2.0, users can continue using older versions of LME; however, CISA will not support older versions. 
 
-## 10. How Do I Transition/Migrate from Older Versions to LME 2.0 While Retaining My Log History?
+## 10. How Do I Upgrade from Older Versions of LME to the Latest Version While Retaining My Log History?
 
-For existing LME users, **[click here](/scripts/upgrade)** for easy instructions on transferring log history from previous versions. LME will automatically reintegrate your log history and data.
+LME does not support direct upgrades from older versions (e.g., 1.4.0) to the latest release. However, upgrades from 2.0.0 to 2.1.0 are supported using the documented **[upgrade process](/scripts/upgrade)**. 
+
+If you're currently running an older version of LME (i.e., anything prior to 2.0.0) and want to upgrade, you will need to install the latest version and manually migrate what you want to retain (e.g., dashboards, log data).
 
 ## 11.  Can I Transfer My Customized Dashboards? If so, How?
 
@@ -50,13 +52,13 @@ Yes, you can import your dashboards on Elastic from **Stack Management > Kibana 
 
 ## 12. Are There New System Requirements for LME 2.0?
 
-Although system requirements are mostly the same for LME 2.0, reference **[LME 2.0 Prerequisites](/docs/markdown/prerequisites.md)** for hardware and infrastructure recommendations.
+System requirements are mostly the same for LME 2.0. Reference **[LME 2.0 Prerequisites](/docs/markdown/prerequisites.md)** for hardware and infrastructure recommendations.
 
 ## 13. Where Can I Receive Further Support?
 
 For further support with LME 2.0, users can explore the following options:
 
-- Report LME issues via the GitHub **Issues tab** at the top of the page or by clicking **GitHub Issues**.
+- Report bugs or errors through **[LME's GitHub Issues](https://github.com/cisagov/LME/issues)**.
 - Navigate to **[GitHub Discussions](https://github.com/cisagov/lme/discussions)** to check if your issue has been addressed or start a new thread.
 - Directly email **CyberSharedServices@cisa.dhs.gov** for other questions or comments.
 

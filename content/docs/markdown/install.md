@@ -204,7 +204,7 @@ Here's a reference timeline based on real-world installations. Actual times may 
 
 ## 4. Downloading and Installing LME
 
-This section provides the procedures for downloading, configuring, and installing LME on an Ubuntu server. For visual learners, reference the [LME Installation Video](https://www.youtube.com/watch?v=LKD8sw6VuPw).
+This section provides the procedures for downloading, configuring, and installing LME on an Ubuntu server.
 
 **Note: LME has been extensively tested on Ubuntu 22.04. While it can run on other Unix-like systems, we recommend sticking with Ubuntu 22.04 for the best experience. Initial testing has been done on 24.04, and it is recommended as an alternative if you encounter issues setting up on 22.04.**
 

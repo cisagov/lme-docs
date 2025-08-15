@@ -206,7 +206,7 @@ Here's a reference timeline based on real-world installations. Actual times may 
 
 This section provides the procedures for downloading, configuring, and installing LME on an Ubuntu server.
 
-**Note: LME has been extensively tested on Ubuntu 22.04. While it can run on other Unix-like systems, we recommend sticking with Ubuntu 22.04 for the best experience. Initial testing has been done on 24.04, and it is recommended as an alternative if you encounter issues setting up on 22.04.**
+**Note:** Ubuntu 24.04 LTS is the recommended Linux distribution for installing LME. 
 
 ### 4.1 Upgrading
 

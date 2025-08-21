@@ -126,7 +126,7 @@ cp ~/new_kibana_key.key /var/lib/containers/storage/volumes/lme_certs/_data/kiba
 
 ## Migrating from Self-Signed Certificates
 
-You can migrate from the default self-signed certificates to manually generated certificates at any tie. For example, when switching to certificates issued by an internal enterprise CA. 
+You can migrate from the default self-signed certificates to manually generated certificates at any time. For example, when switching to certificates issued by an internal enterprise CA. 
 
 **Important Notes**
 

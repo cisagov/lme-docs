@@ -1,6 +1,6 @@
 ---
 title: CISA Resources
-linkTitle: Resources
+linkTitle: CISA Resources
 ---
 This page provides LME users with direct access to official CISA sites, publications, and companion tools that support log management, security operations, and incident response workflows. Whether you are setting up LME for the first time or looking to optimize how LME integrates into your log management and security operations processes and stack, the resources below connect you with authoritative and practical materials from CISA.​
 

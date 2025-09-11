@@ -2,32 +2,33 @@
 title: CISA Resources
 linkTitle: CISA Resources
 ---
+## CISA Resources 
 This page provides LME users with direct access to official CISA sites, publications, and companion tools that support log management, security operations, and incident response workflows. Whether you are setting up LME for the first time or looking to optimize how LME integrates into your log management and security operations processes and stack, the resources below connect you with authoritative and practical materials from CISA.​
 
-# Logging Guidance
+## Logging Guidance
 
 [Guidance for SIEM and SOAR Implementation | CISA](https://www.cisa.gov/resources-tools/resources/guidance-siem-and-soar-implementation) | These resources offer practitioner and executive guidance on implementing Security Information and Event Management (SIEM) and Security, Orchestration, Automation, and Response (SOAR) platforms, including best practices for log ingestion and integration, so organizations can strengthen their cybersecurity framework and quickly detect and respond to threats.
 
 [Best Practices for Event Logging and Threat Detection](https://www.cisa.gov/news-events/alerts/2024/08/21/asds-acsc-cisa-fbi-and-nsa-support-international-partners-release-best-practices-event-logging-and) | This resource highlights best practices for event logging and threat detection jointly released by the Australian Signals Directorate-Australian Cyber Security Center (ASD-ACSC), Cybersecurity and Infrastructure Security Agency (CISA), Federal Bureau of Investigation (FBI), and National Security Agency (NSA), offering organizations practical steps to strengthen security monitoring and improve incident response. 
 
-# Analysis & Visualization
+## Analysis & Visualization
 
 [LME Analysis Demo Video](https://www.youtube.com/watch?v=AZFV6ZOLg7s) | A Logging Made Easy (LME) analysis video that highlights the platform's key takeaways--how to strengthen security, streamline log management, and gain clearer threat insights through customizable dashboards.
 
-# CISA GitHub & Technical Repos​
+## CISA GitHub & Technical Repos​
 
 [CISA GitHub](https://github.com/cisagov) | ​CISA's official GitHub site. 
 
 [CISA YouTube​](https://www.youtube.com/@CISAgov) | CISA's official YouTube channel.
 
-# Incident Response Tools 
+## Incident Response Tools 
 [Eviction Strategies Tool](https://www.cisa.gov/eviction-strategies-tool) | A no-cost resource which provides cyber defenders with guidance and support for the containment and eviction phases of incident response. 
 
 [Malware Next-Generation Analysis | CISA](https://www.cisa.gov/resources-tools/services/malware-next-generation-analysis) | CISA's Malware Next-Generation analysis platform provides automated malware analysis support for all U.S. federal and SLTT government agencies. Analysis is performed by a combination of static and dynamic analysis tools in a secure environment and results are available in PDF and STIX 2.1 data formats. 
 
 [Thorium](https://cisagov.github.io/thorium/) | Thorium is a highly scalable, distributed malware analysis and data generation framework. Thorium is designed to make cyber incident response, triage, and file analysis easier through the safe ingestion and storage of data, automation of analyses and easy access to stored analyses and metadata.
 
-# General CISA Resources​
+## General CISA Resources​
 
 [Resources & Tools | CISA](https://www.cisa.gov/resources-tools) | CISA offers a wide array of free resources and tools, including technical assistance, cybersecurity assessments, exercises, and training to help organizations strengthen their security and resilience. This site highlights the agency's services, publications, trainings, and tools that practitioners can readily use to improve their own operations.
 
@@ -39,7 +40,7 @@ This page provides LME users with direct access to official CISA sites, publicat
 
 [State and Local Cybersecurity Grant Program](https://www.cisa.gov/cybergrants/slcgp) | First nationwide cybersecurity grant initiative specifically for state, local, tribal, and territorial governments, providing funding and support to help them strengthen their cyber defenses. This resource outlines program details, eligibility, and how governments can apply to build more secure and resilient digital infrastructure.
 
-# Incident Reporting & Support
+## Incident Reporting & Support
 
 [CISA Incident Reporting System](https://myservices.cisa.gov/irf) | The CISA Incident Reporting system provides a secure web-enabled means of reporting computer security incidents to CISA. This system assists analysts in providing timely handling of your security incidents as well as the ability to conduct improved analysis. 
 

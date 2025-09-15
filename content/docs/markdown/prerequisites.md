@@ -65,7 +65,7 @@ To begin installing LME, you will need access to the following servers or you wi
 
 - A client machine (or multiple) - these are the systems you'd like to monitor
   
-- An Ubuntu Linux 22.04 server - this is where the LME stack (e.g., Elastisearch, Kibana) will be installed via Podman containers
+- An Ubuntu 22.04+, Debian 12, or Redhat 9 server - this is where the LME stack (e.g., Elastisearch, Kibana) will be installed via Podman containers
 
 We will install our database (Elasticsearch) and dashboard software on this machine. This is all taken care of through Podman containers.
 
@@ -131,6 +131,6 @@ Once your system meets the minimum hardware requirements, you can choose where t
 
 ## Firewall Rules Needed
 
-Please reference [LME in the Cloud](/docs/markdown/loggging-guidance/cloud.md) for more information on firewalls . 
+Please reference [LME in the Cloud](/docs/markdown/logging-guidance/cloud.md) for more information on firewalls . 
 
-You must ensure that the client machine(s) you want to monitor can reach the main LME ports as described in the [Required Ports section](/README.md#required-ports) of the ReadMe .
+You must ensure that the client machine(s) you want to monitor can reach the main LME ports as described in the [Required Ports section](/docs/markdown/reference/architecture.md#required-ports) of the Architecture documentation.

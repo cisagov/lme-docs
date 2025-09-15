@@ -83,9 +83,19 @@ title: Install
 - To configure your IP address and settings, run the following commands and follow the prompts in `install.sh`:
   
   ```bash
+  # Debian/Ubuntu
   sudo apt update && sudo apt upgrade -y && sudo apt-get install -y jq curl
+
+  # Redhat (comes with curl minimal)
+  sudo dnf -y install jq unzip
+
+  # Run this to download on all systems. Run as regular user, not root
   curl -s https://api.github.com/repos/cisagov/LME/releases/latest | jq -r '.assets[0].browser_download_url' | xargs -I {} sh -c 'curl -L -O {} && unzip -d ~/LME $(basename {})'
+
+  # Move to the LME directory in the home directory of the user
   cd ~/LME
+
+  # Run the installer (On redhat, if you are going to run in se enforcing mode, run setenforce 1 before running the installer)
   ./install.sh
   ```
 
@@ -103,7 +113,7 @@ For a more detailed understanding of LME's architecture, reference the [LME Arch
 
 ### 2.1 Description
 
-LME runs on Ubuntu 22.04 and 24.04, and Debian 12.10 (experimental). It uses Podman containers to provide:
+LME runs on Ubuntu 22.04 and 24.04. Debian 12.10, and Redhat 9 (experimental). It uses Podman containers to provide:
 
 - Log Management
 - Endpoint Security
@@ -219,7 +229,11 @@ If you are upgrading from an older version of LME to LME 2.0, reference our [Upg
 To update your package list and install the necessary tools, run:
 
 ```bash
+# Debian based
 sudo apt update && sudo apt upgrade -y && sudo apt-get install -y jq curl
+
+# Redhat based
+sudo dnf -y install jq unzip 
 ```
 
 #### 4.2.2 Download and Extract LME

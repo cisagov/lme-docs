@@ -41,7 +41,7 @@ Enable some rules in Kibana Security. In this example, we are enabling Windows a
    
 3. Click on the **Tags drop-down menu**, and then type **OS:Windows**.
 
-4. Clik on **OS:Windows**.
+4. Click on **OS:Windows**.
    
 5. Click on **all matching rules** (e.g., Select all 495 rules or however many appear).
    

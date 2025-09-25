@@ -214,7 +214,7 @@ Here's a reference timeline based on real-world installations. Actual times may 
 
 ## 4. Downloading and Installing LME
 
-This section provides the procedures for downloading, configuring, and installing LME on an Ubuntu server.
+This section provides the procedures for downloading, configuring, and installing LME on a server.
 
 **Note:** Ubuntu 24.04 LTS is the recommended Linux distribution for installing LME. 
 

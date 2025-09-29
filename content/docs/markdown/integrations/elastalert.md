@@ -125,7 +125,7 @@ While this integration monitors all Kibana security alerts, you can customize th
 
 ### In ElastAlert2 Rule
 
-- Filter by Critical And High only by running:
+- Filter by Critical and High only by running:
 
   ```yaml
   # Only trigger on critical and high severity alerts
@@ -142,7 +142,7 @@ While this integration monitors all Kibana security alerts, you can customize th
     minutes: 30
   ```
 
-- This will still rollup all events that happened in that 30 minute timeframe, but you will only get one notification every 30 minutes.
+- This will still roll up all events that happened in that 30 minute timeframe, but you will only get one notification every 30 minutes.
 
 - Reference the [ElastAlert Rules](/docs/markdown/maintenance/elastalert-rules) documentation for more query possibilities.
 

@@ -1,7 +1,7 @@
 ---
 title: "Syslog Forwarding"
 description: >-
-     Set Up Syslog Fowarding to LME with Elastic Agent TCP Integration
+     Set Up Syslog Forwarding to LME with Elastic Agent TCP Integration
 ---
 
 # Syslog Forwarding

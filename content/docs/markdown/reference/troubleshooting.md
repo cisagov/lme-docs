@@ -57,7 +57,7 @@ Installing LME involves preparing the system environment, meeting hardware requi
 
   - This also prints the names of the containers in the first column of text on the left. 
 
-  **Note: We are currently missing health checks for Fleet Server and ElastAlert2. If those appear, they won't show healthy and thats expected. Health checks for these services will be added in a future version.**
+  **Note: We are currently missing health checks for Fleet Server and ElastAlert2. If those appear, they won't show healthy and that's expected. Health checks for these services will be added in a future version.**
 
   - If a container is missing, check its logs by running:
     
@@ -297,7 +297,7 @@ Elastic maintains a comprehensive set of [troubleshooting guides](https://www.el
 
 ### Issues Installing Elastic Agent
 
-If you have encounter the error "Elastic Agent is installed but broken" when trying to install the Elastic Agent add the following flag to your install command:
+If you have encountered the error "Elastic Agent is installed but broken" when trying to install the Elastic Agent add the following flag to your install command:
 
 ```bash
 --force

@@ -27,7 +27,7 @@ The easiest way is to make sure you can access these LME server ports from the o
     
 - Elastic Agent ([Agent Install Documentation](https://www.elastic.co/guide/en/elastic-stack/current/installing-stack-demo-self.html#install-stack-self-elastic-agent)): 8220 (fleet commands); 9200 (input to Elasticsearch)
 
-You'll need to ensure your Cloud firewall is setup to allow the ports above. On Azure, Network Security Groups (NSG) run a firewall on your virtual machine's network interfaces.  You'll need to update your LME virtual machine's rules to allow inbound connections on the agent ports. Azure has a detailed guide for how to add security rules [here](https://learn.microsoft.com/en-us/azure/virtual-network/manage-network-security-group?tabs=network-security-group-portal#create-a-security-rule). 
+You'll need to ensure your Cloud firewall is set up to allow the ports above. On Azure, Network Security Groups (NSG) run a firewall on your virtual machine's network interfaces.  You'll need to update your LME virtual machine's rules to allow inbound connections on the agent ports. Azure has a detailed guide for how to add security rules [here](https://learn.microsoft.com/en-us/azure/virtual-network/manage-network-security-group?tabs=network-security-group-portal#create-a-security-rule). 
 
 ### ***We highly suggest you do not open any port globally and restrict it based on your client's IP address or your client's subnets.***
 

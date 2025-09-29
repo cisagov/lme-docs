@@ -78,7 +78,7 @@ timestamp_field: "@timestamp"
 
 ### Index Pattern
 
-- **index**: Definess which Elasticsearch index to search.
+- **index**: Defines which Elasticsearch index to search.
   - The pattern `logs-*` typically includes all log data indexed by Elastic
   - You can adjust this pattern to target specific indices, such as wazuh-*, depending on your setup
 
@@ -140,7 +140,7 @@ timestamp_field: "@timestamp"
 - The placeholders in `alert_test_args` correspond to fields in the event JSON; for example:
   - {0} will be replaced with the host name
   - {1} will be replaced with the event action
-  - {2} will be replaced with the provider name
+  - {2} will be replaced with the provider's name
   - {3} will be replaced with the timtestamp
   
 - These fields can be reviewed in Kibana if you want to identify or pull additional fields into your alert text.
@@ -199,7 +199,7 @@ root@ubuntu:~# tree /opt/lme/config/elastalert2/
   
 - `/opt/lme/config/elastalert2/config.yaml`: The main configuration file for ElastAlert2. Reference the [ElastAlert2 documentation](https://elastalert2.readthedocs.io/en/latest/alerts.html) for additional options.
 
-Any changes to the above files, will require a container restart for them to apply to the ElastAlert2 service. 
+Any changes to the above files will require a container restart for them to apply to the ElastAlert2 service. 
 
 **Important: Restart the ElastAlert2 container only after verifying your rule in the next section.**
 
@@ -265,7 +265,7 @@ ElastAlert2 supports email alerts via Simple Mail Transfer Protocol (SMTP). We'v
 Gmail users can use an app password to generate a password for this purpose. Outlook and other email providers have similar options.
 We recommend using a dedicated email account for alerting purposes only.
 
-You can follow google's instructions [here](https://support.google.com/accounts/answer/185833?hl=en) and should see a screen similar to this: 
+You can follow Google's instructions [here](https://support.google.com/accounts/answer/185833?hl=en) and should see a screen similar to this: 
 
 ![email](/docs/imgs/dashboard/app_password.png)
 

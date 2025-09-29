@@ -5,7 +5,7 @@ title: Prerequisites
 
 ## IT Skills Needed to Install Logging Made Easy (LME)
 
-LME is designed for users with experience in systems or network administration can download LME. You're likely qualified to install LME if you have ever:
+LME is designed for users with experience in systems or network administration that can download LME. You're likely qualified to install LME if you have ever:
 
 - Installed a Windows server and connected it to an Active Directory domain
   
@@ -17,7 +17,7 @@ We estimate that users with this background will need approximately 30 minutes o
 
 ### Estimated Installation Times
 
-The following time table is based on real-world installation sessions. These milestones reflect approximate durations to help you plan accordingly.
+The following timetable is based on real-world installation sessions. These milestones reflect approximate durations to help you plan accordingly.
 
 | Milestones 				| Time 		| Timeline 	|
 | ------------- 			| ------------- | ------------- |
@@ -40,7 +40,7 @@ The following time table is based on real-world installation sessions. These mil
 
 ![diagram](/docs/imgs/lme-architecture-v2.png) 
 
-Please reference the [ReadMe](/README.md#Diagram) for a detailed description of of LME's architecture and its components.
+Please reference the [ReadMe](/README.md#Diagram) for a detailed description of LME's architecture and its components.
 
 ## LME Costs
 
@@ -61,7 +61,7 @@ This guide is designed for single server setups to keep things simple. However, 
 
 ## Required Infrastructure for LME Installation
 
-To begin installing LME, you will need access to the following servers or you will need to create them:
+To begin installing LME, you will need access to the following servers, or you will need to create them:
 
 - A client machine (or multiple) - these are the systems you'd like to monitor
   

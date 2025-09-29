@@ -40,7 +40,7 @@ sudo -i /absolute/path/to/LME/scripts/sbom/generate-container-sbom.sh
 
 This will:
 
-- Install the `syft` tool onto the comptuer (if not already installed)
+- Install the `syft` tool onto the computer (if not already installed)
   
 - Start a Podman socket
   

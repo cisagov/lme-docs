@@ -179,7 +179,7 @@ If you need to run LME with less than 16 GB of RAM or minimal hardware:
 
 **For Large Environments:**
 
-If your server will support hundreds of clients, you'll need more resources and possibly a dedicated machine for Elasticsearch. Reference our [documentation for an expanded dscussion around scaling LME](/docs/markdown/prerequisites.md#scaling-the-solution) or more information.
+If your server will support hundreds of clients, you'll need more resources and possibly a dedicated machine for Elasticsearch. Reference our [documentation for an expanded discussion around scaling LME](/docs/markdown/prerequisites.md#scaling-the-solution) or more information.
 
 ### 3.1 Estimated Installation Times
 
@@ -425,7 +425,7 @@ For optional uninstall steps, run the following commands:
 LME is actively maintained and regularly updated with new features and community-requested improvements. Below are a few common customization options to help tailor your LME deployment to your organization's specific needs:
 
 - [Alerting](/docs/markdown/maintenance/elastalert-rules.md): Addi custom notifications for triggered alerts using elastalert2
-- [Active Response](/docs/markdown/agents/wazuh-active-response.md): Create custom wazuh active response actions to automatically respond to a malicious event wazuh detects. 
+- [Active Response](/docs/markdown/agents/wazuh-active-response.md): Create custom Wazuh active response actions to automatically respond to a malicious event Wazuh detects. 
 - [Backups](/docs/markdown/maintenance/backups.md): Customize backups of logs for your organizations own compliance needs.
 - [Custom log types](/docs/markdown/agents/elastic-agent-management.md#lme-elastic-agent-integration-example): Use elastic agents built in [integrations](https://www.elastic.co/guide/en/integrations/current/index.html) ingest a log type specific to your organization.
  

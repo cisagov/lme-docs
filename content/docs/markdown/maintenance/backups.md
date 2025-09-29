@@ -3,7 +3,7 @@ title: Backing Up LME Logs
 ---
 # Backing Up LME Logs
 
-Logging Made Easy (LME) uses built-in Elastic features to back up logs. By default, Elasticsearch supports backing up to filesystems. This is the only supported method in LME. While other backup destinations exist, they requier plugins that are not currently supported by LME.
+Logging Made Easy (LME) uses built-in Elastic features to back up logs. By default, Elasticsearch supports backing up to filesystems. This is the only supported method in LME. While other backup destinations exist, they require plugins that are not currently supported by LME.
 
 ## How Backups Work
 
@@ -11,7 +11,7 @@ Backups are created using Elasticsearch snapshots.
 
 - The initial snapshot will includes all of the current logs.
 
-- Future snapshots only include changes since the last last backup.
+- Future snapshots only include changes since the last backup.
 
 This allows you to take regular backups without a major impact on the system's performance or storage.
 
@@ -41,7 +41,7 @@ Follow these steps to create a repository in Kibana:
 
     - File system location: **`/usr/share/elasticsearch/backups`**
     
-    - The other fields can be left with the default values, or modified as required.
+    - The other fields can be left with the default values or modified as required.
 
 ![Repository Two](/docs/imgs/backup_pics/repository_2.png)
 
@@ -74,7 +74,7 @@ your backup policy.
 
 ![Policy Two](/docs/imgs/backup_pics/policy_2.png)
 
-  - On the next screen, leave default values or configure rentention settings based on available disk space.
+  - On the next screen, leave default values or configure retention settings based on available disk space.
   
   - Click on the **Next button**.
 
@@ -126,7 +126,7 @@ Once your snapshot policy is active, snapshots will be automatically saved to th
     podman volume unmount lme_backups
     ```
 
-**Note: Manage your snapshots according to your organization's backup retention policies and storage practices. Regulary verify that snapshots are being created and stored successfully.**
+**Note: Manage your snapshots according to your organization's backup retention policies and storage practices. Regularly verify that snapshots are being created and stored successfully.**
 
 ## Restoring a Backup
 

@@ -88,7 +88,7 @@ The output should look similar to this:
   
    - After installation, the Wazuh agent service should start automatically.
    - You can verify the service status in the Windows Services manager.
-   - Ensure the service starts. If it doesn't start automatically, open PowerShell and mannually run:
+   - Ensure the service starts. If it doesn't start automatically, open PowerShell and manually run:
      
      ```powershell
      NET START Wazuh

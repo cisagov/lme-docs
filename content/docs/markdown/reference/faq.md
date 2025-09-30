@@ -10,11 +10,11 @@ LME is a no-cost log management solution for small- to medium-sized organization
 
 ## 2. What makes LME unique?
 
-LME stands out as an accessible, open source log management and threat detection solution developed by CISA to support organizations with limited resources. By integrating Elastic and Wazuh in a secure, containerized stack, it provides endpoint security and real-time alerting without the complexity or cost of traditional SIEMs. Designed with customizable dashboards and Secure by Design principles, LME offers a user-friendly, effective solution to enhance visibility and strengthen threat detection.
+LME stands out as an accessible, open-source log management and threat detection solution developed by CISA to support organizations with limited resources. By integrating Elastic and Wazuh in a secure, containerized stack, it provides endpoint security and real-time alerting without the complexity or cost of traditional SIEMs. Designed with customizable dashboards and Secure by Design principles, LME offers a user-friendly, effective solution to enhance visibility and strengthen threat detection.
 
 ## 3. What software drives LME?
 
-LME is powered by Elastic Stack (for log management, search, and visualization), Wazuh (for endpoint detection and response), and Podman (for containerization). This open source stack ensures transparency, flexibility and scalability while providing enhanced threat detection and customizable dashboards.
+LME is powered by Elastic Stack (for log management, search, and visualization), Wazuh (for endpoint detection and response), and Podman (for containerization). This open-source stack ensures transparency, flexibility and scalability while providing enhanced threat detection and customizable dashboards.
 
 ## 4. Which operating systems can use LME?
 
@@ -32,7 +32,7 @@ LME supports both on-premises and cloud deployments, allowing organizations to h
 
 Both new and existing users must complete a full install of LME 2.0.
 
-LME has an upgrade process from v1.4 -> 2.0. The upgrade uninstalls 1.4 and installs 2.0, and will reintegrate old dashboards and data into the new 2.0 deployment. Checkout our [Upgrading docs](/scripts/upgrade/README.md) for more information on upgrading from an older version of LME to LME 2.0.
+LME has an upgrade process from v1.4 -> 2.0. The upgrade uninstalls 1.4 and installs 2.0 and will reintegrate old dashboards and data into the new 2.0 deployment. Check out our [Upgrading docs](/scripts/upgrade/README.md) for more information on upgrading from an older version of LME to LME 2.0.
 
 ## 8. How do I download LME?
 

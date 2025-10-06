@@ -80,12 +80,20 @@ title: Install
 
 **Step 1: Install Logging Made Easy (LME)**
 
-- To configure your IP address and settings, run the following commands and follow the prompts in `install.sh`:
-  
+- Ensure that apt-get is updated/upgraded and that you have jq, curl, and unzip installed.
   ```bash
-  sudo apt update && sudo apt upgrade -y && sudo apt-get install -y jq curl
+  sudo apt update && sudo apt upgrade -y && sudo apt-get install -y jq curl unzip
+  ```
+- Pull down the most up-to-date version of LME and unzip it.
+  ```bash
   curl -s https://api.github.com/repos/cisagov/LME/releases/latest | jq -r '.assets[0].browser_download_url' | xargs -I {} sh -c 'curl -L -O {} && unzip -d ~/LME $(basename {})'
+  ```
+- Change directory into LME.
+  ```bash
   cd ~/LME
+  ```
+- Run the `install.sh` command and configure your IP address and settings by following the prompts.
+  ```bash
   ./install.sh
   ```
 

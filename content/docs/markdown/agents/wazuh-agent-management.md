@@ -17,7 +17,7 @@ Throughout this guide, the following variables will be used. Replace them with y
 
 - `{WAZUH_AGENT_VERSION}` - the version of the Wazuh agent you're installing (e.g., 4.9.0-1)
   
-- `{WAZUH_MANAGER_IP}` - the IP address of your Wazuh manager (e.g., 10.0.0.2)
+- `{WAZUH_MANAGER_IP}` - the IP address of your LME server.
  
 To determine the version of Wazuh currently running on your system, run:
 

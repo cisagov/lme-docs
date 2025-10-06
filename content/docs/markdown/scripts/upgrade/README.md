@@ -76,9 +76,13 @@ Note: You don't have to upgrade to 2x, but this is the guide to do so. You can j
     # vim ~/LME/config/lme-environment.env 
 
     # Change to the script directory
-    cd ~/LME/ansible/
+    cd ~/LME/
 
-    ansible-playbook install_lme_local.yml
+    # Run the installer as a non privileged user
+    ./install.sh 
+
+    # Become a super user
+    sudo su
 
     # Load podman into your environment
     . ~/.profile
@@ -87,7 +91,7 @@ Note: You don't have to upgrade to 2x, but this is the guide to do so. You can j
     # /lme_backup/winlogbeat_data.json.gz
     # /lme_backup/winlogbeat_mappings.json.gz
 
-    cd ../scripts/
+    cd scripts/
 
     # This will extract the secrets from the environment file and show them to you. Save these passwords.
     . extract_secrets.sh -p
@@ -99,6 +103,3 @@ Note: You don't have to upgrade to 2x, but this is the guide to do so. You can j
     # Use the elastic password from above. It is the new password for elastic
     sudo ./upgrade/import_dashboards.sh -d /opt/lme-old/Chapter\ 4\ Files/dashboards/
     ```
-
-    You will now want to do the rest of the installation instructions in the README at the root of the repo.
-    Start with the section after running `ansible-playbook install_lme_local.yml`

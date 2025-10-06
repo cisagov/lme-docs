@@ -68,13 +68,11 @@ title: Install
 
      7.1 [Git Clone and Git Checkout Notes](#71-git-clone-and-git-checkout-notes)
 
-     7.2 [Non-Default Installation Notes](#72-non-default-installation-notes)
+     7.2 [Installation Details](#72-installation-details)
 
-     7.3 [Installation Details](#73-installation-details)
+     7.3 [Notes on Folders, Permissions, and Service](#73-notes-on-folders-permissions-and-service)
 
-     7.4 [Notes on Folders, Permissions, and Service](#74-notes-on-folders-permissions-and-service)
-
-     7.5 [Other Post-Install Setup](#75-other-post-install-setup)
+     7.4 [Other Post-Install Setup](#74-other-post-install-setup)
 
 ## 1. Quick Start
 
@@ -199,11 +197,9 @@ Here's a reference timeline based on real-world installations. Actual times may 
 | ------------- 			| ------------- | ------------- |
 | Download LME 				| 0:31.49 	| 0:31.49 	|
 | Set Environment 			| 0:35.94 	| 1:06.61 	|
-| Install Ansible 			| 1:31.94 	| 2:38.03 	|
 | Installing LME Ansible Playbook 	| 4:03.63 	| 6:41.66 	|
 | All Containers Active 		| 6:41.66 	| 13:08.92 	|
 | Accessing Elastic 			| 0:38.97 	| 13:47.60 	|
-| Post-Install Ansible Playbook 	| 2:04.34 	| 15:51.94 	|
 | Deploy Linux Elastic Agent 		| 0:49.95 	| 16:41.45 	|
 | Deploy Windows Elastic Agent 		| 1:32.00 	| 18:13.40 	|
 | Deploy Linux Wazuh Agent 		| 1:41.99 	| 19:55.34 	|
@@ -506,25 +502,7 @@ To make best use of the agents, complement them with utilities that generate for
 
 - Once you've gotten your changes/updates added, please submit a pull request following our [Guidelines](/CONTRIBUTING.md)
 
-### 7.2 Non-Default Installation
-
-- If you installed LME in a custom directory, pass the `CLONE_DIRECTORY` variable to the playbook by running:
-
-  ```bash
-  ansible-playbook ./ansible/install_lme_local.yml -e "clone_dir=/path/to/clone/directory" 
-  ```
-
-**Note: If you have issues accessing a file or directory, please note permissions and notes on folder structure [here](#notes-on-folders-permissions-and-service)**.
-
-- This also assumes your user can sudo without a password. If you need to input a password when you sudo, run the following command with the `-K` flag and it will prompt you for a password:
-   
-  ```bash
-  ansible-playbook -K ./ansible/install_lme_local.yml -e "clone_dir=/path/to/clone/directory" 
-  ```
-
-- In the `BECOME password` prompt, enter the ***password*** for your user you would normally give `sudo`, so the playbook is able to sudo as expected.
-
-### 7.3 Installation Details
+### 7.2 Installation Details
 
 Below we've documented in more detail what exactly occurs during the installation and post-installation ansible scripts:
 
@@ -537,7 +515,7 @@ Below we've documented in more detail what exactly occurs during the installatio
 - **Setup Containers for root**: The containers listed in `$clone_directory/config/containers.txt` will be pulled and tagged.
 - **Start lme.service**: Kicks off the start of LME service containers.
 
-### 7.4 Folders, Permissions, and Service
+### 7.3 Folders, Permissions, and Service
 
 - `/opt/lme` will be owned by root. All LME services will run and execute as unprivileged users. The active LME configuration is stored in `/opt/lme/config`. 
 
@@ -573,7 +551,7 @@ Below we've documented in more detail what exactly occurs during the installatio
      sudo -i systemctl start lme.service
      ```
 
-### 7.5 Other Post-Install Setup 
+### 7.4 Other Post-Install Setup 
 
 A few final steps are required to complete your setup:
 

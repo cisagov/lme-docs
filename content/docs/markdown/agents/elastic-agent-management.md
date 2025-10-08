@@ -10,7 +10,9 @@ This guide will walk you through the process of enrolling an Elastic Agent.
 - **Access the Fleet Menu**
   
    - Navigate to the **LME dashboard**: `https://{SERVER_IP}`
-     - Password information can be found in the Retrieving Passwords section of the [README](/README.md#retrieving-passwords).
+     - Password information can be found in the Retrieving Passwords section of the [README](/docs/markdown/install/#51-retrieving-passwords).
+
+
    - Click on the **hamburger menu icon** in the top left corner (three horizontal lines).
    - Scroll down and click on **Fleet**.
 

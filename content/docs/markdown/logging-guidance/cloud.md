@@ -1,5 +1,5 @@
 ---
-title: Logging Made Easy in the cloud 
+title: Logging Made Easy in the Cloud 
 ---
 # Logging Made Easy in the Cloud 
 

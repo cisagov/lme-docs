@@ -8,7 +8,7 @@ This document outlines the LME security model from the user's perspective. It is
 
 ## Operating System
 
-LME has been tested on Ubuntu 22.04 but should, in theory, should support any Unix Operating System (OS) that can install the required dependencies listed in the [README](/README.md#retrieving-passwords). It is assumed that your OS and Linux kernel are up to date and properly patched. Failing to patch your OS could leave your security infrastructure vulnerable.
+LME has been tested on Ubuntu 22.04 but should, in theory, support any Unix Operating System (OS) that can install the required dependencies listed in the [README](/README.md#retrieving-passwords). It is assumed that your OS and Linux kernel are up to date and properly patched. Failing to patch your OS could leave your security infrastructure vulnerable.
 
 If a side-channel attack or Denial-of-Service (DoS) exploit is ever discovered at the OS level, LME considers this out of scope for what it can reasonably defend against. 
 

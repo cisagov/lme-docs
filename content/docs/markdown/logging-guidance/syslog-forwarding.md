@@ -86,7 +86,7 @@ This guide provides instructions for setting up syslog forwarding to the LME ser
 
 2. Add ***forwarding directive***:
    
-   - ***.* @@lme-server-ip:5140**
+   - `*.* @@lme-server-ip:5140`
    
 **Note: This is the IP address of your LME server. Ensure you can reach it from your device.**
 

@@ -10,11 +10,9 @@ This guide will walk you through the process of enrolling an Elastic Agent.
 - **Access the Fleet Menu**
   
    - Navigate to the **LME dashboard**: `https://{SERVER_IP}`
-     - Password information can be found in the Retrieving Passwords section of the [README](/docs/markdown/install/#51-retrieving-passwords).
-
-
-   - Click on the **hamburger menu icon** in the top left corner (three horizontal lines).
-   - Scroll down and click on **Fleet**.
+     - Password information can be found in [Section 5.1 - Retrieving Passwords](/README.md#retrieving-passwords).
+     - Click on the **hamburger menu icon** in the top left corner (three horizontal lines).
+     - Scroll down and click on **Fleet**.
 
 - **Add a New Agent**
   
@@ -74,7 +72,8 @@ This guide will walk you through the process of adding a Windows integration to 
 - **Access Fleet and Agent Policies**
   
    - Navigate to the **LME dashboard**: `https://{SERVER_IP}`
-      - Password information can be found in the Retrieving Passwords section of the [README](/README.md#retrieving-passwords).
+      - Password information can be found in [Section 5.1 - Retrieving Passwords](/README.md#retrieving-passwords).
+      - The default user login is "elastic".
    - Click on the **hamburger menu icon** in the top left corner (three horizontal lines).
    - Scroll down and click on **Fleet**.
    - Click on the **Agent policies tab**.

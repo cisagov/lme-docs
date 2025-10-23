@@ -34,9 +34,11 @@ title: Install
 
     4.5 [Post-Installation Steps](#45-post-installation-steps)
 
-    4.6 [Deploying Agents](#46-deploying-agents)
+    4.6 [Installing Sysmon (Windows Clients Only)](#46-installing-sysmon-windows-clients-only)
+   
+    4.7 [Deploying Agents](#47-deploying-agents)
 
-    4.7 [Installing Sysmon (Windows Clients Only)](#47-installing-sysmon-windows-clients-only)
+   
    
 5. [Next Steps](#5-next-steps)
    
@@ -214,7 +216,7 @@ Here's a reference timeline based on real-world installations. Actual times may 
 
 This section provides the procedures for downloading, configuring, and installing LME on an Ubuntu server.
 
-**Note:** Ubuntu 24.04 LTS is the recommended Linux distribution for installing LME. 
+**Note: Reference the [Supported Linux Distribution documentation](https://cisagov.github.io/lme-docs/docs/markdown/reference/change-me/) for more information on recommended Linux distributions for installing LME.**
 
 ### 4.1 Upgrading
 
@@ -283,21 +285,13 @@ curl -s https://api.github.com/repos/cisagov/LME/releases/latest | jq -r '.asset
 
 If you encounter any issues, reference the [Post-Installation Troubleshooting Guide](/docs/markdown/reference/troubleshooting.md#post-installation-troubleshooting).
 
-### 4.6 Deploying Agents 
-
-To populate the dashboards with data, you need to install agents. Detailed guides for deploying Wazuh and Elastic agents are available in the following documents:
-
- - [Deploy Wazuh Agent](/docs/markdown/agents/wazuh-agent-management.md)
-   
- - [Deploying Elastic-Agent](/docs/markdown/agents/elastic-agent-management.md)
-
-### 4.7 Installing Sysmon (Windows Clients Only)
+### 4.6 Installing Sysmon (Windows Clients Only)
 
 For Windows clients, installing Sysmon is essential to obtain comprehensive logs and ensure proper data visualization in the dashboards. Follow these steps to install Sysmon on each Windows client machine:
 
 - Download and unzip the ***LME folder*** on the Windows client.
 
-- Run the following command in an Administrator PowerShell session from inside the unzipped folder (reference [github](/scripts/install_sysmon.ps1)):
+- Run the following command in an Administrator PowerShell session from inside the unzipped folder:
   
    ```powershell
    .\scripts\install_sysmon.ps1
@@ -308,6 +302,14 @@ For Windows clients, installing Sysmon is essential to obtain comprehensive logs
   ```powershell
   Set-ExecutionPolicy Unrestricted
   ```
+### 4.7 Deploying Agents 
+
+To populate the dashboards with data, you need to install agents. Detailed guides for deploying Wazuh and Elastic agents are available in the following documents:
+
+ - [Deploy Wazuh Agent](/docs/markdown/agents/wazuh-agent-management.md)
+   
+ - [Deploying Elastic-Agent](/docs/markdown/agents/elastic-agent-management.md)
+
 
 ## 5. Next Steps
 

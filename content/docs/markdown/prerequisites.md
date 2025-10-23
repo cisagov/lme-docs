@@ -40,7 +40,7 @@ The following timetable is based on real-world installation sessions. These mile
 
 ![diagram](/docs/imgs/lme-architecture-v2.png) 
 
-Please reference the [ReadMe](/README.md#Diagram) for a detailed description of LME's architecture and its components.
+Please reference the [Architecture document](https://cisagov.github.io/lme-docs/docs/markdown/reference/architecture/) for a detailed description of LME's architecture and its components.
 
 ## LME Costs
 
@@ -65,7 +65,9 @@ To begin installing LME, you will need access to the following servers, or you w
 
 - A client machine (or multiple) - these are the systems you'd like to monitor
   
-- An Ubuntu Linux 22.04 server - this is where the LME stack (e.g., Elastisearch, Kibana) will be installed via Podman containers
+- A Linux server - this is where the LME stack (e.g., Elastisearch, Kibana) will be installed via Podman containers
+
+   **Note: For more information on supported Linux distributions, reference [Supported Linux Distributions](https://cisagov.github.io/lme-docs/docs/markdown/reference/change-me/).**
 
 We will install our database (Elasticsearch) and dashboard software on this machine. This is all taken care of through Podman containers.
 

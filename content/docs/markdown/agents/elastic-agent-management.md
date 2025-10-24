@@ -10,7 +10,7 @@ This guide will walk you through the process of enrolling an Elastic Agent.
 - **Access the Fleet Menu**
   
    - Navigate to the **LME dashboard**: `https://{SERVER_IP}`
-      - Password information can be found in [Section 5.1 - Retrieving Passwords](/README.md#retrieving-passwords).
+      - Password information can be found in the [Install documentation](https://cisagov.github.io/lme-docs/docs/markdown/install/#51-retrieving-passwords).
       - The default user login is "elastic".
     - Click on the **hamburger menu icon** in the top left corner (three horizontal lines).
     - Scroll down and click on **Fleet**.
@@ -73,7 +73,7 @@ This guide will walk you through the process of adding a Windows integration to 
 - **Access Fleet and Agent Policies**
   
    - Navigate to the **LME dashboard**: `https://{SERVER_IP}`
-      - Password information can be found in [Section 5.1 - Retrieving Passwords](/README.md#retrieving-passwords).
+      - Password information can be found in the [Install documentation](https://cisagov.github.io/lme-docs/docs/markdown/install/#51-retrieving-passwords).
       - The default user login is "elastic".
    - Click on the **hamburger menu icon** in the top left corner (three horizontal lines).
    - Scroll down and click on **Fleet**.

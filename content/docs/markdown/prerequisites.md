@@ -93,7 +93,7 @@ To ensure reliable performance during installation and operation, your system mu
        
      - Required for LME data and OS; more is needed if supporting ~17 clients
      
-       **Note: If your system has less than 16GB of RAM, reference the [troubleshooting guide](/docs/markdown/reference/troubleshooting.md#memory-in-containers-need-more-ramless-ram-usage) for more information on how to configure Podman memory quotas.**
+       **Note: If your system has less than 16GB of RAM, reference the [Troubleshooting LME Install](/docs/markdown/reference/troubleshooting.md#memory-in-containers-need-more-ramless-ram-usage) for more information on how to configure Podman memory quotas.**
  
    - **Suggestions**
    

@@ -1,7 +1,7 @@
 ---
 title: Deprecated - Retention Settings
 ---
-**Note**: This page is no longer maintained. For information on LME index lifecycle management and managing retention settings, navigate to [LME Index Management](https://cisagov.github.io/lme-docs/docs/markdown/maintenance/index-management/)
+**Note: This page is no longer maintained. For information on LME index lifecycle management and managing retention settings, navigate to the [LME Index Lifecycle Management documentation](https://cisagov.github.io/lme-docs/docs/markdown/maintenance/index-management/).**
 
 
 # Retention Settings

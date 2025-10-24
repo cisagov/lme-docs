@@ -113,7 +113,7 @@ For a more detailed understanding of LME's architecture, reference the [LME Arch
 
 ### 2.1 Description
 
-LME runs on Ubuntu 22.04 and 24.04, and Debian 12.10 (experimental). It uses Podman containers to provide:
+LME runs on Ubuntu and Debian 12.10 (experimental). It uses Podman containers to provide:
 
 - Log Management
 - Endpoint Security
@@ -122,6 +122,8 @@ LME runs on Ubuntu 22.04 and 24.04, and Debian 12.10 (experimental). It uses Pod
 - Visualization Capabilities
   
 LME integrates Wazuh, Elastic, and ElastAlert. This modular, flexible architecture supports scalable log storage, real-time search, and efficient threat detection--all designed to evolve with your organization's logging needs. 
+
+**Note: Reference the [Supported Linux Distribution documentation](https://cisagov.github.io/lme-docs/docs/markdown/reference/change-me/) for more information on recommended Linux distributions for installing LME.**
 
 ### 2.2 How does LME Work?
 

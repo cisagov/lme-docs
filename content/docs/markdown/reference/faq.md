@@ -32,11 +32,11 @@ LME supports both on-premises and cloud deployments, allowing organizations to h
 
 Both new and existing users must complete a full install of LME 2.0.
 
-LME has an upgrade process from v1.4 -> 2.0. The upgrade uninstalls 1.4 and installs 2.0 and will reintegrate old dashboards and data into the new 2.0 deployment. Check out our [Upgrading docs](/scripts/upgrade/README.md) for more information on upgrading from an older version of LME to LME 2.0.
+LME has an upgrade process from v1.4 -> 2.0. The upgrade uninstalls 1.4 and installs 2.0 and will reintegrate old dashboards and data into the new 2.0 deployment. Check out our [Upgrading documentation](https://cisagov.github.io/lme-docs/docs/markdown/maintenance/upgrading/) for more information on upgrading from an older version of LME to LME 2.0.
 
 ## 8. How do I download LME?
 
-Detailed installation and download steps can be found on the [Installation section of our ReadMe](https://github.com/cisagov/LME/tree/lme-2-docs?tab=readme-ov-file#installing-lme)
+Detailed installation and download steps can be found in the [Install documentation](https://cisagov.github.io/lme-docs/docs/markdown/install/).
 
 ## 9.   In light of LME 2.0, will older versions of LME stop working? 
 
@@ -45,7 +45,7 @@ While CISA recommends upgrading to LME 2.0, users can continue using older versi
 
 ## 10. How do I transition/migrate from older versions to LME 2.0 while retaining my log history?
 
-For existing LME users, [click here](/scripts/upgrade) for easy instructions on transferring log history from previous versions. LME will automatically reintegrate your log history and data.
+For existing LME users, [click here](https://cisagov.github.io/lme-docs/docs/markdown/maintenance/upgrading/) for easy instructions on transferring log history from previous versions. LME will automatically reintegrate your log history and data.
 
 ## 11.  Can I transfer my customized dashboards? If so, how?
 
@@ -58,9 +58,9 @@ Although system requirements are mostly the same for LME 2.0, we do have  hardwa
 ## 13. Where can I receive further support?
 
 For further support with LME 2.0 users can explore the following options:
-•	Report LME issues via the GitHub 'Issues' tab at the top of the page or by clicking GitHub Issues
-•	Visit GitHub 'Discussions' to check if your issue has been addressed or start a new thread
-•	Directly email CyberSharedServices@cisa.dhs.gov for other questions or comments
+  - Report LME issues via the GitHub 'Issues' tab at the top of the page or by clicking GitHub Issues
+  - Visit GitHub 'Discussions' to check if your issue has been addressed or start a new thread
+  - Directly email CyberSharedServices@cisa.dhs.gov for other questions or comments
 
 ## 14. Where Can I Find Additional Resources?
 

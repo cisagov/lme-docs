@@ -222,7 +222,7 @@ This section provides the procedures for downloading, configuring, and installin
 
 ### 4.1 Upgrading
 
-If you are upgrading from an older version of LME to LME 2.0, reference our [Upgrade Documentation](/docs/markdown/maintenance/upgrading.md).
+If you are upgrading from an older version of LME to LME 2.0, reference our [Upgrading documentation](/docs/markdown/maintenance/upgrading.md).
 
 ### 4.2 Downloading LME
 
@@ -315,7 +315,7 @@ To populate the dashboards with data, you need to install agents. Detailed guide
 
 ## 5. Next Steps
 
-Reference the [Documentation Section](#6-documentation) for additional information.
+Reference the [Documentation section](#6-documentation) for additional information.
 
 ### 5.1 Retrieving Passwords
 
@@ -333,7 +333,7 @@ Reference the [Documentation Section](#6-documentation) for additional informati
 
 **NOTE: Manually changing these passwords in the encrypted file, or via others means (i.e., manually changing the elastic logon password in Kibana) will break connectivity between containers.**
 
-For more information about passwords, reference the [Password Encryption Section](/docs/markdown/reference/passwords.md).
+For more information on passwords, reference the [Password Encryption documentation](/docs/markdown/reference/passwords.md).
 
 ### 5.2 Starting and Stopping LME
 
@@ -446,49 +446,49 @@ LME is actively maintained and regularly updated with new features and community
 ### 6.1 Logging Guidance
 
  - [LME in the Cloud](/docs/markdown/logging-guidance/cloud.md)
- - [Log Retention](/docs/markdown/logging-guidance/retention.md)
- - [Filtering](/docs/markdown/logging-guidance/filtering.md)
+ - [Retention Settings](/docs/markdown/logging-guidance/retention.md)
+ - [Filtering Logs in LME Cloud](/docs/markdown/logging-guidance/filtering.md)
 
 ### 6.2 Reference
 
  - [FAQ](/docs/markdown/reference/faq.md) 
  - [Dashboard Descriptions](/docs/markdown/reference/dashboard-descriptions.md)
- - [Security Model](/docs/markdown/reference/security-model.md)
+ - [LME Security Model](/docs/markdown/reference/security-model.md)
  - [Architecture](/docs/markdown/reference/architecture.md)
- - [Configuration Customization Options](/docs/markdown/reference/configuration.md)
- - [Password Maintenance](/docs/markdown/reference/passwords.md)
- - [Troubleshooting](/docs/markdown/reference/troubleshooting.md)
+ - [Configuring LME](/docs/markdown/reference/configuration.md)
+ - [Password Encryption](/docs/markdown/reference/passwords.md)
+ - [Troubleshooting LME Install](/docs/markdown/reference/troubleshooting.md)
 
 ### 6.3 Maintenance
 
- - [Alerting](/docs/markdown/maintenance/elastalert-rules.md)
- - [Backups](/docs/markdown/maintenance/backups.md)  
+ - [ElastAlert2 Rule Writing](/docs/markdown/maintenance/elastalert-rules.md)
+ - [Backing Up LME Logs](/docs/markdown/maintenance/backups.md)  
  - [Certificates](/docs/markdown/maintenance/certificates.md) 
  - [Encryption at Rest](/docs/markdown/maintenance/Encryption_at_rest_option_for_users.md)
  - Data management:
-   - [Index Management](/docs/markdown/maintenance/index-management.md)
-   - [Volume Management](/docs/markdown/maintenance/volume-management.md)
+   - [Elasticsearch Index Lifecycle Management](/docs/markdown/maintenance/index-management.md)
+   - [Podman Volume Management](/docs/markdown/maintenance/volume-management.md)
  - Upgrading:
-   - [Upgrading 1x -> 2x](/scripts/upgrade/README.md) 
+   - [Upgrading 1x -> 2x](/docs/markdown/maintenance/upgrading.md) 
    - [Upgrading Future 2.x](/docs/markdown/maintenance/upgrading.md)
 
 ### 6.4 Agents
 
- - [Elastic-Agent](/docs/markdown/agents/elastic-agent-management.md)
+ - [Elastic Agent Management - Enrollment Guide](/docs/markdown/agents/elastic-agent-management.md)
  - Wazuh:
-   - [Wazuh Configuration](/docs/markdown/maintenance/wazuh-configuration.md)
-   - [Active Response](/docs/markdown/agents/wazuh-active-response.md)
-   - [Agent Management](/docs/markdown/agents/wazuh-agent-management.md)
+   - [Wazuh Configuration Management](/docs/markdown/maintenance/wazuh-configuration.md)
+   - [Example Setup for Wazuh Active Response](/docs/markdown/agents/wazuh-active-response.md)
+   - [LME Wazuh Agent Enrollment Guide](/docs/markdown/agents/wazuh-agent-management.md)
     
 ### 6.5 Endpoint Tools
 
 To make best use of the agents, complement them with utilities that generate forensically relevant data to analyze and support detections. Consider adding them to Windows/Linux.
 
 - **Windows**
-  - [Sysmon (manual install)](/docs/markdown/endpoint-tools/install-sysmon.md)
+  - [Installing Sysmon on Windows Machines (manual install)](/docs/markdown/endpoint-tools/install-sysmon.md)
     
 - **Linux**
-  - [Auditd](/docs/markdown/endpoint-tools/install-auditd.md)
+  - [Installing and Configuring Auditd on Linux Systems](/docs/markdown/endpoint-tools/install-auditd.md)
 
 ## 7. Developer Notes
 
@@ -512,7 +512,7 @@ To make best use of the agents, complement them with utilities that generate for
   ansible-playbook ./ansible/install_lme_local.yml -e "clone_dir=/path/to/clone/directory" 
   ```
 
-**Note: If you have issues accessing a file or directory, please note permissions and notes on folder structure [here](#notes-on-folders-permissions-and-service)**.
+**Note: If you have issues accessing a file or directory, please note permissions and notes on folder structure [here](#74-notes-on-folders-permissions-and-service)**.
 
 - This also assumes your user can sudo without a password. If you need to input a password when you sudo, run the following command with the `-K` flag and it will prompt you for a password:
    
@@ -529,8 +529,8 @@ Below we've documented in more detail what exactly occurs during the installatio
 - Setup **/opt/lme** and check for **sudo access**.
 - Configure **other required directories/files**.
 - **Setup password information**: Configures the password vault and other configurations for the service user passwords.  
-- **Setup [Nix](https://nixos.org/)**: nix is the open source package manager we use to install the latest version of Podman.
-- **Set service user passwords**: Sets the service user passwords that are encrypted according to the [Security Model](/docs/markdown/reference/security-model.md).
+- **Setup [NixOS](https://nixos.org/)**: nix is the open source package manager we use to install the latest version of Podman.
+- **Set service user passwords**: Sets the service user passwords that are encrypted according to the [LME Security Model](/docs/markdown/reference/security-model.md).
 - **Install Quadlets**: Installs quadlet files in the directories to be setup as systemd services.
 - **Setup Containers for root**: The containers listed in `$clone_directory/config/containers.txt` will be pulled and tagged.
 - **Start lme.service**: Kicks off the start of LME service containers.

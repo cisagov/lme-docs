@@ -6,7 +6,7 @@ title: Elastalert2 for Kibana Security Notifications
 
 This guide walks you through integrating Logging Made Easy's (LME's) ElastAlert2 with Kibana to send notifications for every alert that occurs. Once set up, you can fine-tune alerts directly within Kibana's built-in alerting system--no need to modify ElastAlert2 further. 
 
-To understand how this works, reference the [ElastAlert Rules](/docs/markdown/maintenance/elastalert-rules) document.
+To understand how this works, reference the [ElastAlert Rules document](/docs/markdown/maintenance/elastalert-rules).
 
 ## What You'll Get
 
@@ -144,7 +144,7 @@ While this integration monitors all Kibana security alerts, you can customize th
 
 - This will still roll up all events that happened in that 30 minute timeframe, but you will only get one notification every 30 minutes.
 
-- Reference the [ElastAlert Rules](/docs/markdown/maintenance/elastalert-rules) documentation for more query possibilities.
+- Reference the [ElastAlert Rules documentation](/docs/markdown/maintenance/elastalert-rules) for more query possibilities.
 
 ### In Kibana
 
@@ -166,4 +166,4 @@ To reduce noise within Kibana before alerts ever reach ElastAlert2:
 
 This approach allows you to fine-tune detection coverage inside Kibana while using ElastAlert2 solely as your alert delivery mechanism.
 
-Reference the [ElastAlert Rules](/docs/markdown/maintenance/elastalert-rules) documentation if you want even more advanced control.
+Reference the [ElastAlert Rules documentation](/docs/markdown/maintenance/elastalert-rules) if you want even more advanced control.

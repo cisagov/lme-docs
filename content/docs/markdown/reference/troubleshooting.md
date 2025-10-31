@@ -102,7 +102,7 @@ Installing LME involves preparing the system environment, meeting hardware requi
 
   - To verify that Kibana is accessible, use a **Secure Shell (SSH) proxy** to forward a local port to the remote Linux host.
   
-  - Log in as the **Elastic admin** using the `elastic` username and the password retrieved from the [Export Password Script](#grabbing-passwords).
+  - Log in as the **Elastic admin** using the `elastic` username and the password retrieved from the [Retrieving Passwords section](https://cisagov.github.io/lme-docs/docs/markdown/install/#51-retrieving-passwords) of the Install document.
  
   - Run the ***following command***:
     

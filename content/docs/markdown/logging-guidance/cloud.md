@@ -47,7 +47,7 @@ The easiest way is to make sure you can access these LME server ports from the o
 
 You'll need to ensure your Cloud firewall is setup to allow the ports above. On Azure, Network Security Groups (NSG) run a firewall on your virtual machine's network interfaces.  You'll need to update your LME virtual machine's rules to allow inbound connections on the agent ports. Azure has a detailed guide for how to add security rules [here](https://learn.microsoft.com/en-us/azure/virtual-network/manage-network-security-group?tabs=network-security-group-portal#create-a-security-rule). 
 
-### ***We highly suggest you do not open any port globally and restrict it based on your client's IP address or your client's subnets.***
+***We highly suggest you do not open any port globally and restrict it based on your client's IP address or your client's subnets.***
 
 ### For Debian Based Systems
 
@@ -134,20 +134,20 @@ root@ubuntu:~#
 **After applying firewall configuration changes on any system, it is highly recommended to reboot the machine to ensure all networking and container rules take effect properly.**
 
 ```bash
-# After configuring firewall rules, reboot the system
+# After configuring firewall rules, reboot the system:
 sudo reboot
 ```
 
 This is especially important for:
-- **Container networking changes** - Ensures podman interfaces and bridge networks restart correctly
-- **Firewall rule persistence** - Confirms all permanent rules are properly loaded
-- **Network interface binding** - Ensures proper interface-to-zone assignments
-- **Service startup order** - Guarantees firewall, networking, and containers start in the correct sequence
+- **Container networking changes** - ensures podman interfaces and bridge networks restart correctly
+- **Firewall rule persistence** - confirms all permanent rules are properly loaded
+- **Network interface binding** - ensures proper interface-to-zone assignments
+- **Service startup order** - guarantees firewall, networking, and containers start in the correct sequence
 
-Red Hat-based systems offer two main firewall management approaches:
+RedHat-based systems offer two main firewall management approaches:
 
-1. **firewalld** (default) - Higher-level management tool with zones and services
-2. **nftables** (direct) - Lower-level control with better performance
+1. **firewalld** (default) - higher-level management tool with zones and services
+2. **nftables** (direct) - lower-level control with better performance
 
 Choose the approach that best fits your environment and expertise level.
 
@@ -155,52 +155,52 @@ Choose the approach that best fits your environment and expertise level.
 
 If you're running LME on Red Hat-based systems, you'll use `firewalld` instead of UFW for firewall management.
 
-**Important Note:** In cloud environments like Azure, your cloud provider's Network Security Group (NSG) often acts as the primary firewall layer. You may find that traffic is allowed even when the Red Hat firewall doesn't have explicit rules, because the cloud NSG is handling the filtering.
+**Important Note: In cloud environments like Azure, your cloud provider's Network Security Group (NSG) often acts as the primary firewall layer. You may find that traffic is allowed even when the Red Hat firewall doesn't have explicit rules, because the cloud NSG is handling the filtering.**
 
-### Important: LME Installation Behavior
+#### ⚠️ Important: LME Installation Behavior
 
-**During LME installation on Red Hat systems, the firewall is automatically disabled to prevent container communication issues.** The LME ansible installation will stop and disable firewalld for you.
+**During LME installation on RedHat systems, the firewall is automatically disabled to prevent container communication issues.**
 
-If you later want to re-enable the firewall for security hardening, you can use one of the configuration methods below:
+The LME ansible installation will stop and disable firewalld for you. If you later want to re-enable the firewall for security hardening, you can use one of the configuration methods below:
 
-### Automated Configuration (Recommended)
+- Automated Configuration (Recommended)
 
-For the easiest setup, use our automated firewall configuration script (after LME install):
+  For the easiest setup, use our automated firewall configuration script (after LME install):
 
-```bash
-# Navigate to the LME directory
-cd /path/to/LME
+  ```bash
+  # Navigate to the LME directory
+  cd /path/to/LME
 
-# Run the automated firewall configuration script
-sudo ./scripts/configure_rhel_firewall.sh
-```
+- Run the automated firewall configuration script
+  sudo ./scripts/configure_rhel_firewall.sh
+  ```
 
-This script will:
-- Automatically detect your podman network interfaces and container subnets
-- Configure all necessary firewall rules for LME
-- Provide verification and troubleshooting information
-- Handle the complexity of dynamic interface names and network configurations
+  This script will:
+  - Automatically detect your podman network interfaces and container subnets
+  - Configure all necessary firewall rules for LME
+  - Provide verification and troubleshooting information
+  - Handle the complexity of dynamic interface names and network configurations
 
-### Manual Configuration
+- Manual Configuration
 
-For advanced users who need custom firewall configurations or troubleshooting, the automated script performs the equivalent of the following operations:
+  For advanced users who need custom firewall configurations or troubleshooting, the automated script performs the equivalent of the following operations:
 
-- Adds LME required ports (1514, 1515, 8220, 9200, 5601, 443) to the public zone
-- Optionally adds Wazuh API port (55000) to the public zone  
-- Detects and configures container network subnets in the trusted zone
-- Detects and configures podman interfaces in the trusted zone
-- Enables masquerading for container traffic
-- Reloads firewall configuration to apply changes
+  - Adds LME required ports (1514, 1515, 8220, 9200, 5601, 443) to the public zone
+  - Optionally adds Wazuh API port (55000) to the public zone  
+  - Detects and configures container network subnets in the trusted zone
+  - Detects and configures podman interfaces in the trusted zone
+  - Enables masquerading for container traffic
+  - Reloads firewall configuration to apply changes
 
-**For manual configuration details, refer to the automated script source code at `./scripts/configure_rhel_firewall.sh` which contains all the necessary commands with proper error handling and network detection.**
+  **For manual configuration details, refer to the automated script source code at `./scripts/configure_rhel_firewall.sh` which contains all the necessary commands with proper error handling and network detection.**
 
 ### Troubleshooting Red Hat Firewall + Cloud Environment
 
 If you're experiencing connectivity issues:
 
-1. **Check your cloud provider's security groups** (Azure NSG, AWS Security Groups, etc.)
+1. **Check your cloud provider's security groups** (e.g., Azure NSG, AWS Security Groups).
 
-2. **Verify which network layer is filtering traffic:**
+2. **Verify which network layer is filtering traffic by running:** 
    ```bash
    # Check if Red Hat firewall has the ports open
    sudo firewall-cmd --zone=public --list-ports
@@ -209,7 +209,7 @@ If you're experiencing connectivity issues:
    # If ports are not listed, add them with the commands above
    ```
 
-3. **Test with firewall temporarily disabled:**
+3. **Test with firewall temporarily disabled by running:**
    ```bash
    # TEMPORARILY disable firewall for testing
    sudo systemctl stop firewalld
@@ -218,12 +218,12 @@ If you're experiencing connectivity issues:
    sudo systemctl start firewalld
    ```
 
-4. **Check firewall logs for blocked connections:**
+4. **Check firewall logs for blocked connections by running:**
    ```bash
    sudo journalctl -u firewalld | tail -20
    ```
 
-5. **For defense in depth, configure both layers** (cloud NSG + Red Hat firewall)
+5. **For defense in depth, configure both layers by running** (cloud NSG + Red Hat firewall):
 
 If problems persist, consider using the automated configuration script which handles edge cases and provides detailed troubleshooting information.
 
@@ -233,11 +233,11 @@ For users who prefer direct nftables management or want better performance, LME 
 
 ### When to Choose nftables over firewalld:
 
-- **Performance requirements** - Lower overhead and faster packet processing
-- **Direct control** - Fine-grained rule management without abstraction layers
-- **Existing nftables infrastructure** - Already using nftables in your environment
-- **Minimal overhead** - Prefer lightweight firewall management
-- **Advanced customization** - Need specific rule configurations not easily achieved with firewalld
+- **Performance requirements** - lower overhead and faster packet processing
+- **Direct control** - fine-grained rule management without abstraction layers
+- **Existing nftables infrastructure** - already using nftables in your environment
+- **Minimal overhead** - prefer lightweight firewall management
+- **Advanced customization** - need specific rule configurations not easily achieved with firewalld
 
 ### Automated nftables Configuration (Recommended)
 
@@ -283,9 +283,9 @@ This script will:
 
 For advanced users who need custom nftables configurations, the automated script creates comprehensive rules that can be reviewed and customized in `/etc/nftables/lme.nft`.
 
-**For manual configuration details, refer to the automated script source code at `./scripts/configure_lme_nftables.sh` which generates all necessary nftables rules with proper network detection and persistence configuration.**
+**For manual configuration details, reference the automated script source code at `./scripts/configure_lme_nftables.sh` which generates all necessary nftables rules with proper network detection and persistence configuration.**
 
-### Verifying nftables Configuration:
+### Verifying nftables Configuration by running:
 
 ```bash
 # Check if nftables rules are loaded
@@ -301,17 +301,17 @@ sudo -i podman exec lme-kibana curl -s http://lme-elasticsearch:9200/_cluster/he
 
 ### Troubleshooting nftables Setup:
 
-1. **Check rule application:**
+1. **Check rule application by running:**
    ```bash
    sudo nft list ruleset | grep -A 5 -B 5 lme
    ```
 
-2. **Monitor dropped packets:**
+2. **Monitor dropped packets by running:**
    ```bash
    sudo journalctl -f | grep LME_DROPPED
    ```
 
-3. **Test with rules temporarily disabled:**
+3. **Test with rules temporarily disabled by running:**
    ```bash
    # Backup current rules
    sudo nft list ruleset > /tmp/nft_backup.nft
@@ -325,7 +325,7 @@ sudo -i podman exec lme-kibana curl -s http://lme-elasticsearch:9200/_cluster/he
    sudo nft -f /etc/nftables/lme.nft
    ```
 
-4. **Verify service startup:**
+4. **Verify service startup by running:**
    ```bash
    sudo systemctl status nftables
    sudo systemctl enable nftables
@@ -333,10 +333,10 @@ sudo -i podman exec lme-kibana curl -s http://lme-elasticsearch:9200/_cluster/he
 
 ### Important Notes for nftables Users:
 
-- **firewalld conflicts**: The script can optionally disable firewalld to prevent rule conflicts
-- **Persistence**: Rules are automatically added to `/etc/nftables.conf` for persistence across reboots
-- **Cloud compatibility**: Works with cloud provider firewalls (NSGs, Security Groups) as an additional layer
-- **Container networking**: Automatically detects and configures container subnets and interfaces
+- **firewalld conflicts** - the script can optionally disable firewalld to prevent rule conflicts
+- **Persistence** - rules are automatically added to `/etc/nftables.conf` for persistence across reboots
+- **Cloud compatibility** - works with cloud provider firewalls (NSGs, Security Groups) as an additional layer
+- **Container networking** - automatically detects and configures container subnets and interfaces
 
 ## Summary: Choosing Your Red Hat Firewall Approach
 
@@ -356,7 +356,7 @@ sudo -i podman exec lme-kibana curl -s http://lme-elasticsearch:9200/_cluster/he
 - **Existing nftables setup?** Use **nftables** (Option 2)
 - **Default choice for most users:** **firewalld** (Option 1)
 
-Both approaches provide identical security and functionality for LME - choose based on your preference and requirements.
+Both approaches provide identical security and functionality for LME; select based on your preference and requirements.
 
 ## Deploying LME for Cloud Infrastructure
 
@@ -366,7 +366,7 @@ Every Cloud setup is different. As long as the LME server is on the same network
 
 You may also want to access Kibana from outside the Cloud as well. You'll want to ensure you either allow port `5601` or port `443` inbound from the Cloud firewall and the virtual machine firewall. 
 
-To allow port 443:
+To allow port 443, run the following:
 
 ```bash
 root@ubuntu:/opt/lme# sudo ufw allow 443
@@ -396,13 +396,13 @@ To                         Action      From
 
 ### Don't Lock Yourself Out and Enable the Firewall
 
-Before enabling the firewall, ensure you're not blocking your Secure Shell (SSH) access. You must allow port 22 so you can still connect remotely:
+Before enabling the firewall, ensure you're not blocking your Secure Shell (SSH) access. You must allow port 22 so you can still connect remotely by running:
  
 ```bash
 sudo ufw allow 22
 ```
 
-Once all necessary ports are allowed, enable the firewall with:
+Once all necessary ports are allowed, enable the firewall by running:
 
 ```bash
 sudo ufw enable

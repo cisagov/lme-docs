@@ -81,19 +81,19 @@ title: Install
 - To configure your IP address and settings, run the following commands and follow the prompts in `install.sh`:
   
   ```bash
-  # Debian/Ubuntu
+  # Debian/Ubuntu:
   sudo apt update && sudo apt upgrade -y && sudo apt-get install -y jq curl
 
-  # Redhat (comes with curl minimal)
+  # RedHat (comes with curl minimal):
   sudo dnf -y install jq unzip
 
-  # Run this to download on all systems. Run as regular user, not root
+  # Run this to download on all systems; run as regular user, not root:
   curl -s https://api.github.com/repos/cisagov/LME/releases/latest | jq -r '.assets[0].browser_download_url' | xargs -I {} sh -c 'curl -L -O {} && unzip -d ~/LME $(basename {})'
 
-  # Move to the LME directory in the home directory of the user
+  # Move to the LME directory in the home directory of the user:
   cd ~/LME
 
-  # Run the installer (On redhat, if you are going to run in se enforcing mode, run setenforce 1 before running the installer)
+  # Run the installer (On RedHat, if going to run in se enforcing mode, run setenforce 1 before running the installer):
   ./install.sh
   ```
 
@@ -111,7 +111,7 @@ For a more detailed understanding of LME's architecture, reference the [LME Arch
 
 ### 2.1 Description
 
-LME runs on Ubuntu 22.04 and 24.04. Debian 12.10, and Redhat 9 (experimental). It uses Podman containers to provide:
+LME runs on Ubuntu 22.04 and 24.04, Debian 12.10, and RedHat 9 (experimental). It uses Podman containers to provide:
 
 - Log Management
 - Endpoint Security
@@ -225,10 +225,10 @@ If you are upgrading from an older version of LME to LME 2.0, reference our [Upg
 To update your package list and install the necessary tools, run:
 
 ```bash
-# Debian based
+# Debian based:
 sudo apt update && sudo apt upgrade -y && sudo apt-get install -y jq curl
 
-# Redhat based
+# Redhat based:
 sudo dnf -y install jq unzip 
 ```
 
@@ -509,7 +509,7 @@ Below we've documented in more detail what exactly occurs during the installatio
 - Setup **/opt/lme** and check for **sudo access**.
 - Configure **other required directories/files**.
 - **Setup password information**: Configures the password vault and other configurations for the service user passwords.  
-- **Setup [Nix](https://nixos.org/)**: nix is the open source package manager we use to install the latest version of Podman.
+- **Setup [Nix](https://nixos.org/)**: Nix is the open source package manager we use to install the latest version of Podman.
 - **Set service user passwords**: Sets the service user passwords that are encrypted according to the [Security Model](/docs/markdown/reference/security-model.md).
 - **Install Quadlets**: Installs quadlet files in the directories to be setup as systemd services.
 - **Setup Containers for root**: The containers listed in `$clone_directory/config/containers.txt` will be pulled and tagged.

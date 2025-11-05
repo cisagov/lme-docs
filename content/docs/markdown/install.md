@@ -34,9 +34,11 @@ title: Install
 
     4.5 [Post-Installation Steps](#45-post-installation-steps)
 
-    4.6 [Deploying Agents](#46-deploying-agents)
+    4.6 [Installing Sysmon (Windows Clients Only)](#46-installing-sysmon-windows-clients-only)
+   
+    4.7 [Deploying Agents](#47-deploying-agents)
 
-    4.7 [Installing Sysmon (Windows Clients Only)](#47-installing-sysmon-windows-clients-only)
+   
    
 5. [Next Steps](#5-next-steps)
    
@@ -111,7 +113,7 @@ For a more detailed understanding of LME's architecture, reference the [LME Arch
 
 ### 2.1 Description
 
-LME runs on Ubuntu 22.04 and 24.04, and Debian 12.10 (experimental). It uses Podman containers to provide:
+LME runs on Ubuntu and Debian 12.10 (experimental). It uses Podman containers to provide:
 
 - Log Management
 - Endpoint Security
@@ -120,6 +122,8 @@ LME runs on Ubuntu 22.04 and 24.04, and Debian 12.10 (experimental). It uses Pod
 - Visualization Capabilities
   
 LME integrates Wazuh, Elastic, and ElastAlert. This modular, flexible architecture supports scalable log storage, real-time search, and efficient threat detection--all designed to evolve with your organization's logging needs. 
+
+**Note: Reference the [Supported Linux Distribution documentation](https://cisagov.github.io/lme-docs/docs/markdown/reference/change-me/) for more information on recommended Linux distributions for installing LME.**
 
 ### 2.2 How does LME Work?
 
@@ -214,11 +218,11 @@ Here's a reference timeline based on real-world installations. Actual times may 
 
 This section provides the procedures for downloading, configuring, and installing LME on an Ubuntu server.
 
-**Note:** Ubuntu 24.04 LTS is the recommended Linux distribution for installing LME. 
+**Note: Reference the [Supported Linux Distribution documentation](https://cisagov.github.io/lme-docs/docs/markdown/reference/change-me/) for more information on recommended Linux distributions for installing LME.**
 
 ### 4.1 Upgrading
 
-If you are upgrading from an older version of LME to LME 2.0, reference our [Upgrade Documentation](/docs/markdown/maintenance/upgrading.md).
+If you are upgrading from an older version of LME to LME 2.0, reference our [Upgrading documentation](/docs/markdown/maintenance/upgrading.md).
 
 ### 4.2 Downloading LME
 
@@ -283,21 +287,13 @@ curl -s https://api.github.com/repos/cisagov/LME/releases/latest | jq -r '.asset
 
 If you encounter any issues, reference the [Post-Installation Troubleshooting Guide](/docs/markdown/reference/troubleshooting.md#post-installation-troubleshooting).
 
-### 4.6 Deploying Agents 
-
-To populate the dashboards with data, you need to install agents. Detailed guides for deploying Wazuh and Elastic agents are available in the following documents:
-
- - [Deploy Wazuh Agent](/docs/markdown/agents/wazuh-agent-management.md)
-   
- - [Deploying Elastic-Agent](/docs/markdown/agents/elastic-agent-management.md)
-
-### 4.7 Installing Sysmon (Windows Clients Only)
+### 4.6 Installing Sysmon (Windows Clients Only)
 
 For Windows clients, installing Sysmon is essential to obtain comprehensive logs and ensure proper data visualization in the dashboards. Follow these steps to install Sysmon on each Windows client machine:
 
 - Download and unzip the ***LME folder*** on the Windows client.
 
-- Run the following command in an Administrator PowerShell session from inside the unzipped folder (reference [github](/scripts/install_sysmon.ps1)):
+- Run the following command in an Administrator PowerShell session from inside the unzipped folder:
   
    ```powershell
    .\scripts\install_sysmon.ps1
@@ -308,10 +304,18 @@ For Windows clients, installing Sysmon is essential to obtain comprehensive logs
   ```powershell
   Set-ExecutionPolicy Unrestricted
   ```
+### 4.7 Deploying Agents 
+
+To populate the dashboards with data, you need to install agents. Detailed guides for deploying Wazuh and Elastic agents are available in the following documents:
+
+ - [Deploy Wazuh Agent](/docs/markdown/agents/wazuh-agent-management.md)
+   
+ - [Deploying Elastic-Agent](/docs/markdown/agents/elastic-agent-management.md)
+
 
 ## 5. Next Steps
 
-Reference the [Documentation Section](#6-documentation) for additional information.
+Reference the [Documentation section](#6-documentation) for additional information.
 
 ### 5.1 Retrieving Passwords
 
@@ -329,7 +333,7 @@ Reference the [Documentation Section](#6-documentation) for additional informati
 
 **NOTE: Manually changing these passwords in the encrypted file, or via others means (i.e., manually changing the elastic logon password in Kibana) will break connectivity between containers.**
 
-For more information about passwords, reference the [Password Encryption Section](/docs/markdown/reference/passwords.md).
+For more information on passwords, reference the [Password Encryption documentation](/docs/markdown/reference/passwords.md).
 
 ### 5.2 Starting and Stopping LME
 
@@ -432,59 +436,59 @@ For optional uninstall steps, run the following commands:
 
 LME is actively maintained and regularly updated with new features and community-requested improvements. Below are a few common customization options to help tailor your LME deployment to your organization's specific needs:
 
-- [Alerting](/docs/markdown/maintenance/elastalert-rules.md): Addi custom notifications for triggered alerts using elastalert2
-- [Active Response](/docs/markdown/agents/wazuh-active-response.md): Create custom Wazuh active response actions to automatically respond to a malicious event Wazuh detects. 
-- [Backups](/docs/markdown/maintenance/backups.md): Customize backups of logs for your organizations own compliance needs.
-- [Custom log types](/docs/markdown/agents/elastic-agent-management.md#lme-elastic-agent-integration-example): Use elastic agents built in [integrations](https://www.elastic.co/guide/en/integrations/current/index.html) ingest a log type specific to your organization.
+- [Alerting](/docs/markdown/maintenance/elastalert-rules.md) - custom notifications for triggered alerts using elastalert2
+- [Active Response](/docs/markdown/agents/wazuh-active-response.md) - create custom Wazuh active response actions to automatically respond to a malicious event Wazuh detects. 
+- [Backups](/docs/markdown/maintenance/backups.md) - customize backups of logs for your organizations own compliance needs.
+- [Custom log types](/docs/markdown/agents/elastic-agent-management.md#lme-elastic-agent-integration-example) - use elastic agents built in [integrations](https://www.elastic.co/guide/en/integrations/current/index.html) ingest a log type specific to your organization.
  
 ## 6. Documentation
 
 ### 6.1 Logging Guidance
 
  - [LME in the Cloud](/docs/markdown/logging-guidance/cloud.md)
- - [Log Retention](/docs/markdown/logging-guidance/retention.md)
- - [Filtering](/docs/markdown/logging-guidance/filtering.md)
+ - [Retention Settings](/docs/markdown/logging-guidance/retention.md)
+ - [Filtering Logs in LME Cloud](/docs/markdown/logging-guidance/filtering.md)
 
 ### 6.2 Reference
 
  - [FAQ](/docs/markdown/reference/faq.md) 
  - [Dashboard Descriptions](/docs/markdown/reference/dashboard-descriptions.md)
- - [Security Model](/docs/markdown/reference/security-model.md)
+ - [LME Security Model](/docs/markdown/reference/security-model.md)
  - [Architecture](/docs/markdown/reference/architecture.md)
- - [Configuration Customization Options](/docs/markdown/reference/configuration.md)
- - [Password Maintenance](/docs/markdown/reference/passwords.md)
- - [Troubleshooting](/docs/markdown/reference/troubleshooting.md)
+ - [Configuring LME](/docs/markdown/reference/configuration.md)
+ - [Password Encryption](/docs/markdown/reference/passwords.md)
+ - [Troubleshooting LME Install](/docs/markdown/reference/troubleshooting.md)
 
 ### 6.3 Maintenance
 
- - [Alerting](/docs/markdown/maintenance/elastalert-rules.md)
- - [Backups](/docs/markdown/maintenance/backups.md)  
+ - [ElastAlert2 Rule Writing](/docs/markdown/maintenance/elastalert-rules.md)
+ - [Backing Up LME Logs](/docs/markdown/maintenance/backups.md)  
  - [Certificates](/docs/markdown/maintenance/certificates.md) 
  - [Encryption at Rest](/docs/markdown/maintenance/Encryption_at_rest_option_for_users.md)
  - Data management:
-   - [Index Management](/docs/markdown/maintenance/index-management.md)
-   - [Volume Management](/docs/markdown/maintenance/volume-management.md)
+   - [Elasticsearch Index Lifecycle Management](/docs/markdown/maintenance/index-management.md)
+   - [Podman Volume Management](/docs/markdown/maintenance/volume-management.md)
  - Upgrading:
-   - [Upgrading 1x -> 2x](/scripts/upgrade/README.md) 
+   - [Upgrading 1x -> 2x](/docs/markdown/maintenance/upgrading.md) 
    - [Upgrading Future 2.x](/docs/markdown/maintenance/upgrading.md)
 
 ### 6.4 Agents
 
- - [Elastic-Agent](/docs/markdown/agents/elastic-agent-management.md)
+ - [Elastic Agent Management - Enrollment Guide](/docs/markdown/agents/elastic-agent-management.md)
  - Wazuh:
-   - [Wazuh Configuration](/docs/markdown/maintenance/wazuh-configuration.md)
-   - [Active Response](/docs/markdown/agents/wazuh-active-response.md)
-   - [Agent Management](/docs/markdown/agents/wazuh-agent-management.md)
+   - [Wazuh Configuration Management](/docs/markdown/maintenance/wazuh-configuration.md)
+   - [Example Setup for Wazuh Active Response](/docs/markdown/agents/wazuh-active-response.md)
+   - [LME Wazuh Agent Enrollment Guide](/docs/markdown/agents/wazuh-agent-management.md)
     
 ### 6.5 Endpoint Tools
 
 To make best use of the agents, complement them with utilities that generate forensically relevant data to analyze and support detections. Consider adding them to Windows/Linux.
 
 - **Windows**
-  - [Sysmon (manual install)](/docs/markdown/endpoint-tools/install-sysmon.md)
+  - [Installing Sysmon on Windows Machines (manual install)](/docs/markdown/endpoint-tools/install-sysmon.md)
     
 - **Linux**
-  - [Auditd](/docs/markdown/endpoint-tools/install-auditd.md)
+  - [Installing and Configuring Auditd on Linux Systems](/docs/markdown/endpoint-tools/install-auditd.md)
 
 ## 7. Developer Notes
 
@@ -508,7 +512,7 @@ To make best use of the agents, complement them with utilities that generate for
   ansible-playbook ./ansible/install_lme_local.yml -e "clone_dir=/path/to/clone/directory" 
   ```
 
-**Note: If you have issues accessing a file or directory, please note permissions and notes on folder structure [here](#notes-on-folders-permissions-and-service)**.
+**Note: If you have issues accessing a file or directory, please note permissions and notes on folder structure [here](#74-notes-on-folders-permissions-and-service)**.
 
 - This also assumes your user can sudo without a password. If you need to input a password when you sudo, run the following command with the `-K` flag and it will prompt you for a password:
    
@@ -525,8 +529,8 @@ Below we've documented in more detail what exactly occurs during the installatio
 - Setup **/opt/lme** and check for **sudo access**.
 - Configure **other required directories/files**.
 - **Setup password information**: Configures the password vault and other configurations for the service user passwords.  
-- **Setup [Nix](https://nixos.org/)**: nix is the open source package manager we use to install the latest version of Podman.
-- **Set service user passwords**: Sets the service user passwords that are encrypted according to the [Security Model](/docs/markdown/reference/security-model.md).
+- **Setup [NixOS](https://nixos.org/)**: nix is the open source package manager we use to install the latest version of Podman.
+- **Set service user passwords**: Sets the service user passwords that are encrypted according to the [LME Security Model](/docs/markdown/reference/security-model.md).
 - **Install Quadlets**: Installs quadlet files in the directories to be setup as systemd services.
 - **Setup Containers for root**: The containers listed in `$clone_directory/config/containers.txt` will be pulled and tagged.
 - **Start lme.service**: Kicks off the start of LME service containers.

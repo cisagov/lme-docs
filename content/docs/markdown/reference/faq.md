@@ -22,7 +22,7 @@ LME 2.0 supports Windows, Linux, and macOS operating systems. Elastic and Wazuh 
 
 ## 5. Who can use LME?
 
-While intended for small to medium-sized organizations with limited resources, anyone can download and use LME. Reference [LME 2.0 Prerequisite documentation](/docs/markdown/prerequisites.md) for more details on required infrastructure and hardware including CPU, memory, and storage requirements.
+While intended for small to medium-sized organizations with limited resources, anyone can download and use LME. Reference [LME 2.0 Prerequisites documentation](/docs/markdown/prerequisites.md) for more details on required infrastructure and hardware including CPU, memory, and storage requirements.
 
 ## 6. Can LME run in the cloud?
 
@@ -36,7 +36,7 @@ LME has an upgrade process from v1.4 -> 2.0. The upgrade uninstalls 1.4 and inst
 
 ## 8. How do I download LME?
 
-Detailed installation and download steps can be found in the [Install documentation](https://cisagov.github.io/lme-docs/docs/markdown/install/).
+Detailed installation and download steps can be found on the [Install documentation](https://cisagov.github.io/lme-docs/docs/markdown/install/).
 
 ## 9.   In light of LME 2.0, will older versions of LME stop working? 
 
@@ -69,7 +69,7 @@ Please visit [CISA’s LME website](https://www.cisa.gov/resources-tools/service
 # Other Questions:
  
 ## Basic troubleshooting
-You can find basic troubleshooting steps in the [Troubleshooting Guide](troubleshooting.md).
+You can find basic troubleshooting steps in the [Troubleshooting LME Install](troubleshooting.md).
 
 ## Finding your LME version (and the components versions)
 When reporting an issue or suggesting improvements, it is important to include the versions of all the components, where possible. This ensures that the issue has not already been fixed!

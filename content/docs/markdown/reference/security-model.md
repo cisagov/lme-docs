@@ -8,7 +8,9 @@ This document outlines the LME security model from the user's perspective. It is
 
 ## Operating System
 
-LME has been tested on Ubuntu 22.04 but should, in theory, support any Unix Operating System (OS) that can install the required dependencies listed in the [README](/README.md#retrieving-passwords). It is assumed that your OS and Linux kernel are up to date and properly patched. Failing to patch your OS could leave your security infrastructure vulnerable.
+LME has been tested most extensively on Ubuntu 24.04 but should, in theory, support any Unix Operating System (OS) that can install the required dependencies. It is assumed that your OS and Linux kernel are up to date and properly patched. Failing to patch your OS could leave your security infrastructure vulnerable.
+
+**Note: For more information on supported Linux distributions, reference [Supported Linux Distributions](https://cisagov.github.io/lme-docs/docs/markdown/reference/change-me/).**
 
 If a side-channel attack or Denial-of-Service (DoS) exploit is ever discovered at the OS level, LME considers this out of scope for what it can reasonably defend against. 
 
@@ -16,7 +18,7 @@ If a side-channel attack or Denial-of-Service (DoS) exploit is ever discovered a
 
 The LME security model defines four distinct user roles, each with specific permissions and responsibilities to maintain a secure and isolated environment. By clearly separating access between root, administrators, container users, and service users, LME minimizes security risks and enforces the principle of least privilege. Understanding these user types is critical to securely operating and managing the LME environment.
 
-  1. **Root**: Every Unix-based OS has a root user. To maintain security, follow best practices by restricting access and applying hardening methods (e.g., disabling remote root login, securing administrator access, disabling root over Secure Shell [SSH], or removing `sudo` access where possible. For more information, reference [README](/README.md#retrieving-passwords) and [More Details](https://wiki.archlinux.org/title/Security#Restricting_root)).
+  1. **Root**: Every Unix-based OS has a root user. To maintain security, follow best practices by restricting access and applying hardening methods (e.g., disabling remote root login, securing administrator access, disabling root over Secure Shell [SSH], or removing `sudo` access where possible. For more information, reference [Restricting Root documentation](https://wiki.archlinux.org/title/Security#Restricting_root).
      
   2. **Administrators (i.e., those with `sudo` access)**: LME operates through administrator services. Any user with `sudo` access can administrator LME components. Admin users are given access to the `sudo` group and can manage services and system settings. Administrators are responsible for managing the master password used by LME service users.
      

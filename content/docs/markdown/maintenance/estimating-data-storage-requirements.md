@@ -32,7 +32,7 @@ Additionally, Index Lifecycle Management (ILM) was not enabled during testing. T
 
 To better manage storage costs and performance in production environments, consider the following considerations:
 
-- **Enable [Index Lifecycle Management](https://cisagov.github.io/lme-docs/docs/markdown/maintenance/index-management/) (ILM)** - if managing storage costs and performance is critical, enable ILM in Elasticsearch; this automates the lifecycle of your data--such as transitioning older indices to cheaper storage tiers or deleting them--and helps reduce overall storage usage over time.
+- **Enable [Elasticsearch Index Lifecycle Management](https://cisagov.github.io/lme-docs/docs/markdown/maintenance/index-management/) (ILM)** - if managing storage costs and performance is critical, enable ILM in Elasticsearch; this automates the lifecycle of your data--such as transitioning older indices to cheaper storage tiers or deleting them--and helps reduce overall storage usage over time.
   
 - **Define a Retention Policy** - your retention policy plays a critical role in controlling storage growth; use ILM to automatically delete older logs that are no longer needed, based on your organization's data retention requirements
   

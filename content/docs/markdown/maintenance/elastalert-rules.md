@@ -5,7 +5,7 @@ title: ElastAlert2 Rule Writing
 
 This page explains how to write and implement alert rules using ElastAlert2, enabling real-time notifications for detections and alerts triggered by Elasticsearch and Wazuh.
 
-By default, all logs and detections are indexed in Elasticsearch. However, in many cases, you may also want to push notifications to your team through tools like Slack, Microsoft Teams, email, and more. ElastAlert2 supports this through a wide range of alerting integrations. View the full list of supported alert types [HERE](https://elastalert2.readthedocs.io/en/latest/alerts.html#alert-types).
+By default, all logs and detections are indexed in Elasticsearch. However, in many cases, you may also want to push notifications to your team through tools like Slack, Microsoft Teams, email, and more. ElastAlert2 supports this through a wide range of alerting integrations. View the full list of supported alert types [here](https://elastalert2.readthedocs.io/en/latest/alerts.html#alert-types).
 
 ## Alert Rule Overview
 

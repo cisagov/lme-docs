@@ -58,9 +58,9 @@ Although system requirements are mostly the same for LME 2.0, we do have  hardwa
 ## 13. Where can I receive further support?
 
 For further support with LME 2.0 users can explore the following options:
-•	Report LME issues via the GitHub 'Issues' tab at the top of the page or by clicking GitHub Issues
-•	Visit GitHub 'Discussions' to check if your issue has been addressed or start a new thread
-•	Directly email CyberSharedServices@cisa.dhs.gov for other questions or comments
+  - Report LME issues via the GitHub 'Issues' tab at the top of the page or by clicking GitHub Issues
+  - Visit GitHub 'Discussions' to check if your issue has been addressed or start a new thread
+  - Directly email CyberSharedServices@cisa.dhs.gov for other questions or comments
 
 ## 14. Where Can I Find Additional Resources?
 

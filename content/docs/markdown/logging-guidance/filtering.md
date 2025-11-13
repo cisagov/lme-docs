@@ -5,7 +5,7 @@ title: Filtering Logs in the LME Cloud
 
 ## Overview
  
-Some logs in LME Cloud can be overly verbose or not particularly useful depending on your environment (e.g., [Dashboard Spamming Events](https://github.com/cisagov/LME/issues/22)). While we aim to strike a good balance, every setup is different.
+Some logs in LME Cloud can be overly verbose or not particularly useful depending on your environment (e.g., [Dashboard Spamming Login Events](https://github.com/cisagov/LME/issues/22)). While we aim to strike a good balance, every setup is different.
 
 This guide shows you how to fine-tune your logging experience by applying filters in three key areas:
 
@@ -19,7 +19,7 @@ We encourage you to adapt these examples to your needs and contribute improvemen
 
 ## Dashboard Filtering Example
 
-Here's how to apply a filter in a Kibana dashboard to hide excessive or unnecessary logs--in this case, Windows Event Log [4624](https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4624) from specific usernames: 
+Here's how to apply a filter in a Kibana dashboard to hide excessive or unnecessary logs--in this case, [Windows Event Log 4624](https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4624) from specific usernames: 
 
 ```
 {

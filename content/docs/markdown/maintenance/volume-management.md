@@ -17,11 +17,11 @@ You will see volume paths in our quadlets written in this format:
 
 The path on the left side of the colon refers to a file or directory on the host machine, while the path on the right is where it will be mounted inside the running container.
 
-**NOTE: If you do not have a volume assigned to a certain path or file, it will not be persisted. Restarting a container without a properly defined volume will discard any changes made inside that container. Ensure all required files are defined as volumes (we've ensure all required files by default are already volumes).**
+**NOTE: If you do not have a volume assigned to a certain path or file, it will not be persisted. Restarting a container without a properly defined volume will discard any changes made inside that container. Ensure all required files are defined as volumes (we've ensured all required files by default are already volumes).**
 
 ## Podman Volume Management for LME
 
-Proper volume configuration is critical for maintaining the health and performance of your Logging Made Easy (LME) installation. Columes help manage disk usage and prevent data loss during container restarts. The following sections outline how you can monitor and manage the disk space used by Podman volumes.
+Proper volume configuration is critical for maintaining the health and performance of your Logging Made Easy (LME) installation. Columns help manage disk usage and prevent data loss during container restarts. The following sections outline how you can monitor and manage the disk space used by Podman volumes.
 
 ### Check Volume Location on Host Machine
 

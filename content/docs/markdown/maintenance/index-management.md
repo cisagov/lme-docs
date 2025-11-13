@@ -28,7 +28,7 @@ Elasticsearch organizes index data through the following four lifecycle phases:
    - Data is no longer needed
    - Removed from the system
 
-Data transitions through these phases based on rules defined in the Index Lifecycle Policy.
+Data transitions through these phases are based on rules defined in the Index Lifecycle Policy.
 
 ## Creating an Index Lifecycle Policy
 
@@ -125,7 +125,7 @@ You can customize Hot, Warm, Cold, and Delete phases as needed. For example:
 
 - Set your **Hot**, **Warm**, and **Cold phases** to suit your access needs
 
-- Enable **Cold phase** for long-term, rarely acccessed data
+- Enable **Cold phase** for long-term, rarely accessed data
 
 - Click on the **trash can** to turn on the Delete phase
 

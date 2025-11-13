@@ -64,7 +64,7 @@ instances:
       - "127.0.0.1"
 ```
 
-For example, the new kibana certificate would need to support the above alternative names. You can also ensure its set up properly by viewing the current certificate (assuming you've already mounted the `lme_certs` podman volume).
+For example, the new Kibana certificate would need to support the above alternative names. You can also ensure its set up properly by viewing the current certificate (assuming you've already mounted the `lme_certs` podman volume).
 
 ```bash
 root@ubuntu:~$ cat /var/lib/containers/storage/volumes/lme_certs/_data/kibana/kibana.crt  | openssl x509 -text | grep -i Alternative -A 1

@@ -5,7 +5,7 @@ title: Prerequisites
 
 ## IT Skills Needed to Install Logging Made Easy (LME)
 
-LME is designed for users with experience in systems or network administration can download LME. You're likely qualified to install LME if you have ever:
+LME is designed for users with experience in systems or network administration that can download LME. You're likely qualified to install LME if you have ever:
 
 - Installed a Windows server and connected it to an Active Directory domain
   
@@ -17,7 +17,7 @@ We estimate that users with this background will need approximately 30 minutes o
 
 ### Estimated Installation Times
 
-The following time table is based on real-world installation sessions. These milestones reflect approximate durations to help you plan accordingly.
+The following timetable is based on real-world installation sessions. These milestones reflect approximate durations to help you plan accordingly.
 
 | Milestones 				| Time 		| Timeline 	|
 | ------------- 			| ------------- | ------------- |
@@ -40,7 +40,7 @@ The following time table is based on real-world installation sessions. These mil
 
 ![diagram](/docs/imgs/lme-architecture-v2.png) 
 
-Please reference the [ReadMe](/README.md#Diagram) for a detailed description of of LME's architecture and its components.
+Please reference the [Architecture document](https://cisagov.github.io/lme-docs/docs/markdown/reference/architecture/) for a detailed description of LME's architecture and its components.
 
 ## LME Costs
 
@@ -61,11 +61,13 @@ This guide is designed for single server setups to keep things simple. However, 
 
 ## Required Infrastructure for LME Installation
 
-To begin installing LME, you will need access to the following servers or you will need to create them:
+To begin installing LME, you will need access to the following servers, or you will need to create them:
 
 - A client machine (or multiple) - these are the systems you'd like to monitor
   
-- An Ubuntu 22.04+, Debian 12, or Redhat 9 server - this is where the LME stack (e.g., Elastisearch, Kibana) will be installed via Podman containers
+- A Linux server - this is where the LME stack (e.g., Elastisearch, Kibana) will be installed via Podman containers
+
+   **Note: For more information on supported Linux distributions, reference [Supported Linux Distributions](https://cisagov.github.io/lme-docs/docs/markdown/reference/change-me/).**
 
 We will install our database (Elasticsearch) and dashboard software on this machine. This is all taken care of through Podman containers.
 
@@ -91,7 +93,7 @@ To ensure reliable performance during installation and operation, your system mu
        
      - Required for LME data and OS; more is needed if supporting ~17 clients
      
-       **Note: If your system has less than 16GB of RAM, reference the [troubleshooting guide](/docs/markdown/reference/troubleshooting.md#memory-in-containers-need-more-ramless-ram-usage) for more information on how to configure Podman memory quotas.**
+       **Note: If your system has less than 16GB of RAM, reference the [Troubleshooting LME Install](/docs/markdown/reference/troubleshooting.md#memory-in-containers-need-more-ramless-ram-usage) for more information on how to configure Podman memory quotas.**
  
    - **Suggestions**
    
@@ -131,6 +133,6 @@ Once your system meets the minimum hardware requirements, you can choose where t
 
 ## Firewall Rules Needed
 
-Please reference [LME in the Cloud](/docs/markdown/logging-guidance/cloud.md) for more information on firewalls . 
+Please reference [LME in the Cloud](https://cisagov.github.io/lme-docs/docs/markdown/logging-guidance/cloud/) for more information on firewalls . 
 
 You must ensure that the client machine(s) you want to monitor can reach the main LME ports as described in the [Required Ports section](/docs/markdown/reference/architecture.md#required-ports) of the Architecture documentation.

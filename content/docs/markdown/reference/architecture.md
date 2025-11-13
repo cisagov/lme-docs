@@ -3,7 +3,9 @@ title: Architecture
 ---
 # Architecture
 
-Logging Made Easy (LME) runs on Ubuntu 22.04 and leverages Podman containers for security, performance, and scalability. We’ve integrated Wazuh,  Elastic, and ElastAlert open-source tools to provide log management, endpoint security monitoring, alerting, and data visualization capabilities. This modular, flexible architecture supports efficient log storage, search, and threat detection--and enables you to scale as your logging needs evolve.
+Logging Made Easy (LME) runs on Ubuntu and leverages Podman containers for security, performance, and scalability. We’ve integrated Wazuh,  Elastic, and ElastAlert open-source tools to provide log management, endpoint security monitoring, alerting, and data visualization capabilities. This modular, flexible architecture supports efficient log storage, search, and threat detection--and enables you to scale as your logging needs evolve.
+
+**Note: For more information on supported Linux distributions, reference [Supported Linux Distributions](https://cisagov.github.io/lme-docs/docs/markdown/reference/change-me/).**
 
 ![diagram](/docs/imgs/lme-architecture-v2.png) 
 
@@ -48,11 +50,11 @@ Ports required include:
 
 LME leverages both Wazuh and Elastic Agents providing more comprehensive logging and security monitoring across various log sources. The agents gather critical data from endpoints and send it back to the LME server for analysis, offering organizations deeper visibility into their security posture. We also make use of Wazuh Manager and Elastic Fleet for agent orchestration and management.
 
-- **Wazuh Agents**: Enables EDR on client systems, providing advanced security features like intrusion detection and anomaly detection; for more information, reference [Wazuh's Agent Documentation](https://github.com/wazuh/wazuh-agent)
+- **Wazuh Agents**: Enables EDR on client systems, providing advanced security features like intrusion detection and anomaly detection; for more information, reference [Wazuh's Agent documentation](https://github.com/wazuh/wazuh-agent)
   
 - **Wazuh Manager**: Responsible for managing Wazuh Agents across endpoints, and overseeing agent registration, configuration, and data collection, providing centralized control for monitoring security events and analyzing data
   
-- **Elastic Agents**: Enhance log collection and management, allowing for greater control and customization in how data is collected and analyzed. Agents also feature a vast collection of integrations for many log types/applications. For more information, see [Elastic's agent documentation](https://github.com/elastic/elastic-agent)
+- **Elastic Agents**: Enhance log collection and management, allowing for greater control and customization in how data is collected and analyzed. Agents also feature a vast collection of integrations for many log types/applications. For more information, see [Elastic's Agent documentation](https://github.com/elastic/elastic-agent)
   
 - **Elastic Fleet**: Manages Elastic Agents across your infrastructure, providing centralized control over agent deployment, configuration, and monitoring; simplifies the process of adding and managing agents on various endpoints; supports centralized updates and policy management
 

@@ -57,7 +57,7 @@ Installing LME involves preparing the system environment, meeting hardware requi
 
   - This also prints the names of the containers in the first column of text on the left. 
 
-  **Note: We are currently missing health checks for Fleet Server and ElastAlert2. If those appear, they won't show healthy and thats expected. Health checks for these services will be added in a future version.**
+  **Note: We are currently missing health checks for Fleet Server and ElastAlert2. If those appear, they won't show healthy and that's expected. Health checks for these services will be added in a future version.**
 
   - If a container is missing, check its logs by running:
     
@@ -102,7 +102,7 @@ Installing LME involves preparing the system environment, meeting hardware requi
 
   - To verify that Kibana is accessible, use a **Secure Shell (SSH) proxy** to forward a local port to the remote Linux host.
   
-  - Log in as the **Elastic admin** using the `elastic` username and the password retrieved from the [Export Password Script](#grabbing-passwords).
+  - Log in as the **Elastic admin** using the `elastic` username and the password retrieved from the [Retrieving Passwords section](https://cisagov.github.io/lme-docs/docs/markdown/install/#51-retrieving-passwords) of the Install document.
  
   - Run the ***following command***:
     
@@ -281,11 +281,11 @@ Proceed to follow the steps in the figures below.
 
 Each dashboard and its visualization objects are contained within a NDJSON file (previously JSON) and can be easily imported. The NDJSON files are available in the [dashboards/](/dashboards) directory.
 
-<p align="center">![Importing Objects](/docs/imgs/import.png)
+![Importing Objects](/docs/imgs/import.png)
 
-<p align="center">![Importing Objects](/docs/imgs/import1.png)
+![Importing Objects](/docs/imgs/import1.png)
 
-<p align="center">![Importing Objects](/docs/imgs/import2.png)
+![Importing Objects](/docs/imgs/import2.png)
 
 <p align="center">
 Steps to import objects
@@ -297,7 +297,7 @@ Elastic maintains a comprehensive set of [troubleshooting guides](https://www.el
 
 ### Issues Installing Elastic Agent
 
-If you have encounter the error "Elastic Agent is installed but broken" when trying to install the Elastic Agent add the following flag to your install command:
+If you have encountered the error "Elastic Agent is installed but broken" when trying to install the Elastic Agent add the following flag to your install command:
 
 ```bash
 --force
@@ -322,19 +322,19 @@ Follow the steps below to correct this issue:
 
 - Click **Stack Management** from the left-hand menu.
 
-<p align="center">![Check Default Index](/docs/imgs/stack-management.png)
+![Check Default Index](/docs/imgs/stack-management.png)</p>
 
 - Click **Index Patterns** under Kibana Stack Management.
 
-<p align="center">![Check Default Index](/docs/imgs/index-patterns.png)
+![Check Default Index](/docs/imgs/index-patterns.png)
 
 - Verify that the **Default label** is set next to the ```INDEX_NAME-*``` index pattern.
 
-<p align="center">![Check Default Index](/docs/imgs/default-winlogbeat.png)
+![Check Default Index](/docs/imgs/default-winlogbeat.png)
 
 - If this Index pattern is not selected as the default, click on the **```INDEX_NAME-*``` pattern**, and then select the following option on the subsequent page.
 
-<p align="center">![Set Default Index](/docs/imgs/default-index-pattern.png)
+![Set Default Index](/docs/imgs/default-index-pattern.png)
 
 **Note: You will need to run this command with an account that can access `/opt/lme`. If you can't `sudo`, the user account will need access to the certifications located in the command.**
 
@@ -371,7 +371,7 @@ This will be fixed in a future release of Elastic, but can be temporarily diagno
 
 When attempting to add Elastic Agent on the host server, you may see the message **Missing URL for Fleet Server host**--as shown in the figure below.
 
-<p align="center">![Check Default Index](/docs/imgs/fleetservermissingurl.png)
+![Check Default Index](/docs/imgs/fleetservermissingurl.png)
 
 This typically happens when post-installation steps are run before the `lme-fleet-server` container displays a status of **Up** in `podman status`.
 

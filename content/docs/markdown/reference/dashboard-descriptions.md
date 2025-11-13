@@ -4,13 +4,13 @@ title: Dashboard Descriptions
 # Dashboard Descriptions
 
 ## Prerequisites
-In order for the the Logging Made Easy (LME) dashboards to display without errors, they require an Elastic Agent to be logging sysmon events from a Windows machine.
+In order for the Logging Made Easy (LME) dashboards to display without errors, they require an Elastic Agent to be logging sysmon events from a Windows machine.
 
 **Note: With this configuration, wait at least 30 minutes for logs to populate within Elasticsearch.**
 
 ## Purpose
 
-LME releases new dashboards on GitHub periodically.The dashboard descriptions currently availble can be found in the following subsections. Users may also choose to create custom dashboards.
+LME releases new dashboards on GitHub periodically. The dashboard descriptions currently available can be found in the following subsections. Users may also choose to create custom dashboards.
 
 ### User Human Resources  
 
@@ -26,7 +26,7 @@ The Security Log Dashboard actively presents forwarded security log events, tall
 
 ### Process Explorer 
 
-The Process Explorer Dashboard monitors network activity related to processes, users, processes user roles, files, and filenames in the download directory. It tracks system processes and registry events, offering user-friendly filtering by process names and Process Identifiers (PIDs). TThe dashboard is designed to detect abnormal activity such as unauthorized privilege elevation or installation of malware. It also highlights spikes in processes tied to specific users, which can indicate malicious behavior. 
+The Process Explorer Dashboard monitors network activity related to processes, users, processes user roles, files, and filenames in the download directory. It tracks system processes and registry events, offering user-friendly filtering by process names and Process Identifiers (PIDs). The dashboard is designed to detect abnormal activity such as unauthorized privilege elevation or installation of malware. It also highlights spikes in processes tied to specific users, which can indicate malicious behavior. 
 
 ### Sysmon Summary
 
@@ -44,7 +44,7 @@ The Alert Dashboard allows users to define rules that detect complex conditions 
 
 ### HealthCheck 
 
-The HealthCheck Dashboard allows users to monitor system health by tracking unexpected shutdowns, events per machine, and the number of logged-in admins. Data is presented based on a selected date range, heling users identify anomalies such as frequent reboots or an unusually high number of admin users.  
+The HealthCheck Dashboard allows users to monitor system health by tracking unexpected shutdowns, events per machine, and the number of logged-in admins. Data is presented based on a selected date range, helping users identify anomalies such as frequent reboots or an unusually high number of admin users.  
 
 ### Policy Changes and System Activity
 
@@ -56,7 +56,7 @@ The Identity Access Management Dashboard highlights key security events related 
 
 ### Privileged Activity Log
 
-The Privileged Activity Log Dashboard enables auditing of both sensitive and non-sensitive privileged activity. It displays the number of privileged attempts per host and counts of processess created or terminated. Users can also view assigned token creation events, which help assess privilege usage patterns across systems.
+The Privileged Activity Log Dashboard enables auditing of both sensitive and non-sensitive privileged activity. It displays the number of privileged attempts per host and counts of processes created or terminated. Users can also view assigned token creation events, which help assess privilege usage patterns across systems.
 
 ### Credential Access Log
 

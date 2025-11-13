@@ -4,4 +4,4 @@ resources/
 .DS_Store
 *.vim
 *.crt
-.vscode/
+**.vscode/**

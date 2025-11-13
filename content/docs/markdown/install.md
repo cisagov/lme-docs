@@ -70,13 +70,11 @@ title: Install
 
      7.1 [Git Clone and Git Checkout Notes](#71-git-clone-and-git-checkout-notes)
 
-     7.2 [Non-Default Installation Notes](#72-non-default-installation-notes)
+     7.2 [Installation Details](#72-installation-details)
 
-     7.3 [Installation Details](#73-installation-details)
+     7.3 [Notes on Folders, Permissions, and Service](#73-notes-on-folders-permissions-and-service)
 
-     7.4 [Notes on Folders, Permissions, and Service](#74-notes-on-folders-permissions-and-service)
-
-     7.5 [Other Post-Install Setup](#75-other-post-install-setup)
+     7.4 [Other Post-Install Setup](#74-other-post-install-setup)
 
 ## 1. Quick Start
 
@@ -88,14 +86,19 @@ title: Install
   ```
 - Pull down the most up-to-date version of LME and unzip it.
   ```bash
+  # Debian/Ubuntu:
+  sudo apt update && sudo apt upgrade -y && sudo apt-get install -y jq curl
+
+  # RedHat (comes with curl minimal):
+  sudo dnf -y install jq unzip
+
+  # Run this to download on all systems; run as regular user, not root:
   curl -s https://api.github.com/repos/cisagov/LME/releases/latest | jq -r '.assets[0].browser_download_url' | xargs -I {} sh -c 'curl -L -O {} && unzip -d ~/LME $(basename {})'
-  ```
-- Change directory into LME.
-  ```bash
+
+  # Move to the LME directory in the home directory of the user:
   cd ~/LME
-  ```
-- Run the `install.sh` command and configure your IP address and settings by following the prompts.
-  ```bash
+
+  # Run the installer (On RedHat, if going to run in se enforcing mode, run setenforce 1 before running the installer):
   ./install.sh
   ```
 
@@ -113,7 +116,7 @@ For a more detailed understanding of LME's architecture, reference the [LME Arch
 
 ### 2.1 Description
 
-LME runs on Ubuntu and Debian 12.10 (experimental). It uses Podman containers to provide:
+LME runs on Ubuntu 22.04 and 24.04, Debian 12.10, and RedHat 9 (experimental). It uses Podman containers to provide:
 
 - Log Management
 - Endpoint Security
@@ -201,11 +204,9 @@ Here's a reference timeline based on real-world installations. Actual times may 
 | ------------- 			| ------------- | ------------- |
 | Download LME 				| 0:31.49 	| 0:31.49 	|
 | Set Environment 			| 0:35.94 	| 1:06.61 	|
-| Install Ansible 			| 1:31.94 	| 2:38.03 	|
 | Installing LME Ansible Playbook 	| 4:03.63 	| 6:41.66 	|
 | All Containers Active 		| 6:41.66 	| 13:08.92 	|
 | Accessing Elastic 			| 0:38.97 	| 13:47.60 	|
-| Post-Install Ansible Playbook 	| 2:04.34 	| 15:51.94 	|
 | Deploy Linux Elastic Agent 		| 0:49.95 	| 16:41.45 	|
 | Deploy Windows Elastic Agent 		| 1:32.00 	| 18:13.40 	|
 | Deploy Linux Wazuh Agent 		| 1:41.99 	| 19:55.34 	|
@@ -216,7 +217,7 @@ Here's a reference timeline based on real-world installations. Actual times may 
 
 ## 4. Downloading and Installing LME
 
-This section provides the procedures for downloading, configuring, and installing LME on an Ubuntu server.
+This section provides the procedures for downloading, configuring, and installing LME on a server.
 
 **Note: Reference the [Supported Linux Distribution documentation](https://cisagov.github.io/lme-docs/docs/markdown/reference/change-me/) for more information on recommended Linux distributions for installing LME.**
 
@@ -231,7 +232,11 @@ If you are upgrading from an older version of LME to LME 2.0, reference our [Upg
 To update your package list and install the necessary tools, run:
 
 ```bash
+# Debian based:
 sudo apt update && sudo apt upgrade -y && sudo apt-get install -y jq curl
+
+# Redhat based:
+sudo dnf -y install jq unzip 
 ```
 
 #### 4.2.2 Download and Extract LME
@@ -535,7 +540,7 @@ Below we've documented in more detail what exactly occurs during the installatio
 - **Setup Containers for root**: The containers listed in `$clone_directory/config/containers.txt` will be pulled and tagged.
 - **Start lme.service**: Kicks off the start of LME service containers.
 
-### 7.4 Folders, Permissions, and Service
+### 7.3 Folders, Permissions, and Service
 
 - `/opt/lme` will be owned by root. All LME services will run and execute as unprivileged users. The active LME configuration is stored in `/opt/lme/config`. 
 
@@ -571,7 +576,7 @@ Below we've documented in more detail what exactly occurs during the installatio
      sudo -i systemctl start lme.service
      ```
 
-### 7.5 Other Post-Install Setup 
+### 7.4 Other Post-Install Setup 
 
 A few final steps are required to complete your setup:
 

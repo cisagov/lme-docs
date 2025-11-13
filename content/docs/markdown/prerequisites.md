@@ -135,4 +135,4 @@ Once your system meets the minimum hardware requirements, you can choose where t
 
 Please reference [LME in the Cloud](https://cisagov.github.io/lme-docs/docs/markdown/logging-guidance/cloud/) for more information on firewalls . 
 
-You must ensure that the client machine(s) you want to monitor can reach the main LME ports as described in the [Required Ports section](/README.md#required-ports) of the ReadMe .
+You must ensure that the client machine(s) you want to monitor can reach the main LME ports as described in the [Required Ports section](/docs/markdown/reference/architecture.md#required-ports) of the Architecture documentation.

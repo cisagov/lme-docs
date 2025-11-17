@@ -40,7 +40,7 @@ When you create your prepare offline machine ensure the root path has at least 5
 
 Your Air-Gapped machine must have enough space to both unzip these files, and then install them into the /opt/lme path. Ensure that the both the path you unzip at, and /opt/ have over 50GB of space to do a proper install.
 
-/var/ path is where your logs will get saved via the Podman volume. Ensure this path has ample space if you aren't going to be using an external storage device.
+/var/ path is where your logs will get saved via the Podman volume. Ensure this path has ample space if you aren't going to be using an external storage device. Adjust your index management policies to fit the size you have here. (i.e. delete logs after 14 days instead of 30, etc)
 
 ### 3. Prepare Offline Resources (On the internet connected machine)
 ```bash

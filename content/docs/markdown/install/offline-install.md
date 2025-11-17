@@ -1,5 +1,5 @@
 ---
-title: "Offline Install (Airgapped)"
+title: "Air-Gapped Install"
 ---
 
 # LME Offline Installation Guide
@@ -34,17 +34,15 @@ git clone https://github.com/cisagov/LME.git
 cd LME
 ```
 
-### 2. Expand Disk (Red Hat Only)
-**Red Hat users only:** Run the disk expansion script before preparing offline resources. This will require 
-admin credentials.
+### 2. Size and Volume requirements
+The prepare offline script will use quite a bit of space. As it will be downloading many required packages and images. 
+When you create your prepare offline machine ensure the root path has at least 50GB it order to create and store the files that get zipped into the tar.gz.
 
-**Note:** Ubuntu users should NOT run this script.
+Your Air-Gapped machine must have enough space to both unzip these files, and then install them into the /opt/lme path. Ensure that the both the path you unzip at, and /opt/ have over 50GB of space to do a proper install.
 
-```bash
-sudo ./scripts/expand_disk_for_offline.sh
-```
+/var/ path is where your logs will get saved via the Podman volume. Ensure this path has ample space if you aren't going to be using an external storage device.
 
-### 3. Prepare Offline Resources
+### 3. Prepare Offline Resources (On the internet connected machine)
 ```bash
 ./scripts/prepare_offline.sh
 ```

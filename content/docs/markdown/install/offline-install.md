@@ -36,7 +36,7 @@ cd LME
 
 ### 2. Size and Volume requirements
 The prepare offline script will use quite a bit of space. As it will be downloading many required packages and images. 
-When you create your prepare offline machine ensure the root path has at least 50GB it order to create and store the files that get zipped into the tar.gz.
+When you create your prepare offline machine ensure the root path has at least 50GB in order to create and store the files that get zipped into the tar.gz.
 
 Your Air-Gapped machine must have enough space to both unzip these files, and then install them into the /opt/lme path. Ensure that the both the path you unzip at, and /opt/ have over 50GB of space to do a proper install.
 

@@ -2,11 +2,10 @@
 title: Events
 
 cascade:
-  type: "community"
+  type: "docs"
 ---
 
-# List of Upcoming events: 
+# Quarterly Newsletters
 
-
-1. Event 1
-2. Event 2
+1. LME Newsletter - Dec 2025
+2. LME Newsletter - Mar 2026 

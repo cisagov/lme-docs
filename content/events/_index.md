@@ -1,8 +1,7 @@
 ---
-title: Events
-
-cascade:
-  type: "docs"
+title = "LME News"
+simple_list = true
+weight = 20
 ---
 
 # Quarterly Newsletters

@@ -1,7 +1,5 @@
 ---
-title = "LME News"
-simple_list = true
-weight = 20
+title: LME News
 ---
 
 # Quarterly Newsletters

@@ -12,6 +12,8 @@ This offline installation process works on:
 
 **Important:** The offline preparation machine and the target offline machine must be running the same OS.
 
+![air-gapped install diagram](/doc/imgs/Air-Gapped-Solution-Diagram.png)
+
 ## On Internet-Connected Machine (Preparation)
 
 ### Prerequisites

@@ -59,7 +59,7 @@ Your Air-Gapped machine must have enough space to both unzip these files, and th
 ### 4. Locate and Transfer the Archive
 
 When complete, you will find a `.tar.gz` file in your home directory (`~/`):
-```
+```bash
 lme-offline-YYYYMMDD-HHMMSS.tar.gz
 ```
 Transfer this archive to your offline air-gapped machine according to your organization's security policy.

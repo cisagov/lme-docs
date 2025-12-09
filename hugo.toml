@@ -71,7 +71,7 @@ ignoreFiles = []
     name = "LME News"
     weight = -102
     pre = "<i class='fas fa-calendar pr-2'></i>"
-    url = "/events/"
+    url = "/docs/lme-news/"
   # [[menu.main]]
   #   name = "Learning"
   #   weight = -101

@@ -1,7 +1,11 @@
 ---
 title: "LME News"
 linkTitle: "LME News"
+description: "Quarterly updates and announcements for the Logging Made Easy community."
+
 ---
+# Release Notes
+- [LME Release Notes](https://github.com/cisagov/LME/releases)
 
 # Quarterly Newsletters
 

@@ -2,6 +2,7 @@
 title: "LME News"
 linkTitle: "LME News"
 description: "Quarterly updates and announcements for the Logging Made Easy community."
+layout: "page"
 
 ---
 # Release Notes

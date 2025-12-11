@@ -1,7 +1,6 @@
 ---
 title: "LME News"
 linkTitle: "LME News"
-layout: "page"
 ---
 
 # Quarterly Newsletters

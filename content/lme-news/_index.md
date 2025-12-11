@@ -1,10 +1,9 @@
 ---
 title: "LME News"
 linkTitle: "LME News"
-weight: 50
+layout: "page"
 ---
 
 # Quarterly Newsletters
 
-- LME Newsletter – Dec 2025  
-- LME Newsletter – Mar 2026
+- [Logging Made Easy Insider Newsletter – Q4 2025]({{< relref "q4-2025.md" >}})

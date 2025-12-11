@@ -23,7 +23,7 @@ If you would like to store your data on cloud, we recommend you move your entire
 to the cloud. We have guidance for that in our [article on cloud](./cloud.md).
 
 ## Changing Storage Location
-Broadly, all options follow the two steps:
+Broadly, all options follow these two steps:
 1. Mount the storage medium to your server that will host LME
 2. Configure LME to point to that location
 
@@ -43,47 +43,68 @@ cd ~/lme
 
 The podman volumes will be hosted under the directory provided. 
 
+Note: this will affect **all** future containers. If you are planning on using
+podman for any other reasons please be aware of this.
+
 #### Changing Storage Location
 
 **Note: make a backup before you do this. There is a high risk of losing data.**
 
-**Note: this has not been tested and is not guaranteed to work. Test before pushing**
+**Note: this has not been tested and is not guaranteed to keep data. Test before pushing**
 
-1. Stop all LME services
+For this example, assume LME installation happened as normal and we have a new
+drive mounted to `/mnt/lme`, which is where we want to store all the data.
+
+We recommend making a backup of data before doing this.
+
+1. Get the current storage directory
+```bash
+sudo -i podman info --format '{{.Store.GraphRoot}}'
+
+# example output
+/var/lib/containers/storage
+```
+
+2. Stop all LME services
 ```bash
 sudo systemctl stop lme*
+sudo -i podman stop --all
 ```
-2. Edit `/etc/containers/storage.conf` to point to new directory
-  - Change `graphroot=/path/` to the new path of storage volumes
-  - Remember what the old `graphroot=` directory is
-```bash
 
-sudo vim /etc/containers/storage.conf
-
-## Inside /etc/containers/storage.conf
-[storage]
-driver = "overlay"
-runroot = "/run/containers/storage"
-
-#make a note of what graphroot is already pointing to.
-#You'll need to move those volumes
-graphroot = "/CHANGE/TO/NEW/PATH" #change this new line
-```
 3. Move existing volumes to new directory
-Make sure you remember where your volumes were. By default, they
-are stored at `/var/lib/containers/storage`
+
+**Note: If you are storing on an external drive, NAS, etc. make
+sure this directory is on the new drive!**
 
 ```bash
-sudo mv /old/graphroot/path/* /new/graphroot/path/*
-
-## for example
-sudo mv /var/lib
+sudo mv /var/lib/containers/storage/* /mnt/lme/
 ```
 
-4. Restart LME
+4. Create a symbolic link from old directory to new directory
+
+We need to make a link because the podman database stores these paths as
+hardcoded. We can alternatively make new volumes and copy information over,
+but
+
+```bash
+sudo rm -rf /var/lib/containers/storage
+
+#make a link pointing from the old directory to the new one
+#NOTE: make sure you use absolute paths here!
+sudo ln -s /mnt/lme/ /var/lib/containers/storage
+```
+
+This will keep the podman store graph root to `/var/lib/containers/storage`
+while keeping the actual data in `/mnt/lme`. This way we don't have to change
+any podman configuration.
+
+5. Restart LME
 ```bash
 sudo systemctl restart lme*
 ```
+
+Make sure that the path of the new location will not change at all. Have a consistent
+mount point. If you do need to change it, follow these steps again.
 
 ## Guides on Specific Storage Types
 
@@ -108,9 +129,10 @@ The drive either starts with
   - `sd` (if connected through SATA)
   - `nvme` (if connected through NVME)
 the last letter will be the number of drive.
-e.g. two drives: /dev/sda and /dev/sdb 
+e.g. two drives: `/dev/sda` and `/dev/sdb`. 
 ```bash
 sudo fdisk -l 
+# or
 sudo lsblk
 ```
 
@@ -137,7 +159,7 @@ sudo lsblk #now you should see 'sdb1', the first partition of /dev/sdb
 Format the partition with a filesystem.
 This is dependent on what filesystem you are using. We'll use `ext4` here.
 Remember to specify the partition of `/dev/sdb`, in this case we only have
-one partition.
+one partition, so we're installing the filesystem to `/dev/sdb1`.
 ```bash
 mkfs.ext4 /dev/sdb1
 ```
@@ -172,7 +194,9 @@ through USB.
 **Note: USB speeds will generally be much slower than internal drives.**
 
 Follow the same steps as using a [Local Drive](#local-drive). Find the name of the
-drive using `lsblk` or `fdisk -l`.
+drive using `lsblk` or `fdisk -l`. The external drive may already be partitioned with
+a filesystem. If so, feel free to skip the partitioning and filesystem install steps
+and go straight to mounting the drive.
 
 This solution may be less reliable than an internal drive. We recommend using an
 internal drive over an external drive.
@@ -194,11 +218,11 @@ Generally, the steps to mount a NAS drive using NFS follows:
 ##### Enable NFS server on NAS
 This is very platorm dependent -- check the documentation for which NAS system you are using.
 Some common ones:
-- [TrueNAS](https://www.truenas.com/docs/core/13.0/coretutorials/sharing/nfsshare/)
-- [Synology](https://kb.synology.com/en-global/DSM/tutorial/How_to_access_files_on_Synology_NAS_within_the_local_network_NFS)
+- [TrueNAS NFS Documentation](https://www.truenas.com/docs/core/13.0/coretutorials/sharing/nfsshare/)
+- [Synology NFS Documentation](https://kb.synology.com/en-global/DSM/tutorial/How_to_access_files_on_Synology_NAS_within_the_local_network_NFS)
 
-Make sure you have enabled both reading and writing data. It may be helpful to whitelist
-the LME server IP on the NAS so you can connect without authentication.
+Make sure you have enabled both reading and writing data. It may be helpful to 
+add the LME server IP to a whitelist on the NAS so you can connect without authentication.
 
 ##### Connect to NAS on LME server
 

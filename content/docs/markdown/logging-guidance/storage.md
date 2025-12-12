@@ -4,23 +4,18 @@ title: Storage Options
 
 # Storage Options
 
-By default LME stores logs on the local drive.
-This document provides guidance for changing where the elastic data is stored.
+By default LME stores logs on the local drive. This document provides guidance for changing where the elastic data is stored.
 
-Maybe your computer drive isn't large enough and would like to store it on network storage, or an external SSD.
-This guide is for you.
+### Issue:
+Your computer's storage capacity is insufficient, and you wish to utilize network storage or an external SSD, this guide is intended for you.
 
-Our recomendation is the following: 
+### Recomendation:
 
-**If possible, keep data as close to the computer as possible.**
-We prefer local storage, then NAS or external drive, then cloud. The performance of your
-LME server will depend heavily on the speed at it can read / write data. Local storage
-will generally be faster than external, as external is limited by the speed of the drive,
-speed of the connection (USB / network), etc. The speed of cloud is dependent on your
-ineternet connection (far far slower than any local read / writes).
+**Whenever possible, ensure that data is stored locally to minimize latency and maximize access speed.**
+Our preference, in order of priority, is local storage, followed by Network Attached Storage (NAS) or external drives, and finally cloud storage. The performance of your LME server is significantly influenced by the speed at which it can read and write data. Generally, local storage will provide faster access than external storage, as external options are constrained by the speed of the drive and the connection (USB/network), among other factors. Additionally, the speed of cloud storage is contingent upon the performance of your internet connection, which is typically much slower than local read/write operations.
 
 If you would like to store your data on cloud, we recommend you move your entire elastic instance
-to the cloud. We have guidance for that in our [article on cloud](./cloud.md).
+to the cloud. Guidance can be found in our [article on cloud](./cloud.md).
 
 ## Changing Storage Location
 Broadly, all options follow these two steps:
@@ -30,7 +25,7 @@ Broadly, all options follow these two steps:
 ### Setting Storage Location
 
 Ideally, set the storage location on a fresh install. If you are already running
-LME, you may need to change where the existing storage is.
+LME, you may need to change where the existing data is stored.
 
 #### Fresh Install
 If you have not installed LME yet, proceed with the [install guide](../install/_index.md),
@@ -43,12 +38,12 @@ cd ~/lme
 
 The podman volumes will be hosted under the directory provided. 
 
-Note: this will affect **all** future containers. If you are planning on using
-podman for any other reasons please be aware of this.
+**Note: this will affect **all** future containers. If you are planning on using
+podman for any other reasons please be aware of this.**
 
 #### Changing Storage Location
 
-**Note: make a backup before you do this. There is a high risk of losing data.**
+ <span style="color:red">**Warning: [Backup](../maintenance/backups.md) your LME data before proceeding. There is a high risk of data loss.**</span>
 
 **Note: this has not been tested and is not guaranteed to keep data. Test before pushing**
 
@@ -82,9 +77,8 @@ sudo mv /var/lib/containers/storage/* /mnt/lme/
 
 4. Create a symbolic link from old directory to new directory
 
-We need to make a link because the podman database stores these paths as
-hardcoded. We can alternatively make new volumes and copy information over,
-but
+A link is needed because the podman database stores these paths as
+hardcoded values. Alternatively you can make a new volumes and copy information over.
 
 ```bash
 sudo rm -rf /var/lib/containers/storage
@@ -119,8 +113,8 @@ This section will help with the following:
 Follow the guide for [Setting Storage Location](#setting-storage-location).
 
 If you are installing a new drive and would like to make that the partition, please
-look up guidance on your operating system. A full explainer is beyond the scope
-of this article, but a quick example is provided.
+look up guidance on your operating system as this is beyond the scope
+of this article. A simple example is provided.
 
 #### New Drive Set Up Example
 

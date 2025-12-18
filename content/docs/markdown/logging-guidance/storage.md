@@ -64,6 +64,9 @@ sudo -i podman info --format '{{.Store.GraphRoot}}'
 ```bash
 sudo systemctl stop lme*
 sudo -i podman stop --all
+
+#check everything is stopped
+sudo systemctl status lme\*
 ```
 
 3. Move existing volumes to new directory
@@ -72,6 +75,11 @@ sudo -i podman stop --all
 sure this directory is on the new drive!**
 
 ```bash
+# This process will take quite a long time if your volumes already
+# have a lot of data that needs to be copied to another disk / over
+# the network to another device.
+
+# For progress, consider using rsync or scp instead of mv.
 sudo mv /var/lib/containers/storage/* /mnt/lme/
 ```
 
@@ -237,6 +245,9 @@ sudo yum install nfs-utils #install nfs tools
 sudo mkidr /mnt/lme-mount
 sudo mount [NAS_IP]:[NAS_FOLDER] /mnt/lme-mount
 
+# for example, if your NAS machine has a local IP of 10.0.0.20 and
+# the shared folder on the NAS is /volumes/lme-mount:
+#sudo mount 10.0.0.20:/volumes/lme-mount /mnt/lme-mount
 ```
 For persistent mounts (on a reboot, power off):
 ```bash
@@ -244,7 +255,13 @@ sudo vim /etc/fstab
 
 ## the following is inside the fstab file
 [NAS_IP]:[NAS_FOLDER] /mnt/lme-mount nfs defaults  0 0
+
+# for example:
+#10.0.0.20:/volumes/lme-mount /mnt/lme-mount nfs defaults 0 0
 ```
+
+Once the NFS connection has been verified (try writing a txt file to the
+directory), proceed with [Setting Storage Location](#setting-storage-location).
 
 #### Using SMB/CIFS with NAS
 As the LME server is installed on a Linux machine, we recommend using NFS to mount the drives.

@@ -2,6 +2,7 @@
 title: Storage Options
 ---
 
+
 # Storage Options
 
 By default LME stores logs on the local drive. This document provides guidance for changing where the elastic data is stored.
@@ -31,6 +32,8 @@ LME, you may need to change where the existing data is stored.
 If you have not installed LME yet, proceed with the [install guide](../install/_index.md),
 but when running `./install.sh` use the `-g` flag to specify where you would like to
 store the data volumes. For example:
+
+<span style="color:red">**Note: as of LME v2.2 this flag is not present in `install.sh`. Use the version in the [develop branch](https://github.com/cisagov/LME/blob/develop/install.sh). This will be added in a future release.**</span>
 ```bash
 cd ~/lme
 ./install.sh -g /mnt/lme-drive

@@ -1,7 +1,22 @@
-public/*
-*.lock
+# Docusaurus build output
+build/
+.docusaurus/
+
+# Node dependencies
+node_modules/
+
+# Legacy Hugo output (replaced by Docusaurus build/)
+public/
 resources/
+
+# OS / Editor
 .DS_Store
 *.vim
 *.crt
 **.vscode/**
+
+# AI agent session files (but keep skills/)
+.agent/*
+!.agent/skills/
+.claude/
+.claude-active

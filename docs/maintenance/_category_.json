@@ -1,0 +1,8 @@
+{
+  "label": "Maintenance",
+  "position": 7,
+  "link": {
+    "type": "generated-index",
+    "description": "Operational maintenance tasks: backups, certificates, index management, and upgrades"
+  }
+}

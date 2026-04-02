@@ -1,0 +1,8 @@
+{
+  "name": "document-lme",
+  "version": "1.0.0",
+  "description": "Generate and update LME documentation from any repo. Analyzes git diffs, maps changes to docs, walks you through updates, and opens PRs.",
+  "author": {
+    "name": "cisagov"
+  }
+}

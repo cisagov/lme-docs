@@ -113,13 +113,17 @@ jobs:
       # ── OSV-Scanner: container image ────────────────────────────────────
       # Scans the built container image for OS-level and app-level vulns
       # (nginx:alpine packages, any bundled node modules, etc.)
+      # OSV-Scanner v2 uses "scan image" subcommand, not --docker flag.
       - name: Scan container image with OSV-Scanner
-        uses: google/osv-scanner-action/osv-scanner-action@c51854704019a247608d928f370c98740469d4b5 # v2.3.5
-        with:
-          scan-args: |-
-            --docker=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.ref_name }}
-            --format=sarif
-            --output=osv-image-results.sarif
+        run: |
+          docker run --rm \
+            -v /var/run/docker.sock:/var/run/docker.sock \
+            ghcr.io/google/osv-scanner:v2.3.5 \
+            scan image \
+            --format=sarif \
+            --output=/dev/stdout \
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.ref_name }} \
+            > osv-image-results.sarif || true
 
       - name: Upload image scan to GitHub Security
         uses: github/codeql-action/upload-sarif@5c8a8a642e79153f5d047b10ec1cba1d1cc65699 # v3

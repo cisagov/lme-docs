@@ -20,3 +20,6 @@ resources/
 !.agent/skills/
 .claude/
 .claude-active
+
+# Project planning (local only)
+MASTER_PLAN.md

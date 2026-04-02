@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 220" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
+  <defs>
+    <filter id="shadow" x="-4%" y="-4%" width="108%" height="108%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity="0.08"/>
+    </filter>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#6366F1"/>
+    </marker>
+    <linearGradient id="gBrowser" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E0E7FF"/>
+      <stop offset="100%" stop-color="#C7D2FE"/>
+    </linearGradient>
+    <linearGradient id="gES" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FED7AA"/>
+      <stop offset="100%" stop-color="#FDBA74"/>
+    </linearGradient>
+    <linearGradient id="gLLM" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#DDD6FE"/>
+      <stop offset="100%" stop-color="#C4B5FD"/>
+    </linearGradient>
+    <linearGradient id="gLlama" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FDE68A"/>
+      <stop offset="100%" stop-color="#FCD34D"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="700" height="220" rx="16" fill="#F8FAFC"/>
+  <text x="350" y="30" text-anchor="middle" font-size="16" font-weight="700" fill="#1E293B">Log Analyzer Data Flow</text>
+
+  <!-- Browser -->
+  <rect x="30" y="60" width="160" height="100" rx="12" fill="url(#gBrowser)" filter="url(#shadow)"/>
+  <text x="110" y="92" text-anchor="middle" font-size="13" font-weight="700" fill="#3730A3">Your Browser</text>
+  <text x="110" y="112" text-anchor="middle" font-size="10" fill="#6366F1">Streamlit UI</text>
+  <text x="110" y="130" text-anchor="middle" font-size="10" fill="#6366F1">port 8501</text>
+  <text x="110" y="148" text-anchor="middle" font-size="9" fill="#818CF8">browse alerts + AI chat</text>
+
+  <!-- Arrow to ES -->
+  <line x1="190" y1="95" x2="248" y2="95" stroke="#6366F1" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="219" y="88" text-anchor="middle" font-size="8" fill="#6366F1">alerts</text>
+
+  <!-- Elasticsearch -->
+  <rect x="250" y="60" width="160" height="70" rx="12" fill="url(#gES)" filter="url(#shadow)"/>
+  <text x="330" y="90" text-anchor="middle" font-size="13" font-weight="700" fill="#9A3412">Elasticsearch</text>
+  <text x="330" y="110" text-anchor="middle" font-size="10" fill="#C2410C">port 9200</text>
+  <text x="330" y="122" text-anchor="middle" font-size="9" fill="#EA580C">security alerts index</text>
+
+  <!-- Arrow to LiteLLM -->
+  <line x1="190" y1="135" x2="248" y2="160" stroke="#6366F1" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="205" y="155" text-anchor="middle" font-size="8" fill="#6366F1">analysis</text>
+
+  <!-- LiteLLM -->
+  <rect x="250" y="142" width="160" height="60" rx="12" fill="url(#gLLM)" filter="url(#shadow)"/>
+  <text x="330" y="168" text-anchor="middle" font-size="13" font-weight="700" fill="#5B21B6">LiteLLM</text>
+  <text x="330" y="188" text-anchor="middle" font-size="10" fill="#7C3AED">port 4000</text>
+
+  <!-- Arrow to llama.cpp -->
+  <line x1="410" y1="172" x2="468" y2="130" stroke="#6366F1" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- llama.cpp -->
+  <rect x="470" y="75" width="200" height="80" rx="12" fill="url(#gLlama)" filter="url(#shadow)"/>
+  <text x="570" y="105" text-anchor="middle" font-size="13" font-weight="700" fill="#92400E">llama.cpp</text>
+  <text x="570" y="125" text-anchor="middle" font-size="10" fill="#B45309">local AI model</text>
+  <text x="570" y="141" text-anchor="middle" font-size="9" fill="#D97706">port 8080 · generates response</text>
+</svg>

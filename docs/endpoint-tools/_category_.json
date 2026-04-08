@@ -1,0 +1,8 @@
+{
+  "label": "Endpoint Tools",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "Tools for enhancing log collection on Windows and Linux endpoints"
+  }
+}

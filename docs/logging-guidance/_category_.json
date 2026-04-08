@@ -1,0 +1,8 @@
+{
+  "label": "Logging Guidance",
+  "position": 6,
+  "link": {
+    "type": "generated-index",
+    "description": "Guidance on log retention, filtering, cloud deployment, and syslog forwarding"
+  }
+}

@@ -1,0 +1,27 @@
+/**
+ * Feature card styles — replaces Hugo blocks/feature shortcode.
+ * @decision DEC-007
+ */
+
+.features {
+  display: flex;
+  align-items: stretch;
+  padding: 2rem 0;
+  width: 100%;
+  background-color: var(--ifm-background-surface-color);
+}
+
+.featureSvg {
+  height: 100px;
+  width: 100px;
+}
+
+.featureCard {
+  text-align: center;
+  padding: 1.5rem;
+}
+
+.featureIcon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}

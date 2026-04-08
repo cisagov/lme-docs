@@ -1,0 +1,8 @@
+{
+  "label": "Agents",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "Agent deployment and management guides for Wazuh and Elastic"
+  }
+}

@@ -1,0 +1,60 @@
+/**
+ * Landing page styles — replaces Hugo Docsy blocks/cover shortcode.
+ * @decision DEC-007
+ */
+
+/* -------------------------------------------------------------------------- */
+/* Hero banner                                                                 */
+/* -------------------------------------------------------------------------- */
+.heroBanner {
+  padding: 4rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #005288 0%, #003d66 100%);
+  color: #fff;
+}
+
+@media screen and (max-width: 996px) {
+  .heroBanner {
+    padding: 2rem;
+  }
+}
+
+.heroTitle {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  color: #fff;
+}
+
+.heroSubtitle {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  color: rgba(255, 255, 255, 0.88);
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* -------------------------------------------------------------------------- */
+/* CTA buttons                                                                 */
+/* -------------------------------------------------------------------------- */
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Badges row                                                                  */
+/* -------------------------------------------------------------------------- */
+.badges {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}

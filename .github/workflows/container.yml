@@ -1,0 +1,133 @@
+# .github/workflows/container.yml — Build and publish the LME Docs container
+#
+# Builds the Containerfile and pushes to GHCR.
+# Pull and run: podman run -d -p 3000:80 ghcr.io/cisagov/lme-docs:develop
+#
+# All action versions pinned to full commit SHAs to prevent supply chain attacks.
+#
+# @decision DEC-005
+# @title Container publish workflow: GHCR push on develop/main/tags
+# @status accepted
+# @rationale Publishing to GHCR lets users and the docs-contributor skill
+#            pull a pre-built image without any local build step.
+
+name: Build and publish container
+
+on:
+  push:
+    branches:
+      - dev
+      - develop
+      - main
+    tags:
+      - "v*"
+  # Allow manual trigger for ad-hoc rebuilds
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+  security-events: write
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      # ── Dependency audit ──────────────────────────────────────────────────
+      - name: Setup Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Audit npm dependencies
+        run: npm audit --audit-level=high
+
+      # ── Registry authentication ─────────────────────────────────────────
+      - name: Log in to the Container registry
+        uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      # ── Docker Buildx (multi-platform / cache support) ──────────────────
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3
+
+      # ── Image metadata (tags + labels) ──────────────────────────────────
+      - name: Extract Docker metadata
+        id: meta
+        uses: docker/metadata-action@c299e40c65443455700f0fdfc63efafe5b349051 # v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=ref,event=branch
+            type=ref,event=tag
+            type=sha,prefix=sha-,format=short
+            type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', github.event.repository.default_branch) }}
+
+      # ── Build and push ───────────────────────────────────────────────────
+      - name: Build and push container image
+        uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8 # v6
+        with:
+          context: .
+          file: Containerfile
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            BASE_URL=/
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      # ── OSV-Scanner: source dependencies ─────────────────────────────────
+      # Recursively scans the repo for all lockfiles (package-lock.json, etc.)
+      # and SBOMs, catching vulnerable or malicious packages.
+      - name: Scan source dependencies with OSV-Scanner
+        uses: google/osv-scanner-action/osv-scanner-action@c51854704019a247608d928f370c98740469d4b5 # v2.3.5
+        with:
+          scan-args: |-
+            --recursive
+            --format=sarif
+            --output=osv-source-results.sarif
+            .
+
+      - name: Upload source scan to GitHub Security
+        uses: github/codeql-action/upload-sarif@5c8a8a642e79153f5d047b10ec1cba1d1cc65699 # v3
+        if: always() && hashFiles('osv-source-results.sarif') != ''
+        with:
+          sarif_file: osv-source-results.sarif
+          category: osv-source
+
+      # ── OSV-Scanner: container image ────────────────────────────────────
+      # Scans the built container image for OS-level and app-level vulns
+      # (nginx:alpine packages, any bundled node modules, etc.)
+      # OSV-Scanner v2 uses "scan image" subcommand, not --docker flag.
+      - name: Scan container image with OSV-Scanner
+        run: |
+          docker run --rm \
+            -v /var/run/docker.sock:/var/run/docker.sock \
+            ghcr.io/google/osv-scanner:v2.3.5 \
+            scan image \
+            --format=sarif \
+            --output=/dev/stdout \
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.ref_name }} \
+            > osv-image-results.sarif || true
+
+      - name: Upload image scan to GitHub Security
+        uses: github/codeql-action/upload-sarif@5c8a8a642e79153f5d047b10ec1cba1d1cc65699 # v3
+        if: always() && hashFiles('osv-image-results.sarif') != ''
+        with:
+          sarif_file: osv-image-results.sarif
+          category: osv-container

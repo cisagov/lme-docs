@@ -1,0 +1,8 @@
+{
+  "label": "Learning",
+  "position": 9,
+  "link": {
+    "type": "generated-index",
+    "description": "Training modules and learning resources for LME"
+  }
+}

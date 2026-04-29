@@ -146,15 +146,17 @@ jobs:
       # (nginx:alpine packages, any bundled node modules, etc.)
       # OSV-Scanner v2 uses "scan image" subcommand, not --docker flag.
       - name: Scan container image with OSV-Scanner
+        id: osv-image
+        continue-on-error: true
         run: |
           docker run --rm \
             -v /var/run/docker.sock:/var/run/docker.sock \
+            -v "${{ github.workspace }}:/workspace" \
             ghcr.io/google/osv-scanner:v2.3.5 \
             scan image \
             --format=sarif \
-            --output=/dev/stdout \
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.ref_name }} \
-            > osv-image-results.sarif || true
+            --output-file=/workspace/osv-image-results.sarif \
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.ref_name }}
 
       - name: Upload image scan to GitHub Security
         uses: github/codeql-action/upload-sarif@5c8a8a642e79153f5d047b10ec1cba1d1cc65699 # v3
@@ -162,3 +164,27 @@ jobs:
         with:
           sarif_file: osv-image-results.sarif
           category: osv-container
+
+      - name: Fail on high/critical image vulnerabilities
+        if: always() && hashFiles('osv-image-results.sarif') != ''
+        run: |
+          HIGH_CRIT=$(python3 -c "
+          import json, sys
+          sarif = json.load(open('osv-image-results.sarif'))
+          count = 0
+          for run in sarif.get('runs', []):
+            for rule in run.get('tool', {}).get('driver', {}).get('rules', []):
+              props = rule.get('properties', {})
+              severity = float(props.get('security-severity', '0'))
+              if severity >= 7.0:
+                count += 1
+                print(f\"HIGH/CRITICAL: {rule.get('id','')} (severity: {severity})\", file=sys.stderr)
+          print(count)
+          " 2>&1)
+          echo "$HIGH_CRIT"
+          COUNT=$(echo "$HIGH_CRIT" | tail -1)
+          if [ "$COUNT" -gt 0 ]; then
+            echo "::error::Found $COUNT high/critical vulnerabilities in container image"
+            exit 1
+          fi
+          echo "No high/critical image vulnerabilities found"

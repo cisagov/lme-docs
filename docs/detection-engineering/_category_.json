@@ -1,0 +1,8 @@
+{
+  "label": "Detection Engineering",
+  "position": 12,
+  "link": {
+    "type": "generated-index",
+    "description": "Detection engineering for LME: threat identification, detection development, attack simulation with MITRE Caldera, and automated validation on Ludus cyber ranges."
+  }
+}

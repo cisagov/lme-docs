@@ -147,8 +147,6 @@ If you have a new Elasticsearch instance and need to restore logs from previous 
   
   - Use the same ***container mount path*** (/usr/share/elasticsearch/backups) and then select **Shared file system** as the type.
   
-  - Reference [Create a Filesystem Repository](#Create-a-filesystem-repository) for more information.
-    
 **Step 3. Verify the Repository**
 
   - After registering, click the **Verify Repository button**.

@@ -66,7 +66,7 @@ This guide will walk you through the process of enrolling an Elastic Agent.
 
    - From Fleet, you should see the agent enrolled now.
 
-# LME Elastic Agent Integration
+## LME Elastic Agent Integration
 
 This guide will walk you through the process of adding a Windows integration to an agent policy in the Logging Made Easy (LME) system.
 

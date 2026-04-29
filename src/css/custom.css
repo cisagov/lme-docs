@@ -1,0 +1,94 @@
+/**
+ * CISA LME Docs — custom theme overrides for Docusaurus classic theme.
+ *
+ * @decision DEC-007
+ * @title Landing page rebuilt as React component
+ * @status accepted
+ * @rationale Hugo shortcodes (blocks/cover, blocks/feature) cannot be ported to
+ *            Docusaurus MDX. The landing page is rewritten as a proper React page
+ *            with equivalent CISA-appropriate styling.
+ */
+
+/* -------------------------------------------------------------------------- */
+/* CISA Brand Palette                                                          */
+/* -------------------------------------------------------------------------- */
+:root {
+  --ifm-color-primary: #005288;        /* CISA blue */
+  --ifm-color-primary-dark: #004a7a;
+  --ifm-color-primary-darker: #004472;
+  --ifm-color-primary-darkest: #00375e;
+  --ifm-color-primary-light: #005a96;
+  --ifm-color-primary-lighter: #0062a4;
+  --ifm-color-primary-lightest: #006fb8;
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 82, 136, 0.1);
+}
+
+/* Dark mode overrides */
+[data-theme='dark'] {
+  --ifm-color-primary: #4da6d9;
+  --ifm-color-primary-dark: #2e97d3;
+  --ifm-color-primary-darker: #1e8fc9;
+  --ifm-color-primary-darkest: #1675a7;
+  --ifm-color-primary-light: #6cb5df;
+  --ifm-color-primary-lighter: #7cbde3;
+  --ifm-color-primary-lightest: #a5d2ec;
+  --docusaurus-highlighted-code-line-bg: rgba(77, 166, 217, 0.15);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Navbar                                                                      */
+/* -------------------------------------------------------------------------- */
+.navbar {
+  border-bottom: 3px solid var(--ifm-color-primary);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Sidebar                                                                     */
+/* -------------------------------------------------------------------------- */
+.menu__link--active {
+  font-weight: 600;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Code blocks — Monokai-inspired, consistent with old Hugo Docsy config      */
+/* -------------------------------------------------------------------------- */
+.theme-code-block {
+  border-radius: 6px;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Tables                                                                      */
+/* -------------------------------------------------------------------------- */
+table {
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+table th {
+  background-color: var(--ifm-color-primary);
+  color: #fff;
+}
+
+[data-theme='dark'] table th {
+  background-color: var(--ifm-color-primary-dark);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Admonitions — match CISA attention style                                   */
+/* -------------------------------------------------------------------------- */
+.alert--warning {
+  --ifm-alert-border-color: #e6a817;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Footer                                                                      */
+/* -------------------------------------------------------------------------- */
+.footer {
+  border-top: 3px solid var(--ifm-color-primary);
+}
+
+.footer__title {
+  font-weight: 700;
+}

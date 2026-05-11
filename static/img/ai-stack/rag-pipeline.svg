@@ -3,14 +3,8 @@
     <filter id="shadow" x="-4%" y="-4%" width="108%" height="108%">
       <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity="0.08"/>
     </filter>
-    <marker id="arrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-      <polygon points="0 0, 8 3, 0 6" fill="#6366F1"/>
-    </marker>
-    <marker id="arrowGreen" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-      <polygon points="0 0, 8 3, 0 6" fill="#059669"/>
-    </marker>
-    <marker id="arrowAmber" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-      <polygon points="0 0, 8 3, 0 6" fill="#D97706"/>
+    <marker id="arrow" markerWidth="3" markerHeight="4" refX="0.1" refY="2" orient="auto">
+      <path d='M0,0 V4 L2,2 Z' fill="#94A3B8"/>
     </marker>
     <linearGradient id="gUser" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#E0E7FF"/>
@@ -44,58 +38,41 @@
   <text x="440" y="54" text-anchor="middle" font-size="11" fill="#64748B">Retrieval-Augmented Generation pipeline</text>
 
   <!-- Step 1: User question -->
-  <rect x="310" y="72" width="260" height="64" rx="12" fill="url(#gUser)" filter="url(#shadow)"/>
-  <circle cx="344" cy="96" r="14" fill="#4F46E5" fill-opacity="0.15"/>
-  <text x="344" y="101" text-anchor="middle" font-size="14" font-weight="700" fill="#4338CA">1</text>
-  <text x="460" y="96" text-anchor="middle" font-size="13" font-weight="700" fill="#3730A3">Your Question</text>
-  <text x="460" y="114" text-anchor="middle" font-size="10" fill="#6366F1">"How do I change the elastic password?"</text>
+  <rect x="310" y="70" width="260" height="64" rx="12" fill="url(#gUser)" filter="url(#shadow)"/>
+  <text x="440" y="96" text-anchor="middle" font-size="13" font-weight="700" fill="#3730A3">Your Question</text>
+  <text x="440" y="114" text-anchor="middle" font-size="10" fill="#6366F1">"How do I change the elastic password?"</text>
 
   <!-- Arrow down -->
-  <line x1="440" y1="136" x2="440" y2="172" stroke="#059669" stroke-width="2" marker-end="url(#arrowGreen)"/>
+  <line x1="440" y1="134" x2="440" y2="162" stroke="#94A3B8" stroke-width="4" marker-end="url(#arrow)"/>
 
   <!-- Step 2: Embeddings -->
-  <rect x="280" y="174" width="320" height="64" rx="12" fill="url(#gEmbed)" filter="url(#shadow)"/>
-  <circle cx="314" cy="198" r="14" fill="#059669" fill-opacity="0.15"/>
-  <text x="314" y="203" text-anchor="middle" font-size="14" font-weight="700" fill="#065F46">2</text>
-  <text x="460" y="198" text-anchor="middle" font-size="13" font-weight="700" fill="#065F46">Embeddings Server</text>
-  <text x="460" y="216" text-anchor="middle" font-size="10" fill="#047857">Converts your question into a 768-dimension vector</text>
+  <rect x="280" y="170" width="320" height="64" rx="12" fill="url(#gEmbed)" filter="url(#shadow)"/>
+  <text x="440" y="194" text-anchor="middle" font-size="13" font-weight="700" fill="#065F46">Embeddings Server</text>
+  <text x="440" y="218" text-anchor="middle" font-size="10" fill="#047857">Converts your question into a 768-dimension vector</text>
 
   <!-- Arrow down -->
-  <line x1="440" y1="238" x2="440" y2="274" stroke="#059669" stroke-width="2" marker-end="url(#arrowGreen)"/>
+  <line x1="440" y1="234" x2="440" y2="262" stroke="#94A3B8" stroke-width="4" marker-end="url(#arrow)"/>
 
   <!-- Step 3: pgvector search -->
-  <rect x="250" y="276" width="380" height="64" rx="12" fill="url(#gPg)" filter="url(#shadow)"/>
-  <circle cx="284" cy="300" r="14" fill="#2563EB" fill-opacity="0.15"/>
-  <text x="284" y="305" text-anchor="middle" font-size="14" font-weight="700" fill="#1E40AF">3</text>
-  <text x="460" y="296" text-anchor="middle" font-size="13" font-weight="700" fill="#1E40AF">pgvector Similarity Search</text>
-  <text x="460" y="314" text-anchor="middle" font-size="10" fill="#2563EB">Finds the top 10 most relevant LME documentation chunks</text>
-  <text x="460" y="328" text-anchor="middle" font-size="9" fill="#3B82F6">filtered by similarity ≥ 0.55 and min length 200 chars</text>
+  <rect x="250" y="270" width="380" height="64" rx="12" fill="url(#gPg)" filter="url(#shadow)"/>
+  <text x="440" y="294" text-anchor="middle" font-size="13" font-weight="700" fill="#1E40AF">pgvector Similarity Search</text>
+  <text x="440" y="312" text-anchor="middle" font-size="10" fill="#2563EB">Finds the top 10 most relevant LME documentation chunks</text>
+  <text x="440" y="326" text-anchor="middle" font-size="9" fill="#2563EB">filtered by similarity ≥ 0.55 and min length 200 chars</text>
 
   <!-- Arrow down -->
-  <line x1="440" y1="340" x2="440" y2="372" stroke="#6366F1" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="440" y1="334" x2="440" y2="362" stroke="#94A3B8" stroke-width="4" marker-end="url(#arrow)"/>
 
   <!-- Step 4: LiteLLM -->
-  <rect x="250" y="374" width="380" height="64" rx="12" fill="url(#gLitellm)" filter="url(#shadow)"/>
-  <circle cx="284" cy="398" r="14" fill="#7C3AED" fill-opacity="0.15"/>
-  <text x="284" y="403" text-anchor="middle" font-size="14" font-weight="700" fill="#5B21B6">4</text>
-  <text x="460" y="394" text-anchor="middle" font-size="13" font-weight="700" fill="#5B21B6">LLM receives question + docs</text>
-  <text x="460" y="414" text-anchor="middle" font-size="10" fill="#7C3AED">Your question is sent with the relevant docs as context</text>
-  <text x="460" y="428" text-anchor="middle" font-size="9" fill="#8B5CF6">via LiteLLM → llama.cpp (or cloud model)</text>
+  <rect x="250" y="370" width="380" height="64" rx="12" fill="url(#gLitellm)" filter="url(#shadow)"/>
+  <text x="440" y="394" text-anchor="middle" font-size="13" font-weight="700" fill="#5B21B6">LLM receives question + docs</text>
+  <text x="440" y="412" text-anchor="middle" font-size="10" fill="#7C3AED">Your question is sent with the relevant docs as context</text>
+  <text x="440" y="426" text-anchor="middle" font-size="9" fill="#8B5CF6">via LiteLLM → llama.cpp (or cloud model)</text>
 
   <!-- Arrow down -->
-  <line x1="440" y1="438" x2="440" y2="464" stroke="#D97706" stroke-width="2" marker-end="url(#arrowAmber)"/>
+  <line x1="440" y1="434" x2="440" y2="462" stroke="#94A3B8" stroke-width="4" marker-end="url(#arrow)"/>
 
   <!-- Step 5: Response -->
-  <rect x="280" y="466" width="320" height="44" rx="12" fill="url(#gResponse)" filter="url(#shadow)"/>
-  <circle cx="314" cy="488" r="14" fill="#059669" fill-opacity="0.15"/>
-  <text x="314" y="493" text-anchor="middle" font-size="14" font-weight="700" fill="#065F46">5</text>
-  <text x="460" y="492" text-anchor="middle" font-size="13" font-weight="700" fill="#065F46">Grounded Answer + Sources</text>
+  <rect x="280" y="470" width="320" height="44" rx="12" fill="url(#gResponse)" filter="url(#shadow)"/>
+  <text x="440" y="498" text-anchor="middle" font-size="13" font-weight="700" fill="#065F46">Grounded Answer + Sources</text>
 
-  <!-- Side annotations -->
-  <!-- RAG OFF path -->
-  <rect x="700" y="72" width="150" height="44" rx="8" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1" stroke-dasharray="4,3"/>
-  <text x="775" y="90" text-anchor="middle" font-size="10" font-weight="600" fill="#64748B">RAG OFF?</text>
-  <text x="775" y="104" text-anchor="middle" font-size="9" fill="#94A3B8">Skips steps 2-3</text>
-
-  <path d="M 570 104 Q 640 104, 698 94" fill="none" stroke="#94A3B8" stroke-width="1" stroke-dasharray="4,3"/>
 </svg>

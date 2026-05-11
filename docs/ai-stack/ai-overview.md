@@ -94,5 +94,4 @@ This crawls the LME documentation website, converts pages to text, chunks them, 
 - [Detection Engineering](./detection-engineering.md) — import Kibana rules, convert Sigma rules, create ElastAlert2 rules
 - [Managing Models](./managing-models.md) — switch models, add cloud providers, download new local models
 - [KEV Integration](./kev-integration.md) — CISA Known Exploited Vulnerabilities enrichment
-- [Log Analyzer](./log-analyzer.md) — the Streamlit-based log browser
 - [LiteLLM API Reference](./litellm-api.md) — calling the LLM API directly from scripts

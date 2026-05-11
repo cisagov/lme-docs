@@ -19,7 +19,6 @@ When LME installs, it automatically sets up these AI components:
 | Component | Port | Purpose |
 |-----------|------|---------|
 | **LME Dashboard** | 8502 | Web UI for alerts, AI chat, model management, detection rules, KEV tracking |
-| **Log Analyzer** | 8501 | Simpler Streamlit-based log browser with AI analysis |
 | **LiteLLM Proxy** | 4000 | API gateway that routes LLM requests to local or cloud models |
 | **llama.cpp** | 8080 | Runs the local chat LLM (no internet required) |
 | **Embeddings Server** | 8081 | Generates text embeddings for RAG document search |
@@ -33,8 +32,6 @@ RAG stands for **Retrieval-Augmented Generation**. When you ask a question in th
 2. Searches the pgvector database for relevant LME documentation chunks
 3. Sends those relevant docs as context along with your question to the LLM
 4. The LLM gives you an answer grounded in the actual documentation
-
-This means the AI can answer questions about LME accurately, based on the real docs — not just its general training data.
 
 ## What Models are Used
 
@@ -55,7 +52,7 @@ The default 1.2B parameter model is lightweight and runs on modest hardware. You
 
 While LME works completely offline with local models, you can optionally connect cloud LLM providers for more capable analysis:
 
-- OpenAI (GPT-4, GPT-3.5)
+- OpenAI (GPT)
 - Anthropic (Claude)
 - Azure OpenAI
 - Google Vertex AI (Gemini)
@@ -72,13 +69,7 @@ After LME is installed, access the dashboard at:
 https://<your-lme-server-ip>:8502
 ```
 
-The log analyzer is available at:
-
-```
-https://<your-lme-server-ip>:8501
-```
-
-Both use the LME TLS certificates (self-signed by default), so your browser will show a certificate warning — this is expected.
+The dashboard uses the LME TLS certificates (self-signed by default), so your browser will show a certificate warning. This is expected.
 
 ## Updating the RAG Documentation Index
 

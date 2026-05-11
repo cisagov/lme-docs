@@ -8,15 +8,6 @@ description: "How to use the LME AI chat for security analysis, alert investigat
 
 LME's AI chat lets you interact with a large language model (LLM) directly from the dashboard. You can ask security questions, get AI analysis of alerts, and query the LME documentation. Everything runs on your own infrastructure — no data is sent externally unless you configure a cloud model.
 
-## Where to Find the Chat
-
-The AI chat appears as a **sidebar panel on the right side** of two views:
-
-- **Alerts view** — titled "AI Assistant"
-- **Detection Engineering view** — titled "Detection Assistant"
-
-Each has its own independent conversation history.
-
 ## How to Send a Message
 
 1. Type your question in the text area at the bottom of the chat panel
@@ -32,46 +23,26 @@ Each has its own independent conversation history.
 
 ## RAG Mode: Documentation-Grounded Answers
 
-RAG (Retrieval-Augmented Generation) is a mode that searches the LME documentation before answering. This grounds the AI's response in real, accurate documentation rather than general knowledge.
+RAG (Retrieval-Augmented Generation) is a mode that searches the LME documentation before answering. This grounds the AI's response in real documentation rather than general knowledge.
 
-### How to Toggle RAG Mode
+### How RAG works
 
-1. Look for the **"Docs ON"** or **"Docs"** button at the top of the chat panel
-2. Click it to toggle RAG mode on or off:
-   - **"Docs ON"** (highlighted) = RAG is active — answers are grounded in LME docs
-   - **"Docs"** (not highlighted) = RAG is off — the AI uses only its general knowledge
+![How RAG Chat Works](/img/ai-stack/rag-pipeline.svg)
 
-RAG mode is **on by default**.
-
-### What Happens When RAG is On
-
-When you send a message with RAG enabled:
+When you send a message:
 
 1. Your question is converted to a vector embedding by the embeddings server
 2. The embedding is compared against all LME documentation chunks stored in pgvector
 3. The top 10 most relevant documentation passages are retrieved (filtered by a minimum similarity threshold of 0.55 and a minimum length of 200 characters)
 4. Those passages are included as context in the prompt sent to the LLM
-5. The AI answers based on the documentation, not just its training data
+5. The AI answers based on the documentation and its own training data
 6. **Source cards** appear below the response showing:
    - Section title of each matched document
    - URL to the documentation page (clickable, opens in a new tab)
    - Similarity percentage (how relevant the match was)
    - A short excerpt from the matched passage
 
-If no relevant documentation is found, the AI will say so and provide a link to the LME docs website.
-
-### When to Use RAG vs. Regular Chat
-
-| Use RAG (Docs ON) for | Use regular chat (Docs OFF) for |
-|---|---|
-| "How do I change the elastic password?" | "What is a pass-the-hash attack?" |
-| "What ports does LME need open?" | "Write a KQL query for failed logins" |
-| "How do I add a Wazuh agent?" | "Explain this CVE to me" |
-| "Why is my Kibana not loading?" | "What does Sysmon Event ID 3 mean?" |
-
-:::tip
-If you are asking about LME itself (configuration, troubleshooting, features), always use RAG mode. The documentation context dramatically improves accuracy.
-:::
+If no relevant documentation is found the LLM will provide a link to the LME docs website.
 
 ## Analyzing Alerts with AI
 
@@ -106,9 +77,6 @@ Click the **"Clear"** button at the top of the chat panel to reset the conversat
 
 Conversation history is also cleared when you refresh the page.
 
-## How the AI Pipeline Works
-
-![How RAG Chat Works](/img/ai-stack/rag-pipeline.svg)
 
 ## Tips for Better Results
 

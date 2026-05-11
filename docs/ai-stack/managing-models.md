@@ -126,7 +126,7 @@ After downloading, switch to the model using either the dashboard or command lin
 | 1-3B parameters | 2-4 GB | Basic | Fast | Quick summaries, simple Q&A |
 | 7B parameters | 6-8 GB | Good | Moderate | Most security analysis tasks |
 | 13B parameters | 12-16 GB | Very good | Slower | Complex analysis, detailed reports |
-| 70B+ parameters | 48+ GB | Excellent | Slow | Expert-level analysis (needs powerful hardware) |
+| 70B+ parameters | 48+ GB | Great | Slow | Most complex analysis (needs powerful hardware) |
 
 :::tip
 Look for models with `Q4_K_M` quantization — this is a good balance of quality and size. Avoid `Q2` (too low quality) and `f16` (too large for most hardware).
@@ -333,7 +333,7 @@ Cloud API keys follow this security pipeline:
 6. The `sync_llm_keys.py` script decrypts the keys and injects them into a **Podman secret** (`llm-keys`)
 7. LiteLLM is restarted and reads the keys from `/run/secrets/llm_keys`
 
-At no point are plaintext API keys stored on disk outside of the Podman secret mount.
+At no point are plain text API keys stored on disk outside of the Podman secret mount.
 
 ## Troubleshooting
 

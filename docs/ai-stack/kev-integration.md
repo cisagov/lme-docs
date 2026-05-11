@@ -20,13 +20,11 @@ The [CISA KEV catalog](https://www.cisa.gov/known-exploited-vulnerabilities-cata
 
 ## How It Works
 
-![KEV Enrichment Pipeline](/img/ai-stack/kev-pipeline.svg)
-
-1. **Daily sync:** A systemd timer runs `kev_sync.py` to download the latest KEV catalog from CISA and save it locally
-2. **Wazuh detects a vulnerability:** When Wazuh's vulnerability detector finds a CVE on an endpoint, it fires an alert
-3. **KEV enrichment:** The `custom-kev` integration script checks the CVE against the local catalog
-4. **Enriched alert:** If the CVE is in the KEV catalog, a **Level 15** (maximum severity) alert is generated with full KEV metadata
-5. **Dashboard visibility:** The enriched alert appears in Elasticsearch and the LME Dashboard
+1. **Daily KEV sync:** A systemd timer runs `kev_sync.py` daily to download the latest KEV catalog from CISA and save it locally to `kev_catalog.json`
+2. **Wazuh detects a vulnerability:** When Wazuh's vulnerability detector finds a CVE on an endpoint it generates an alert containing the CVE ID
+3. **KEV enrichment:** The `custom-kev` Wazuh integration checks the CVE ID against the local catalog in `kev_catalog.json`
+4. **Enriched alert:** If the CVE is in the KEV catalog, a **Level 15** (maximum severity) Wazuh alert is generated with full KEV metadata
+5. **Dashboard visibility:** The enriched alert is indexed in Elasticsearch and appears in the LME Dashboard
 
 ## What You See
 

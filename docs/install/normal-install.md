@@ -39,7 +39,6 @@ sidebar_position: 1
     4.6 [Installing Sysmon (Windows Clients Only)](#46-installing-sysmon-windows-clients-only)
    
     4.7 [Deploying Agents](#47-deploying-agents)
-
    
    
 5. [Next Steps](#5-next-steps)
@@ -286,13 +285,13 @@ curl -s https://api.github.com/repos/cisagov/LME/releases/latest | jq -r '.asset
 
 **Note: The Fleet server is the last one to start and may take extra time.**
 
-**Note: If the output differs, reference the [Troubleshooting Guide](/docs/reference/troubleshooting#installation-troubleshooting).**
+**Note: If the output differs, reference the [Troubleshooting Guide](/docs/reference/troubleshooting#installation).**
 
 - Navigate to the [Post-Installation Steps](#45-post-installation-steps) section and follow the next instructions.
 
 ### 4.5 Post-Installation Steps
 
-If you encounter any issues, reference the [Post-Installation Troubleshooting Guide](/docs/reference/troubleshooting#post-installation-troubleshooting).
+If you encounter any issues, reference the [Post-Installation Troubleshooting Guide](/docs/reference/troubleshooting#post-installation).
 
 ### 4.6 Installing Sysmon (Windows Clients Only)
 
@@ -452,7 +451,7 @@ LME is actively maintained and regularly updated with new features and community
 - [Alerting](/docs/maintenance/elastalert-rules) - custom notifications for triggered alerts using elastalert2
 - [Active Response](/docs/agents/wazuh-active-response) - create custom Wazuh active response actions to automatically respond to a malicious event Wazuh detects. 
 - [Backups](/docs/maintenance/backups) - customize backups of logs for your organizations own compliance needs.
-- [Custom log types](/docs/agents/elastic-agent-management#lme-elastic-agent-integration-example) - use elastic agents built in [integrations](https://www.elastic.co/guide/en/integrations/current/index.html) ingest a log type specific to your organization.
+- [Custom log types](/docs/agents/elastic-agent-management#lme-elastic-agent-integration) - use elastic agents built in [integrations](https://www.elastic.co/guide/en/integrations/current/index.html) ingest a log type specific to your organization.
  
 ## 6. Documentation
 

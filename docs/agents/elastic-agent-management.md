@@ -66,11 +66,11 @@ This guide will walk you through the process of enrolling an Elastic Agent.
 
    - From Fleet, you should see the agent enrolled now.
 
-# LME Elastic Agent Integration
+## LME Elastic Agent Integration
 
 This guide will walk you through the process of adding a Windows integration to an agent policy in the Logging Made Easy (LME) system.
 
-## Steps to Add Windows Integration
+### Steps to Add Windows Integration
 
 - **Access Fleet and Agent Policies**
   
@@ -113,7 +113,7 @@ Important: If you have Sysmon installed on your endpoints, ensure **Sysmon Opera
    - After configuring your desired options, click on the **Save and continue button**.
    - Click on the **Add Elastic Agent to your hosts button**.
 
-## Important Considerations
+### Important Considerations
 
 - **Sysmon Integration:** If you're using Sysmon for enhanced logging, make sure to enable the Sysmon Operational log collection.
 - **Performance Impact:** Be mindful that collecting more logs and metrics may impact endpoint performance; balance your monitoring needs with system resources.
@@ -125,7 +125,7 @@ By following these steps, you can effectively add and configure the Windows inte
 
 Apply these same steps to future integrations such as Auditd for Linux.
 
-## Troubleshooting Agent Setup
+### Troubleshooting Agent Setup
 The Elastic agent has multiple debugging commands that can be run to troubleshoot installs. Reference the [Elastic Agent Command Reference](https://www.elastic.co/guide/en/fleet/current/elastic-agent-cmd-options.html) for more information. 
 
 In addition, reference the [Installation Layout](https://www.elastic.co/guide/en/fleet/current/installation-layout.html) to navigate/find the directories where Elastic agent is installed on the operating system.

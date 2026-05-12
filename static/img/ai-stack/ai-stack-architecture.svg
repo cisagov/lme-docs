@@ -42,7 +42,7 @@
   <text x="440" y="128" text-anchor="middle" font-size="9" fill="#6366F1">port 8502</text>
 
   <!-- Arrows from browser -->
-  <line x1="440" y1="140" x2="440" y2="182" stroke="#6366F1" stroke-width="4" marker-end="url(#arrowPurple)"/>
+  <line x1="440" y1="140" x2="440" y2="182" stroke="#7C3AED" stroke-width="4" marker-end="url(#arrowPurple)"/>
 
   <!-- Middle Row: LiteLLM + Elasticsearch -->
   <rect x="140" y="190" width="600" height="80" rx="12" fill="url(#gradProxy)" filter="url(#shadow)"/>
@@ -104,7 +104,7 @@
       refX="0.1"
       refY="2"
       orient="auto">
-      <path d="M0,0 V4 L2,2 Z" fill="#6366F1"/>
+      <path d="M0,0 V4 L2,2 Z" fill="#7C3AED"/>
     </marker>
     <marker id="arrowGreen" markerWidth="3" markerHeight="4" refX="0.1" refY="2" orient="auto">
       <path d="M0,0 V4 L2,2 Z" fill="#059669"/>

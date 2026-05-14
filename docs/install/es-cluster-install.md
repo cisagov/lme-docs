@@ -647,7 +647,7 @@ sudo mount --bind /srv/es-snapshots /mnt/es-snapshots
 echo '/srv/es-snapshots /mnt/es-snapshots none bind 0 0' | \
   sudo tee -a /etc/fstab
 ```
-**To Do: Check this to see if we are covering it on upgrade to cluster.**
+
 On each **child node**, install the NFS client and mount the master's export
 (replace `10.0.0.4` with your master's private IP):
 

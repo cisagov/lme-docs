@@ -21,7 +21,7 @@ machines.
 
 ### Infrastructure
 
-- Three or more Linux servers (Ubuntu 20.04+ or Red Hat Enterprise Linux [RHEL]/Rocky 8+ are the supported
+- Three or more Linux servers (Ubuntu 24.04+ or Red Hat Enterprise Linux [RHEL]/Rocky 8+ are the supported
   baselines)
 - One server is designated the **master**; it runs the full LME stack
   (Elasticsearch, Kibana, Fleet, Wazuh)

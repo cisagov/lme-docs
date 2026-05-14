@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Draw.io AI Co-Pilot</title>
+    <style>
+        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; }
+        #status { position: fixed; top: 10px; right: 10px; padding: 4px 10px; border-radius: 12px; font-size: 11px; z-index: 100; }
+        #status.connected { background: #2d7d2d; color: white; }
+        #status.disconnected { background: #d32f2f; color: white; }
+    </style>
+</head>
+<body>
+    <div id="status" class="disconnected">Disconnected</div>
+    <iframe id="drawio-frame" src="https://embed.diagrams.net/?embed=1&proto=json&autosave=1&modified=0&saveAndExit=0&noExitBtn=1" style="width: 100%; height: 100%; border: none;"></iframe>
+
+    <script>
+        var iframe = document.getElementById('drawio-frame').contentWindow;
+        var statusEl = document.getElementById('status');
+        var ws;
+
+        function connectWs() {
+            ws = new WebSocket('ws://' + window.location.host + '/ws');
+            ws.onopen = function() { statusEl.className = 'connected'; statusEl.textContent = 'Connected'; };
+            ws.onclose = function() { statusEl.className = 'disconnected'; statusEl.textContent = 'Disconnected'; setTimeout(connectWs, 2000); };
+            ws.onerror = function() { ws.close(); };
+            ws.onmessage = function(event) {
+                var payload = JSON.parse(event.data);
+                if (payload.action === 'merge') iframe.postMessage(JSON.stringify({ action: 'merge', xml: payload.xml }), '*');
+                if (payload.action === 'load') iframe.postMessage(JSON.stringify({ action: 'load', xml: payload.xml, autosave: 1 }), '*');
+                if (payload.action === 'status') statusEl.textContent = payload.message || 'Connected';
+                // Server requests SVG export for render pipeline
+                if (payload.action === 'request_svg_export') {
+                    console.log('[drawio-copilot] Requesting SVG export from Draw.io');
+                    iframe.postMessage(JSON.stringify({ action: 'export', format: 'xmlsvg', xml: '', spin: '' }), '*');
+                }
+            };
+        }
+        connectWs();
+
+        window.addEventListener('message', function(event) {
+            if (!event.data || typeof event.data !== 'string') return;
+            try {
+                var msg = JSON.parse(event.data);
+
+                // Autosave — push XML state to server
+                if (msg.event === 'autosave' || msg.event === 'save') {
+                    if (ws && ws.readyState === WebSocket.OPEN) {
+                        ws.send(JSON.stringify({ type: 'state_update', xml: msg.xml }));
+                        statusEl.textContent = 'Synced';
+                    }
+                }
+
+                // SVG export response — send SVG data to server for Inkscape pipeline
+                if (msg.event === 'export') {
+                    console.log('[drawio-copilot] Export received, format:', msg.format, 'data length:', (msg.data||'').length, 'xml length:', (msg.xml||'').length);
+                    var svgData = msg.data || msg.xml || '';
+                    if (svgData && ws && ws.readyState === WebSocket.OPEN) {
+                        ws.send(JSON.stringify({ type: 'svg_export', data: svgData }));
+                        statusEl.textContent = 'SVG exported';
+                    }
+                }
+
+                // Init — boot the editor
+                if (msg.event === 'init') {
+                    iframe.postMessage(JSON.stringify({ action: 'load', xml: '', autosave: 1 }), '*');
+                    if (ws && ws.readyState === WebSocket.OPEN) ws.send(JSON.stringify({ type: 'editor_ready' }));
+                }
+            } catch (e) {}
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "name": "drawio-editor-tool",
+  "version": "1.0.0",
+  "description": "AI-powered Draw.io co-editing tool with WebSocket bridge and high-fidelity Inkscape rendering pipeline",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test.js"
+  },
+  "dependencies": {
+    "ws": "^8.18.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "license": "MIT"
+}

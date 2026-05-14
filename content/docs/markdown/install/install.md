@@ -132,7 +132,7 @@ LME integrates Wazuh, Elastic, and ElastAlert. This modular, flexible architectu
 
 Understanding LME from a user perspective involves three key components:
 
-![diagram](/docs/imgs/lme-architecture-v2.png) 
+![diagram](/docs/imgs/lme-architecture-v2-3.png) 
 
 - **Collecting**: Logs are collected via agents
   

@@ -19,7 +19,7 @@ This allows you to take regular backups without a major impact on the system's p
 
 ## Setting Up a Backup Schedule
 
-**Step 1: Create a Filesystem Repository**
+### Step 1: Create a Filesystem Repository {#create-a-filesystem-repository}
 
 LME sets up a Podman volume called `lme_backups`, so backups can be stored outside of the container.
 
@@ -51,7 +51,7 @@ Follow these steps to create a repository in Kibana:
 
 ![Repository Three](/img/backup_pics/repository_3.png)
 
-**Step 2: Create a Snapshot Schedule Policy**
+### Step 2: Create a Snapshot Schedule Policy
 
 To automate backups, follow these steps to create a recurring snapshot policy in Kibana.
 
@@ -147,6 +147,8 @@ If you have a new Elasticsearch instance and need to restore logs from previous 
   
   - Use the same ***container mount path*** (/usr/share/elasticsearch/backups) and then select **Shared file system** as the type.
   
+  - Reference [Create a Filesystem Repository](#create-a-filesystem-repository) for more information.
+    
 **Step 3. Verify the Repository**
 
   - After registering, click the **Verify Repository button**.

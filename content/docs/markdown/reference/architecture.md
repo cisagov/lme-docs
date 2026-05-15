@@ -7,7 +7,7 @@ Logging Made Easy (LME) runs on Ubuntu and leverages Podman containers for secur
 
 **Note: For more information on supported Linux distributions, reference [Supported Linux Distributions](https://cisagov.github.io/lme-docs/docs/markdown/reference/change-me/).**
 
-![diagram](/docs/imgs/lme-architecture-v2.png) 
+![diagram](/docs/imgs/lme-architecture-v2-3.png) 
 
 ## Containers
 Containerization allows each component of LME to run independently, increasing system security, improving performance, and simplifying troubleshooting. 

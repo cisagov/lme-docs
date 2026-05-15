@@ -165,7 +165,7 @@ If you're running LME on Red Hat-based systems, you'll use `firewalld` instead o
 
 The LME ansible installation will stop and disable firewalld for you. If you later want to re-enable the firewall for security hardening, you can use one of the configuration methods below:
 
-- Automated Configuration (Recommended)
+### Automated Configuration (Recommended)
 
   For the easiest setup, use our automated firewall configuration script (after LME install):
 
@@ -183,7 +183,7 @@ The LME ansible installation will stop and disable firewalld for you. If you lat
   - Provide verification and troubleshooting information
   - Handle the complexity of dynamic interface names and network configurations
 
-- Manual Configuration
+### Manual Configuration
 
   For advanced users who need custom firewall configurations or troubleshooting, the automated script performs the equivalent of the following operations:
 

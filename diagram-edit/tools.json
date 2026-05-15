@@ -1,0 +1,97 @@
+[
+  {
+    "type": "function",
+    "function": {
+      "name": "init_diagram_workspace",
+      "description": "Initializes the Draw.io diagramming workspace. Spawns an HTTP server to serve the frontend dashboard and a WebSocket server for real-time AI<->browser communication. Generates the split-screen HTML dashboard with Draw.io editor (left) and high-fidelity PNG render viewer (right).",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "http_port": {
+            "type": "integer",
+            "description": "The port to run the static HTTP server on.",
+            "default": 8080
+          },
+          "ws_port": {
+            "type": "integer",
+            "description": "The port to run the WebSocket server on.",
+            "default": 8081
+          }
+        },
+        "required": []
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "inject_drawio_components",
+      "description": "Injects new mxGraphModel XML into the user's active Draw.io session via WebSocket merge action. Use this to add nodes, connections, icons, or apply style updates in real-time without disrupting the user's current view. The merge action is non-destructive — it adds to the existing diagram.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "xml_payload": {
+            "type": "string",
+            "description": "The raw mxGraphModel XML snippet to inject. MUST be wrapped in <mxGraphModel><root><mxCell id=\"0\"/><mxCell id=\"1\" parent=\"0\"/> ...[your new cells]... </root></mxGraphModel>. Use unique string IDs (e.g., 'ai_elastic_1' or UUIDs) to avoid collisions with user-drawn shapes. Enforce fontFamily=Inter, strokeWidth=2 for boundaries, strokeWidth=1 for connectors."
+          },
+          "reasoning": {
+            "type": "string",
+            "description": "Brief explanation of what components are being added or changed, shown to the user."
+          }
+        },
+        "required": ["xml_payload", "reasoning"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "load_drawio_diagram",
+      "description": "Loads a complete diagram into Draw.io, replacing the current canvas. Use this to initialize a diagram from a saved state or template. For adding to an existing diagram, use inject_drawio_components instead.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "xml_payload": {
+            "type": "string",
+            "description": "The complete mxGraphModel or mxfile XML to load as the diagram state."
+          }
+        },
+        "required": ["xml_payload"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "render_high_fidelity_png",
+      "description": "Takes the current diagram XML state and renders it through the headless Inkscape (300 DPI) and ImageMagick post-processing pipeline. Produces a polished output.png with optional drop shadows and unsharp masking. The result appears in the render panel of the dashboard.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "full_xml_state": {
+            "type": "string",
+            "description": "The complete mxGraphModel XML of the diagram to render. If omitted, uses the current state from the last autosave."
+          },
+          "apply_shadows": {
+            "type": "boolean",
+            "description": "Apply subtle global drop shadow and unsharp masking for a polished, professional look.",
+            "default": true
+          }
+        },
+        "required": []
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "get_diagram_state",
+      "description": "Returns the current XML state of the diagram as last reported by the user's browser via autosave. Use this to inspect the diagram before making changes, or to diff user edits for the 'observe and repeat' workflow.",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
+    }
+  }
+]

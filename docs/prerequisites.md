@@ -40,7 +40,7 @@ The following timetable is based on real-world installation sessions. These mile
 
 ## High-Level Overview Diagram of the LME System Architecture
 
-![diagram](/img/lme-architecture-v2.png) 
+![diagram](/img/lme-architecture-v2-3.png) 
 
 Please reference the [Architecture document](/docs/reference/architecture/) for a detailed description of LME's architecture and its components.
 

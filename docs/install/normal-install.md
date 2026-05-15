@@ -39,7 +39,6 @@ sidebar_position: 1
     4.6 [Installing Sysmon (Windows Clients Only)](#46-installing-sysmon-windows-clients-only)
    
     4.7 [Deploying Agents](#47-deploying-agents)
-
    
    
 5. [Next Steps](#5-next-steps)
@@ -132,9 +131,9 @@ LME integrates Wazuh, Elastic, and ElastAlert. This modular, flexible architectu
 
 ### 2.2 How does LME Work?
 
-Understanding LME from a user perspective involves three key components:
+![diagram](/img/lme-architecture-v2-3.png) 
 
-![diagram](/img/lme-architecture-v2.png) 
+Understanding LME from a user perspective involves three key components:
 
 - **Collecting**: Logs are collected via agents
   

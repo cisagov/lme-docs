@@ -1,0 +1,8 @@
+{
+  "label": "AI & LLM Stack",
+  "position": 11,
+  "link": {
+    "type": "generated-index",
+    "description": "AI-powered security analysis using local LLMs, RAG-augmented chat, the LME Security Dashboard, KEV enrichment, and log analysis tools."
+  }
+}

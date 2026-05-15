@@ -38,7 +38,7 @@ The following timetable is based on real-world installation sessions. These mile
 
 ## High-Level Overview Diagram of the LME System Architecture
 
-![diagram](/docs/imgs/lme-architecture-v2.png) 
+![diagram](/docs/imgs/lme-architecture-v2-3.png) 
 
 Please reference the [Architecture document](https://cisagov.github.io/lme-docs/docs/markdown/reference/architecture/) for a detailed description of LME's architecture and its components.
 

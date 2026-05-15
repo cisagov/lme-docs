@@ -28,7 +28,7 @@ The LME security model defines four distinct user roles, each with specific perm
 
 ## Services Containerized
 
-All services that make up LME (as documented in our [diagram](https://github.com/cisagov/LME/blob/release-2.0.0/docs/imgs/lme-architecture-v2.jpg)) are deployed as Podman containers, orchestrated internally using Podman's `quadlet_system`.
+All services that make up LME (as documented in our [diagram](https://github.com/cisagov/LME/blob/release-2.0.0/docs/imgs/lme-architecture-v2-3.png)) are deployed as Podman containers, orchestrated internally using Podman's `quadlet_system`.
 
 - Quadlets are installed into the system administrator's directory (`/etc/containers/systemd/`) and launched with root privileges, similar to other root-level services
 

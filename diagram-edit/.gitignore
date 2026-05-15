@@ -1,0 +1,10 @@
+node_modules/
+tmp/
+public/output.png
+public/raw_output.png
+public/diagram.svg
+public/diagram.drawio
+*.log
+.claude/
+.worktrees/
+drawio.deb

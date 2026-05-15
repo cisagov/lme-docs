@@ -1,0 +1,227 @@
+<mxfile host="app.diagrams.net" modified="2026-05-08T00:00:00.000Z" agent="Claude Code" version="24.6.5" type="device">
+  <diagram name="LME Architecture v3" id="lme-arch-v3">
+    <mxGraphModel dx="1600" dy="1200" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1300" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- ============================================================ -->
+        <!-- COMPONENT TABLE                                               -->
+        <!-- ============================================================ -->
+        <mxCell id="tbl-hdr" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1B365D;strokeColor=#1B365D;" parent="1" vertex="1"><mxGeometry x="30" y="30" width="410" height="35" as="geometry"/></mxCell>
+        <mxCell id="th1" value="COMPONENT" style="text;html=1;fontSize=14;fontStyle=1;align=center;verticalAlign=middle;fontColor=#FFFFFF;" parent="1" vertex="1"><mxGeometry x="30" y="30" width="170" height="35" as="geometry"/></mxCell>
+        <mxCell id="th2" value="PURPOSE" style="text;html=1;fontSize=14;fontStyle=1;align=center;verticalAlign=middle;fontColor=#FFFFFF;" parent="1" vertex="1"><mxGeometry x="200" y="30" width="240" height="35" as="geometry"/></mxCell>
+        <mxCell id="r1a" value="Elastic Agent" style="text;html=1;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;fillColor=#FFFFFF;strokeColor=#D4D4D4;" parent="1" vertex="1"><mxGeometry x="30" y="65" width="170" height="30" as="geometry"/></mxCell>
+        <mxCell id="r1b" value="Collects Logs from Clients" style="text;html=1;fontSize=12;align=left;verticalAlign=middle;fillColor=#FFFFFF;strokeColor=#D4D4D4;spacingLeft=10;" parent="1" vertex="1"><mxGeometry x="200" y="65" width="240" height="30" as="geometry"/></mxCell>
+        <mxCell id="r2a" value="Elastic Fleet" style="text;html=1;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;fillColor=#F5F5F5;strokeColor=#D4D4D4;" parent="1" vertex="1"><mxGeometry x="30" y="95" width="170" height="30" as="geometry"/></mxCell>
+        <mxCell id="r2b" value="Elastic Agent Management" style="text;html=1;fontSize=12;align=left;verticalAlign=middle;fillColor=#F5F5F5;strokeColor=#D4D4D4;spacingLeft=10;" parent="1" vertex="1"><mxGeometry x="200" y="95" width="240" height="30" as="geometry"/></mxCell>
+        <mxCell id="r3a" value="Wazuh Agent" style="text;html=1;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;fillColor=#FFFFFF;strokeColor=#D4D4D4;" parent="1" vertex="1"><mxGeometry x="30" y="125" width="170" height="30" as="geometry"/></mxCell>
+        <mxCell id="r3b" value="Endpoint Security Monitoring" style="text;html=1;fontSize=12;align=left;verticalAlign=middle;fillColor=#FFFFFF;strokeColor=#D4D4D4;spacingLeft=10;" parent="1" vertex="1"><mxGeometry x="200" y="125" width="240" height="30" as="geometry"/></mxCell>
+        <mxCell id="r4a" value="Wazuh Manager" style="text;html=1;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;fillColor=#F5F5F5;strokeColor=#D4D4D4;" parent="1" vertex="1"><mxGeometry x="30" y="155" width="170" height="30" as="geometry"/></mxCell>
+        <mxCell id="r4b" value="Wazuh Agent Management" style="text;html=1;fontSize=12;align=left;verticalAlign=middle;fillColor=#F5F5F5;strokeColor=#D4D4D4;spacingLeft=10;" parent="1" vertex="1"><mxGeometry x="200" y="155" width="240" height="30" as="geometry"/></mxCell>
+        <mxCell id="r5a" value="ElastAlert" style="text;html=1;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;fillColor=#FFFFFF;strokeColor=#D4D4D4;" parent="1" vertex="1"><mxGeometry x="30" y="185" width="170" height="30" as="geometry"/></mxCell>
+        <mxCell id="r5b" value="Notifications &amp; Alerts" style="text;html=1;fontSize=12;align=left;verticalAlign=middle;fillColor=#FFFFFF;strokeColor=#D4D4D4;spacingLeft=10;" parent="1" vertex="1"><mxGeometry x="200" y="185" width="240" height="30" as="geometry"/></mxCell>
+        <mxCell id="r6a" value="Elasticsearch" style="text;html=1;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;fillColor=#F5F5F5;strokeColor=#D4D4D4;" parent="1" vertex="1"><mxGeometry x="30" y="215" width="170" height="30" as="geometry"/></mxCell>
+        <mxCell id="r6b" value="Log Storage, Query &amp; Search" style="text;html=1;fontSize=12;align=left;verticalAlign=middle;fillColor=#F5F5F5;strokeColor=#D4D4D4;spacingLeft=10;" parent="1" vertex="1"><mxGeometry x="200" y="215" width="240" height="30" as="geometry"/></mxCell>
+        <mxCell id="r7a" value="Kibana" style="text;html=1;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;fillColor=#FFFFFF;strokeColor=#D4D4D4;" parent="1" vertex="1"><mxGeometry x="30" y="245" width="170" height="30" as="geometry"/></mxCell>
+        <mxCell id="r7b" value="Dashboards &amp; Visualization" style="text;html=1;fontSize=12;align=left;verticalAlign=middle;fillColor=#FFFFFF;strokeColor=#D4D4D4;spacingLeft=10;" parent="1" vertex="1"><mxGeometry x="200" y="245" width="240" height="30" as="geometry"/></mxCell>
+        <mxCell id="r8a" value="Podman" style="text;html=1;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;fillColor=#F5F5F5;strokeColor=#D4D4D4;" parent="1" vertex="1"><mxGeometry x="30" y="275" width="170" height="30" as="geometry"/></mxCell>
+        <mxCell id="r8b" value="Container Management" style="text;html=1;fontSize=12;align=left;verticalAlign=middle;fillColor=#F5F5F5;strokeColor=#D4D4D4;spacingLeft=10;" parent="1" vertex="1"><mxGeometry x="200" y="275" width="240" height="30" as="geometry"/></mxCell>
+        <mxCell id="rsep" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#7C3AED;strokeColor=#7C3AED;" parent="1" vertex="1"><mxGeometry x="30" y="305" width="410" height="3" as="geometry"/></mxCell>
+        <mxCell id="r9a" value="LME Dashboard" style="text;html=1;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;fillColor=#EDE9FE;strokeColor=#C4B5FD;fontColor=#5B21B6;" parent="1" vertex="1"><mxGeometry x="30" y="308" width="170" height="30" as="geometry"/></mxCell>
+        <mxCell id="r9b" value="AI Chat, Alerts, KEV, Det. Eng." style="text;html=1;fontSize=12;align=left;verticalAlign=middle;fillColor=#EDE9FE;strokeColor=#C4B5FD;spacingLeft=10;" parent="1" vertex="1"><mxGeometry x="200" y="308" width="240" height="30" as="geometry"/></mxCell>
+        <mxCell id="r10a" value="LiteLLM Proxy" style="text;html=1;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;fillColor=#F5F3FF;strokeColor=#C4B5FD;fontColor=#5B21B6;" parent="1" vertex="1"><mxGeometry x="30" y="338" width="170" height="30" as="geometry"/></mxCell>
+        <mxCell id="r10b" value="LLM API Gateway" style="text;html=1;fontSize=12;align=left;verticalAlign=middle;fillColor=#F5F3FF;strokeColor=#C4B5FD;spacingLeft=10;" parent="1" vertex="1"><mxGeometry x="200" y="338" width="240" height="30" as="geometry"/></mxCell>
+        <mxCell id="r11a" value="llama.cpp" style="text;html=1;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;fillColor=#EDE9FE;strokeColor=#C4B5FD;fontColor=#5B21B6;" parent="1" vertex="1"><mxGeometry x="30" y="368" width="170" height="30" as="geometry"/></mxCell>
+        <mxCell id="r11b" value="Local LLM (LFM2.5-1.2B)" style="text;html=1;fontSize=12;align=left;verticalAlign=middle;fillColor=#EDE9FE;strokeColor=#C4B5FD;spacingLeft=10;" parent="1" vertex="1"><mxGeometry x="200" y="368" width="240" height="30" as="geometry"/></mxCell>
+        <mxCell id="r12a" value="Embeddings" style="text;html=1;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;fillColor=#F5F3FF;strokeColor=#C4B5FD;fontColor=#5B21B6;" parent="1" vertex="1"><mxGeometry x="30" y="398" width="170" height="30" as="geometry"/></mxCell>
+        <mxCell id="r12b" value="RAG Embeddings (nomic)" style="text;html=1;fontSize=12;align=left;verticalAlign=middle;fillColor=#F5F3FF;strokeColor=#C4B5FD;spacingLeft=10;" parent="1" vertex="1"><mxGeometry x="200" y="398" width="240" height="30" as="geometry"/></mxCell>
+        <mxCell id="r13a" value="pgvector" style="text;html=1;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;fillColor=#EDE9FE;strokeColor=#C4B5FD;fontColor=#5B21B6;" parent="1" vertex="1"><mxGeometry x="30" y="428" width="170" height="30" as="geometry"/></mxCell>
+        <mxCell id="r13b" value="PostgreSQL + Vectors (RAG)" style="text;html=1;fontSize=12;align=left;verticalAlign=middle;fillColor=#EDE9FE;strokeColor=#C4B5FD;spacingLeft=10;" parent="1" vertex="1"><mxGeometry x="200" y="428" width="240" height="30" as="geometry"/></mxCell>
+
+        <!-- ============================================================ -->
+        <!-- ENDPOINTS                                                     -->
+        <!-- ============================================================ -->
+        <mxCell id="win-icon" value="" style="image;aspect=fixed;perimeter=ellipsePerimeter;html=1;shadow=0;dashed=0;image=img/lib/active_directory/windows_server_2.svg;" parent="1" vertex="1"><mxGeometry x="490" y="170" width="45" height="50" as="geometry"/></mxCell>
+        <mxCell id="win-wazuh" value="" style="shape=image;imageAspect=0;aspect=fixed;image=https://benheater.com/content/images/2022/06/wazuh_logo_circle-1.png;" parent="1" vertex="1"><mxGeometry x="540" y="175" width="25" height="25" as="geometry"/></mxCell>
+        <mxCell id="win-label" value="Windows Endpoints&lt;br&gt;Elastic Agents" style="text;html=1;align=center;verticalAlign=middle;strokeColor=#b85450;fillColor=#f8cecc;fontSize=10;" parent="1" vertex="1"><mxGeometry x="480" y="225" width="120" height="35" as="geometry"/></mxCell>
+        <mxCell id="lin-icon" value="" style="shadow=0;dashed=0;html=1;strokeColor=none;fillColor=#EF8F21;outlineConnect=0;shape=mxgraph.veeam.linux;" parent="1" vertex="1"><mxGeometry x="497" y="310" width="35" height="35" as="geometry"/></mxCell>
+        <mxCell id="lin-wazuh" value="" style="shape=image;imageAspect=0;aspect=fixed;image=https://benheater.com/content/images/2022/06/wazuh_logo_circle-1.png;" parent="1" vertex="1"><mxGeometry x="540" y="315" width="25" height="25" as="geometry"/></mxCell>
+        <mxCell id="lin-label" value="Linux Endpoints&lt;br&gt;Wazuh/Elastic Agents" style="text;html=1;align=center;verticalAlign=middle;strokeColor=#b85450;fillColor=#f8cecc;fontSize=10;" parent="1" vertex="1"><mxGeometry x="477" y="350" width="120" height="35" as="geometry"/></mxCell>
+
+        <!-- ============================================================ -->
+        <!-- UBUNTU SERVER (blue swimlane)                                 -->
+        <!-- ============================================================ -->
+        <mxCell id="server" value="" style="swimlane;startSize=0;shadow=0;fillColor=#dae8fc;strokeColor=#6c8ebf;rounded=0;" parent="1" vertex="1"><mxGeometry x="630" y="100" width="920" height="1150" as="geometry"/></mxCell>
+        <mxCell id="ubuntu-icon" value="" style="sketch=0;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;fillColor=#EF8F21;outlineConnect=0;shape=mxgraph.veeam.linux;" parent="1" vertex="1"><mxGeometry x="650" y="108" width="25" height="25" as="geometry"/></mxCell>
+        <mxCell id="srv-label" value="Ubuntu Server" style="text;html=1;align=center;verticalAlign=middle;strokeColor=#b85450;fillColor=#f8cecc;fontSize=11;" parent="1" vertex="1"><mxGeometry x="680" y="108" width="100" height="25" as="geometry"/></mxCell>
+        <mxCell id="podman-icon" value="" style="shape=image;imageAspect=0;aspect=fixed;image=https://pandorafms.com/blog/wp-content/uploads/2020/04/que-es-podman-4.png;fillColor=none;strokeColor=none;imageBackground=none;imageBorder=none;" parent="1" vertex="1"><mxGeometry x="800" y="106" width="28" height="28" as="geometry"/></mxCell>
+        <mxCell id="podman-label" value="Podman Containers" style="text;html=1;align=center;verticalAlign=middle;strokeColor=#b85450;fillColor=#f8cecc;fontSize=11;" parent="1" vertex="1"><mxGeometry x="832" y="108" width="130" height="25" as="geometry"/></mxCell>
+
+        <!-- ── Core containers: ROUNDED white boxes + blue border ────── -->
+        <!-- Wazuh Manager -->
+        <mxCell id="waz-box" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#6c8ebf;strokeWidth=1;" parent="1" vertex="1"><mxGeometry x="680" y="160" width="143" height="143" as="geometry"/></mxCell>
+        <mxCell id="waz-podman" value="" style="shape=image;imageAspect=0;aspect=fixed;image=https://pandorafms.com/blog/wp-content/uploads/2020/04/que-es-podman-4.png;fillColor=none;strokeColor=none;imageBackground=none;" parent="1" vertex="1"><mxGeometry x="685" y="165" width="22" height="22" as="geometry"/></mxCell>
+        <mxCell id="waz-icon1" value="" style="shape=image;imageAspect=0;aspect=fixed;image=https://benheater.com/content/images/2022/06/wazuh_logo_circle-1.png;" parent="1" vertex="1"><mxGeometry x="722" y="185" width="55" height="55" as="geometry"/></mxCell>
+        <mxCell id="waz-lbl" value="Wazuh Manager" style="text;html=1;align=center;verticalAlign=middle;strokeColor=#b85450;fillColor=#f8cecc;fontSize=10;" parent="1" vertex="1"><mxGeometry x="703" y="262" width="100" height="25" as="geometry"/></mxCell>
+
+        <!-- Kibana — with Kibana icon -->
+        <mxCell id="kib-box" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#6c8ebf;strokeWidth=1;" parent="1" vertex="1"><mxGeometry x="1080" y="160" width="143" height="143" as="geometry"/></mxCell>
+        <mxCell id="kib-podman" value="" style="shape=image;imageAspect=0;aspect=fixed;image=https://pandorafms.com/blog/wp-content/uploads/2020/04/que-es-podman-4.png;fillColor=none;strokeColor=none;imageBackground=none;" parent="1" vertex="1"><mxGeometry x="1085" y="165" width="22" height="22" as="geometry"/></mxCell>
+        <mxCell id="kib-icon" value="" style="shape=image;imageAspect=0;aspect=fixed;image=https://images.contentstack.io/v3/assets/bltefdd0b53724fa2ce/blt4466841eed0bf232/5d082a5e97f2babb5af907ee/logo-kibana-32-color.svg;" parent="1" vertex="1"><mxGeometry x="1126" y="190" width="50" height="50" as="geometry"/></mxCell>
+        <mxCell id="kib-lbl" value="Kibana" style="text;html=1;align=center;verticalAlign=middle;strokeColor=#b85450;fillColor=#f8cecc;fontSize=10;" parent="1" vertex="1"><mxGeometry x="1120" y="262" width="60" height="25" as="geometry"/></mxCell>
+
+        <!-- ElastAlert — with alert icon -->
+        <mxCell id="ea-box" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#6c8ebf;strokeWidth=1;" parent="1" vertex="1"><mxGeometry x="1290" y="160" width="143" height="143" as="geometry"/></mxCell>
+        <mxCell id="ea-podman" value="" style="shape=image;imageAspect=0;aspect=fixed;image=https://pandorafms.com/blog/wp-content/uploads/2020/04/que-es-podman-4.png;fillColor=none;strokeColor=none;imageBackground=none;" parent="1" vertex="1"><mxGeometry x="1295" y="165" width="22" height="22" as="geometry"/></mxCell>
+        <mxCell id="ea-icon" value="" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#E7157B;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.eventbridge_custom_event_bus_resource;" parent="1" vertex="1"><mxGeometry x="1335" y="190" width="45" height="45" as="geometry"/></mxCell>
+        <mxCell id="ea-lbl" value="ElastAlert" style="text;html=1;align=center;verticalAlign=middle;strokeColor=#b85450;fillColor=#f8cecc;fontSize=10;" parent="1" vertex="1"><mxGeometry x="1330" y="262" width="65" height="25" as="geometry"/></mxCell>
+
+        <!-- LME Front End -->
+        <mxCell id="fe-box" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#6c8ebf;strokeWidth=1;" parent="1" vertex="1"><mxGeometry x="680" y="370" width="143" height="143" as="geometry"/></mxCell>
+        <mxCell id="fe-podman" value="" style="shape=image;imageAspect=0;aspect=fixed;image=https://pandorafms.com/blog/wp-content/uploads/2020/04/que-es-podman-4.png;fillColor=none;strokeColor=none;imageBackground=none;" parent="1" vertex="1"><mxGeometry x="685" y="375" width="22" height="22" as="geometry"/></mxCell>
+        <mxCell id="fe-server" value="" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.traditional_server;fillColor=#7D7C7C;gradientColor=none;" parent="1" vertex="1"><mxGeometry x="730" y="395" width="35" height="48" as="geometry"/></mxCell>
+        <mxCell id="fe-lbl" value="LME Front End&lt;br&gt;Services" style="text;html=1;align=center;verticalAlign=middle;strokeColor=#b85450;fillColor=#f8cecc;fontSize=10;" parent="1" vertex="1"><mxGeometry x="698" y="462" width="100" height="35" as="geometry"/></mxCell>
+
+        <!-- Elastic Fleet -->
+        <mxCell id="fl-box" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#6c8ebf;strokeWidth=1;" parent="1" vertex="1"><mxGeometry x="880" y="370" width="143" height="143" as="geometry"/></mxCell>
+        <mxCell id="fl-podman" value="" style="shape=image;imageAspect=0;aspect=fixed;image=https://pandorafms.com/blog/wp-content/uploads/2020/04/que-es-podman-4.png;fillColor=none;strokeColor=none;imageBackground=none;" parent="1" vertex="1"><mxGeometry x="885" y="375" width="22" height="22" as="geometry"/></mxCell>
+        <mxCell id="fl-server" value="" style="sketch=0;aspect=fixed;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;fillColor=#00188D;shape=mxgraph.mscae.enterprise.cluster_server" parent="1" vertex="1"><mxGeometry x="928" y="405" width="42" height="52" as="geometry"/></mxCell>
+        <mxCell id="fl-lbl" value="Elastic Fleet" style="text;html=1;align=center;verticalAlign=middle;strokeColor=#b85450;fillColor=#f8cecc;fontSize=10;" parent="1" vertex="1"><mxGeometry x="915" y="472" width="80" height="25" as="geometry"/></mxCell>
+
+        <!-- Elasticsearch -->
+        <mxCell id="es-box" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#6c8ebf;strokeWidth=1;" parent="1" vertex="1"><mxGeometry x="1080" y="370" width="143" height="143" as="geometry"/></mxCell>
+        <mxCell id="es-podman" value="" style="shape=image;imageAspect=0;aspect=fixed;image=https://pandorafms.com/blog/wp-content/uploads/2020/04/que-es-podman-4.png;fillColor=none;strokeColor=none;imageBackground=none;" parent="1" vertex="1"><mxGeometry x="1085" y="375" width="22" height="22" as="geometry"/></mxCell>
+        <mxCell id="es-icon" value="" style="shape=image;imageAspect=0;aspect=fixed;image=https://cdn.iconscout.com/icon/free/png-256/elasticsearch-226094.png;" parent="1" vertex="1"><mxGeometry x="1127" y="405" width="48" height="48" as="geometry"/></mxCell>
+        <mxCell id="es-lbl" value="Elasticsearch" style="text;html=1;align=center;verticalAlign=middle;strokeColor=#b85450;fillColor=#f8cecc;fontSize=10;" parent="1" vertex="1"><mxGeometry x="1112" y="472" width="80" height="25" as="geometry"/></mxCell>
+
+        <!-- ============================================================ -->
+        <!-- AI STACK                                                      -->
+        <!-- ============================================================ -->
+        <mxCell id="ai-zone" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F3FF;strokeColor=#7C3AED;strokeWidth=2;dashed=1;dashPattern=8 4;arcSize=4;opacity=60;" parent="1" vertex="1"><mxGeometry x="650" y="570" width="880" height="310" as="geometry"/></mxCell>
+        <mxCell id="ai-lbl" value="AI &amp; LLM Stack (local — no data leaves your network)" style="text;html=1;fontSize=12;fontStyle=1;align=left;verticalAlign=middle;fontColor=#5B21B6;" parent="1" vertex="1"><mxGeometry x="670" y="575" width="380" height="22" as="geometry"/></mxCell>
+
+        <mxCell id="dash-box" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#7C3AED;strokeWidth=1;" parent="1" vertex="1"><mxGeometry x="680" y="610" width="143" height="110" as="geometry"/></mxCell>
+        <mxCell id="dash-podman" value="" style="shape=image;imageAspect=0;aspect=fixed;image=https://pandorafms.com/blog/wp-content/uploads/2020/04/que-es-podman-4.png;fillColor=none;strokeColor=none;imageBackground=none;" parent="1" vertex="1"><mxGeometry x="685" y="615" width="22" height="22" as="geometry"/></mxCell>
+        <mxCell id="dash-lbl" value="LME Security&lt;br&gt;Dashboard&lt;br&gt;&lt;font style=&quot;font-size:9px;color:#666&quot;&gt;:8502&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;strokeColor=#b85450;fillColor=#f8cecc;fontSize=10;" parent="1" vertex="1"><mxGeometry x="703" y="645" width="100" height="50" as="geometry"/></mxCell>
+
+        <mxCell id="la-box" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#7C3AED;strokeWidth=1;" parent="1" vertex="1"><mxGeometry x="680" y="745" width="143" height="100" as="geometry"/></mxCell>
+        <mxCell id="la-podman" value="" style="shape=image;imageAspect=0;aspect=fixed;image=https://pandorafms.com/blog/wp-content/uploads/2020/04/que-es-podman-4.png;fillColor=none;strokeColor=none;imageBackground=none;" parent="1" vertex="1"><mxGeometry x="685" y="750" width="22" height="22" as="geometry"/></mxCell>
+        <mxCell id="la-lbl" value="Log Analyzer&lt;br&gt;&lt;font style=&quot;font-size:9px;color:#666&quot;&gt;Streamlit :8501&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;strokeColor=#b85450;fillColor=#f8cecc;fontSize=10;" parent="1" vertex="1"><mxGeometry x="705" y="775" width="100" height="40" as="geometry"/></mxCell>
+
+        <mxCell id="llm-box" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#7C3AED;strokeWidth=1;" parent="1" vertex="1"><mxGeometry x="880" y="610" width="143" height="110" as="geometry"/></mxCell>
+        <mxCell id="llm-podman" value="" style="shape=image;imageAspect=0;aspect=fixed;image=https://pandorafms.com/blog/wp-content/uploads/2020/04/que-es-podman-4.png;fillColor=none;strokeColor=none;imageBackground=none;" parent="1" vertex="1"><mxGeometry x="885" y="615" width="22" height="22" as="geometry"/></mxCell>
+        <mxCell id="llm-lbl" value="LiteLLM Proxy&lt;br&gt;&lt;font style=&quot;font-size:9px;color:#666&quot;&gt;LLM Gateway :4000&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;strokeColor=#b85450;fillColor=#f8cecc;fontSize=10;" parent="1" vertex="1"><mxGeometry x="898" y="645" width="110" height="50" as="geometry"/></mxCell>
+
+        <mxCell id="pg-box" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#7C3AED;strokeWidth=1;" parent="1" vertex="1"><mxGeometry x="880" y="745" width="143" height="100" as="geometry"/></mxCell>
+        <mxCell id="pg-podman" value="" style="shape=image;imageAspect=0;aspect=fixed;image=https://pandorafms.com/blog/wp-content/uploads/2020/04/que-es-podman-4.png;fillColor=none;strokeColor=none;imageBackground=none;" parent="1" vertex="1"><mxGeometry x="885" y="750" width="22" height="22" as="geometry"/></mxCell>
+        <mxCell id="pg-lbl" value="pgvector&lt;br&gt;&lt;font style=&quot;font-size:9px;color:#666&quot;&gt;PostgreSQL :5432&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;strokeColor=#b85450;fillColor=#f8cecc;fontSize=10;" parent="1" vertex="1"><mxGeometry x="902" y="775" width="100" height="40" as="geometry"/></mxCell>
+
+        <mxCell id="llama-box" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#7C3AED;strokeWidth=1;" parent="1" vertex="1"><mxGeometry x="1080" y="610" width="143" height="110" as="geometry"/></mxCell>
+        <mxCell id="llama-podman" value="" style="shape=image;imageAspect=0;aspect=fixed;image=https://pandorafms.com/blog/wp-content/uploads/2020/04/que-es-podman-4.png;fillColor=none;strokeColor=none;imageBackground=none;" parent="1" vertex="1"><mxGeometry x="1085" y="615" width="22" height="22" as="geometry"/></mxCell>
+        <mxCell id="llama-lbl" value="llama.cpp&lt;br&gt;&lt;font style=&quot;font-size:9px;color:#666&quot;&gt;Local LLM :8080&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;strokeColor=#b85450;fillColor=#f8cecc;fontSize=10;" parent="1" vertex="1"><mxGeometry x="1102" y="645" width="100" height="50" as="geometry"/></mxCell>
+
+        <mxCell id="emb-box" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#7C3AED;strokeWidth=1;" parent="1" vertex="1"><mxGeometry x="1080" y="745" width="143" height="100" as="geometry"/></mxCell>
+        <mxCell id="emb-podman" value="" style="shape=image;imageAspect=0;aspect=fixed;image=https://pandorafms.com/blog/wp-content/uploads/2020/04/que-es-podman-4.png;fillColor=none;strokeColor=none;imageBackground=none;" parent="1" vertex="1"><mxGeometry x="1085" y="750" width="22" height="22" as="geometry"/></mxCell>
+        <mxCell id="emb-lbl" value="Embeddings&lt;br&gt;&lt;font style=&quot;font-size:9px;color:#666&quot;&gt;nomic :8081&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;strokeColor=#b85450;fillColor=#f8cecc;fontSize=10;" parent="1" vertex="1"><mxGeometry x="1105" y="775" width="95" height="40" as="geometry"/></mxCell>
+
+        <!-- ============================================================ -->
+        <!-- DETECTION ENGINEERING                                         -->
+        <!-- ============================================================ -->
+        <mxCell id="det-zone" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF9C3;strokeColor=#CA8A04;strokeWidth=2;dashed=1;dashPattern=8 4;arcSize=4;opacity=60;" parent="1" vertex="1"><mxGeometry x="650" y="920" width="880" height="110" as="geometry"/></mxCell>
+        <mxCell id="det-lbl" value="Detection Engineering Pipeline" style="text;html=1;fontSize=12;fontStyle=1;align=left;verticalAlign=middle;fontColor=#92400E;" parent="1" vertex="1"><mxGeometry x="670" y="925" width="240" height="22" as="geometry"/></mxCell>
+        <mxCell id="sigma" value="Sigma Rules&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;→ Elastic/Wazuh&lt;/font&gt;" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#CA8A04;fontSize=10;" parent="1" vertex="1"><mxGeometry x="670" y="955" width="120" height="50" as="geometry"/></mxCell>
+        <mxCell id="kibrules" value="Kibana Rules&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Prebuilt detection&lt;/font&gt;" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#CA8A04;fontSize=10;" parent="1" vertex="1"><mxGeometry x="810" y="955" width="120" height="50" as="geometry"/></mxCell>
+        <mxCell id="mitre" value="MITRE ATT&amp;CK&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Threat mapping&lt;/font&gt;" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#CA8A04;fontSize=10;" parent="1" vertex="1"><mxGeometry x="950" y="955" width="120" height="50" as="geometry"/></mxCell>
+        <mxCell id="kev" value="CISA KEV&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Vuln enrichment&lt;/font&gt;" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#CA8A04;fontSize=10;" parent="1" vertex="1"><mxGeometry x="1090" y="955" width="120" height="50" as="geometry"/></mxCell>
+        <mxCell id="ludus" value="Ludus Range&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Caldera&lt;/font&gt;" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#CA8A04;fontSize=10;" parent="1" vertex="1"><mxGeometry x="1230" y="955" width="120" height="50" as="geometry"/></mxCell>
+
+        <!-- ============================================================ -->
+        <!-- EXTERNAL                                                      -->
+        <!-- ============================================================ -->
+        <mxCell id="notif" value="Slack / Email" style="shape=cloud;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#82b366;fontSize=10;" parent="1" vertex="1"><mxGeometry x="1350" y="30" width="130" height="70" as="geometry"/></mxCell>
+        <mxCell id="cloud-box" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#F0F9FF;strokeColor=#0EA5E9;dashed=1;dashPattern=8 4;" parent="1" vertex="1"><mxGeometry x="1290" y="610" width="140" height="180" as="geometry"/></mxCell>
+        <mxCell id="cloud-lbl" value="&lt;b&gt;Cloud LLMs&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;(optional)&lt;/font&gt;" style="text;html=1;fontSize=10;align=center;verticalAlign=middle;fontColor=#0369A1;" parent="1" vertex="1"><mxGeometry x="1295" y="615" width="130" height="28" as="geometry"/></mxCell>
+        <mxCell id="c-oai" value="OpenAI" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;fontSize=9;arcSize=20;" parent="1" vertex="1"><mxGeometry x="1305" y="650" width="110" height="22" as="geometry"/></mxCell>
+        <mxCell id="c-anth" value="Anthropic" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;fontSize=9;arcSize=20;" parent="1" vertex="1"><mxGeometry x="1305" y="677" width="110" height="22" as="geometry"/></mxCell>
+        <mxCell id="c-azure" value="Azure OpenAI" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;fontSize=9;arcSize=20;" parent="1" vertex="1"><mxGeometry x="1305" y="704" width="110" height="22" as="geometry"/></mxCell>
+        <mxCell id="c-bed" value="AWS Bedrock" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;fontSize=9;arcSize=20;" parent="1" vertex="1"><mxGeometry x="1305" y="731" width="110" height="22" as="geometry"/></mxCell>
+        <mxCell id="c-oll" value="Ollama" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;fontSize=9;arcSize=20;" parent="1" vertex="1"><mxGeometry x="1305" y="758" width="110" height="22" as="geometry"/></mxCell>
+
+        <!-- ============================================================ -->
+        <!-- ARROWS: orthogonal, right-angle routing, edge connections     -->
+        <!-- ============================================================ -->
+        <!-- Wazuh (pink) -->
+        <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#FC6C97;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" edge="1" source="win-label" target="waz-box" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#FC6C97;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;" edge="1" source="lin-label" target="waz-box" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#FC6C97;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" edge="1" source="waz-box" target="es-box" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <!-- Elastic (black) -->
+        <mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" edge="1" source="win-label" target="fl-box" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;" edge="1" source="lin-label" target="fl-box" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e6" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;" edge="1" source="fl-box" target="es-box" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <!-- Frontend (orange) — FE up to Wazuh: exit top, go left around, enter Wazuh bottom-left -->
+        <mxCell id="e7" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#d79b00;strokeWidth=2;exitX=0;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=1;entryDx=0;entryDy=0;startArrow=classic;startFill=1;" edge="1" source="fe-box" target="waz-box" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="660" y="370"/>
+              <mxPoint x="660" y="303"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <!-- FE right to Fleet: exit right side top, enter Fleet left side top -->
+        <mxCell id="e8" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#d79b00;strokeWidth=2;exitX=1;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=0;entryDy=0;startArrow=classic;startFill=1;" edge="1" source="fe-box" target="fl-box" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="843" y="355"/>
+              <mxPoint x="865" y="355"/>
+              <mxPoint x="865" y="355"/>
+              <mxPoint x="880" y="355"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ES to Kibana -->
+        <mxCell id="e9" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;startArrow=classic;startFill=1;" edge="1" source="es-box" target="kib-box" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <!-- Kibana to ElastAlert (green) -->
+        <mxCell id="e10" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="kib-box" target="ea-box" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e11" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=2;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" source="ea-box" target="notif" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <!-- AI (purple) -->
+        <mxCell id="e12" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#7C3AED;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="dash-box" target="llm-box" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e13" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#7C3AED;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="llm-box" target="llama-box" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e14" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#7C3AED;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" source="dash-box" target="pg-box" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e15" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#7C3AED;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="pg-box" target="emb-box" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <!-- Dashboard to ES (orange) -->
+        <mxCell id="e16" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#d79b00;strokeWidth=2;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;startArrow=classic;startFill=1;" edge="1" source="dash-box" target="es-box" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <!-- LiteLLM to Cloud (blue dashed) -->
+        <mxCell id="e17" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#0EA5E9;strokeWidth=2;dashed=1;dashPattern=8 4;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="llm-box" target="cloud-box" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <!-- ============================================================ -->
+        <!-- LEGEND                                                        -->
+        <!-- ============================================================ -->
+        <mxCell id="leg-bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F0F0F0;strokeColor=#D4D4D4;" parent="1" vertex="1"><mxGeometry x="30" y="490" width="410" height="180" as="geometry"/></mxCell>
+        <mxCell id="leg-title" value="LEGEND" style="text;html=1;fontSize=14;fontStyle=1;align=left;verticalAlign=middle;fontColor=#1B365D;spacingLeft=10;" parent="1" vertex="1"><mxGeometry x="30" y="495" width="200" height="25" as="geometry"/></mxCell>
+        <mxCell id="lc1" value="" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#FC6C97;strokeColor=none;" parent="1" vertex="1"><mxGeometry x="50" y="530" width="14" height="14" as="geometry"/></mxCell>
+        <mxCell id="lt1" value="Data flow for Wazuh data" style="text;html=1;fontSize=10;align=left;verticalAlign=middle;" parent="1" vertex="1"><mxGeometry x="72" y="526" width="170" height="22" as="geometry"/></mxCell>
+        <mxCell id="lc2" value="" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#000000;strokeColor=none;" parent="1" vertex="1"><mxGeometry x="50" y="554" width="14" height="14" as="geometry"/></mxCell>
+        <mxCell id="lt2" value="Data flow for Elastic Agent data" style="text;html=1;fontSize=10;align=left;verticalAlign=middle;" parent="1" vertex="1"><mxGeometry x="72" y="550" width="200" height="22" as="geometry"/></mxCell>
+        <mxCell id="lc3" value="" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#d79b00;strokeColor=none;" parent="1" vertex="1"><mxGeometry x="50" y="578" width="14" height="14" as="geometry"/></mxCell>
+        <mxCell id="lt3" value="Data flow for LME front end services" style="text;html=1;fontSize=10;align=left;verticalAlign=middle;" parent="1" vertex="1"><mxGeometry x="72" y="574" width="220" height="22" as="geometry"/></mxCell>
+        <mxCell id="lc4" value="" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#82b366;strokeColor=none;" parent="1" vertex="1"><mxGeometry x="50" y="602" width="14" height="14" as="geometry"/></mxCell>
+        <mxCell id="lt4" value="Data flow for notifications and alerts" style="text;html=1;fontSize=10;align=left;verticalAlign=middle;" parent="1" vertex="1"><mxGeometry x="72" y="598" width="220" height="22" as="geometry"/></mxCell>
+        <mxCell id="lc5" value="" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#7C3AED;strokeColor=none;" parent="1" vertex="1"><mxGeometry x="50" y="626" width="14" height="14" as="geometry"/></mxCell>
+        <mxCell id="lt5" value="AI / LLM data flow" style="text;html=1;fontSize=10;align=left;verticalAlign=middle;" parent="1" vertex="1"><mxGeometry x="72" y="622" width="170" height="22" as="geometry"/></mxCell>
+        <mxCell id="lc6" value="" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#0EA5E9;strokeColor=none;" parent="1" vertex="1"><mxGeometry x="50" y="650" width="14" height="14" as="geometry"/></mxCell>
+        <mxCell id="lt6" value="Optional cloud LLM (dashed)" style="text;html=1;fontSize=10;align=left;verticalAlign=middle;" parent="1" vertex="1"><mxGeometry x="72" y="646" width="190" height="22" as="geometry"/></mxCell>
+        <mxCell id="podman-leg" value="" style="shape=image;imageAspect=0;aspect=fixed;image=https://pandorafms.com/blog/wp-content/uploads/2020/04/que-es-podman-4.png;fillColor=none;strokeColor=none;imageBackground=none;" parent="1" vertex="1"><mxGeometry x="250" y="528" width="18" height="18" as="geometry"/></mxCell>
+        <mxCell id="podman-lt" value="Podman Containers" style="text;html=1;fontSize=10;align=left;verticalAlign=middle;" parent="1" vertex="1"><mxGeometry x="275" y="524" width="140" height="22" as="geometry"/></mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

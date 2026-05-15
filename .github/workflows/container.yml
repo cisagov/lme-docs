@@ -94,8 +94,13 @@ jobs:
       # ── OSV-Scanner: source dependencies ─────────────────────────────────
       # Recursively scans the repo for all lockfiles (package-lock.json, etc.)
       # and SBOMs, catching vulnerable or malicious packages.
+      # OSV-Scanner exits 1 on ANY finding — it has no severity filter.
+      # We let the scan run, upload all results to GitHub Security tab,
+      # then fail only if high or critical severity findings exist.
       - name: Scan source dependencies with OSV-Scanner
+        id: osv-source
         uses: google/osv-scanner-action/osv-scanner-action@c51854704019a247608d928f370c98740469d4b5 # v2.3.5
+        continue-on-error: true
         with:
           scan-args: |-
             --recursive
@@ -110,20 +115,48 @@ jobs:
           sarif_file: osv-source-results.sarif
           category: osv-source
 
+      - name: Fail on high/critical source vulnerabilities
+        if: always() && hashFiles('osv-source-results.sarif') != ''
+        run: |
+          # Parse SARIF for high/critical findings (CVSS >= 7.0 or security-severity >= 7.0)
+          HIGH_CRIT=$(python3 -c "
+          import json, sys
+          sarif = json.load(open('osv-source-results.sarif'))
+          count = 0
+          for run in sarif.get('runs', []):
+            for rule in run.get('tool', {}).get('driver', {}).get('rules', []):
+              props = rule.get('properties', {})
+              tags = props.get('tags', [])
+              severity = float(props.get('security-severity', '0'))
+              if severity >= 7.0:
+                count += 1
+                print(f\"HIGH/CRITICAL: {rule.get('id','')} (severity: {severity})\", file=sys.stderr)
+          print(count)
+          " 2>&1)
+          echo "$HIGH_CRIT"
+          COUNT=$(echo "$HIGH_CRIT" | tail -1)
+          if [ "$COUNT" -gt 0 ]; then
+            echo "::error::Found $COUNT high/critical vulnerabilities in source dependencies"
+            exit 1
+          fi
+          echo "No high/critical vulnerabilities found (moderate/low findings reported to Security tab)"
+
       # ── OSV-Scanner: container image ────────────────────────────────────
       # Scans the built container image for OS-level and app-level vulns
       # (nginx:alpine packages, any bundled node modules, etc.)
       # OSV-Scanner v2 uses "scan image" subcommand, not --docker flag.
       - name: Scan container image with OSV-Scanner
+        id: osv-image
+        continue-on-error: true
         run: |
           docker run --rm \
             -v /var/run/docker.sock:/var/run/docker.sock \
+            -v "${{ github.workspace }}:/workspace" \
             ghcr.io/google/osv-scanner:v2.3.5 \
             scan image \
             --format=sarif \
-            --output=/dev/stdout \
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.ref_name }} \
-            > osv-image-results.sarif || true
+            --output-file=/workspace/osv-image-results.sarif \
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.ref_name }}
 
       - name: Upload image scan to GitHub Security
         uses: github/codeql-action/upload-sarif@5c8a8a642e79153f5d047b10ec1cba1d1cc65699 # v3
@@ -131,3 +164,27 @@ jobs:
         with:
           sarif_file: osv-image-results.sarif
           category: osv-container
+
+      - name: Fail on high/critical image vulnerabilities
+        if: always() && hashFiles('osv-image-results.sarif') != ''
+        run: |
+          HIGH_CRIT=$(python3 -c "
+          import json, sys
+          sarif = json.load(open('osv-image-results.sarif'))
+          count = 0
+          for run in sarif.get('runs', []):
+            for rule in run.get('tool', {}).get('driver', {}).get('rules', []):
+              props = rule.get('properties', {})
+              severity = float(props.get('security-severity', '0'))
+              if severity >= 7.0:
+                count += 1
+                print(f\"HIGH/CRITICAL: {rule.get('id','')} (severity: {severity})\", file=sys.stderr)
+          print(count)
+          " 2>&1)
+          echo "$HIGH_CRIT"
+          COUNT=$(echo "$HIGH_CRIT" | tail -1)
+          if [ "$COUNT" -gt 0 ]; then
+            echo "::error::Found $COUNT high/critical vulnerabilities in container image"
+            exit 1
+          fi
+          echo "No high/critical image vulnerabilities found"

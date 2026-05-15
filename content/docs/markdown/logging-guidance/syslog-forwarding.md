@@ -118,7 +118,7 @@ This guide provides instructions for setting up syslog forwarding to the LME ser
 
 4. Click on the **dataview logs drop-down menu** and then select **logs-***.
 
-5. In the Filter your data search bar, search for SSH-related entries by typing **message:("Failed passowrd" OR "invalid user" OR "authentication failure")**.
+5. In the Filter your data search bar, search for SSH-related entries by typing **message:("Failed password" OR "invalid user" OR "authentication failure")**.
 
 6. Confirm the failed login attempts were captured.
 
@@ -126,6 +126,6 @@ This guide provides instructions for setting up syslog forwarding to the LME ser
 
 1. Build a ***metric visualization for failed login attempts***.
 
-2. In the Filter your data search bar, type **message:("Failed passowrd" OR "invalid user" OR "authentication failure")**.
+2. In the Filter your data search bar, type **message:("Failed password" OR "invalid user" OR "authentication failure")**.
 
 3. Add the ***visualization*** to the dashboard.
